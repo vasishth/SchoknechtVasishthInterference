@@ -1,0 +1,265 @@
+# author: Pia Schoknecht
+# date: 30.07.2023
+
+# script to analyze reading times in the pre-critical region
+
+# load packages
+library(tidyverse)
+library(truncnorm)
+library(brms)
+library(ggplot2)
+library(bayesplot)
+
+
+# load data
+precrit_trim <- read.csv("data/pandora_spr_774_precrit.csv")
+
+
+# Inferential statistics
+# truncated varying priors 
+# (only positive effects -- longer reading times for high interference)
+
+priors_s_tr <- c(
+  prior(normal(6, 0.6), class = Intercept),
+  prior(normal(0, 0.01), class = b, lb=0),
+  prior(normal(0, 0.5), class = sigma),
+  prior(normal(0, 0.1), class = sd)
+)  
+
+priors_m_tr <- c(
+  prior(normal(6, 0.6), class = Intercept),
+  prior(normal(0, 0.05), class = b, lb=0),
+  prior(normal(0, 0.5), class = sigma),
+  prior(normal(0, 0.1), class = sd)
+) 
+
+priors_l_tr <- c(
+  prior(normal(6, 0.6), class = Intercept),
+  prior(normal(0, 0.1), class = b, lb=0),
+  prior(normal(0, 0.5), class = sigma),
+  prior(normal(0, 0.1), class = sd)
+) 
+
+# check priors
+round(exp(6-2*0.6));round(exp(6+2*0.6)) # intercept
+round(exp(6+0.01) - exp(6-0.01))  # beta normal-(0, 0.01)
+round(exp(6+0.05) - exp(6-0.05))  # beta normal-(0, 0.05)
+round(exp(6+0.1) - exp(6-0.1))    # beta normal-(0, 0.1)
+
+
+# models
+m_s_full <- brm(rt ~ 1 + syn * sem +
+                 (1 | participant) +
+                 (1 | item),
+               data = precrit_trim,
+               family = lognormal(),
+               prior = priors_s_tr,
+               warmup = 2000,
+               iter = 20000,
+               cores = 4,
+               save_pars = save_pars(all = TRUE)
+               )
+save(m_s_full, file = paste("model_fits/Fit_s_Full_precrit.Rda"))
+
+m_m_full <- brm(rt ~ 1 + syn * sem +
+                  (1 | participant) +
+                  (1 | item),
+                data = precrit_trim,
+                family = lognormal(),
+                prior = priors_m_tr,
+                warmup = 2000,
+                iter = 20000,
+                cores = 4,
+                save_pars = save_pars(all = TRUE)
+)
+save(m_m_full, file = paste("model_fits/Fit_m_Full_precrit.Rda"))
+
+m_l_full <- brm(rt ~ 1 + syn * sem +
+                  (1 | participant) +
+                  (1 | item),
+                data = precrit_trim,
+                family = lognormal(),
+                prior = priors_l_tr,
+                warmup = 2000,
+                iter = 20000,
+                cores = 4,
+                save_pars = save_pars(all = TRUE)
+)
+save(m_l_full, file = paste("model_fits/Fit_l_Full_precrit.Rda"))
+
+# null modells
+# without sem
+m_s_nosem <- brm(rt ~ 1 + syn + syn:sem +
+                  (1 | participant) +
+                  (1 | item),
+                data = precrit_trim,
+                family = lognormal(),
+                prior = priors_s_tr,
+                warmup = 2000,
+                iter = 20000,
+                cores = 4,
+                save_pars = save_pars(all = TRUE)
+)
+save(m_s_nosem, file = paste("model_fits/Fit_s_nosem_precrit.Rda"))
+
+m_m_nosem <- brm(rt ~ 1 + syn + syn:sem +
+                   (1 | participant) +
+                   (1 | item),
+                 data = precrit_trim,
+                 family = lognormal(),
+                 prior = priors_m_tr,
+                 warmup = 2000,
+                 iter = 20000,
+                 cores = 4,
+                 save_pars = save_pars(all = TRUE)
+)
+save(m_m_nosem, file = paste("model_fits/Fit_m_nosem_precrit.Rda"))
+
+m_l_nosem <- brm(rt ~ 1 + syn + syn:sem +
+                    (1 | participant) +
+                    (1 | item),
+                  data = precrit_trim,
+                  family = lognormal(),
+                  prior = priors_l_tr,
+                  warmup = 2000,
+                  iter = 20000,
+                  cores = 4,
+                  save_pars = save_pars(all = TRUE)
+)
+save(m_l_nosem, file = paste("model_fits/Fit_l_nosem_precrit.Rda"))
+
+
+# without syn
+m_s_nosyn <- brm(rt ~ 1 + sem + syn:sem +
+                   (1 | participant) +
+                   (1 | item),
+                 data = precrit_trim,
+                 family = lognormal(),
+                 prior = priors_s_tr,
+                 warmup = 2000,
+                 iter = 20000,
+                 cores = 4,
+                 save_pars = save_pars(all = TRUE)
+)
+save(m_s_nosyn, file = paste("model_fits/Fit_s_nosyn_precrit.Rda"))
+
+m_m_nosyn <- brm(rt ~ 1 + sem + syn:sem +
+                    (1 | participant) +
+                    (1 | item),
+                  data = precrit_trim,
+                  family = lognormal(),
+                  prior = priors_m_tr,
+                  warmup = 2000,
+                  iter = 20000,
+                  cores = 4,
+                  save_pars = save_pars(all = TRUE)
+ )
+save(m_m_nosyn, file = paste("model_fits/Fit_m_nosyn_precrit.Rda"))
+
+m_l_nosyn <- brm(rt ~ 1 + sem + syn:sem +
+                    (1 | participant) +
+                    (1 | item),
+                  data = precrit_trim,
+                  family = lognormal(),
+                  prior = priors_l_tr,
+                  warmup = 2000,
+                  iter = 20000,
+                  cores = 4,
+                  save_pars = save_pars(all = TRUE)
+ )
+save(m_l_nosyn, file = paste("model_fits/Fit_l_nosyn_precrit.Rda"))
+
+# without interaction
+m_s_noint <- brm(rt ~ 1 + sem + sem +
+                   (1 | participant) +
+                   (1 | item),
+                 data = precrit_trim,
+                 family = lognormal(),
+                 prior = priors_s_tr,
+                 warmup = 2000,
+                 iter = 20000,
+                 cores = 4,
+                 save_pars = save_pars(all = TRUE)
+)
+save(m_s_noint, file = paste("model_fits/Fit_s_noint_precrit.Rda"))
+
+m_m_noint <- brm(rt ~ 1 + sem + sem +
+                   (1 | participant) +
+                   (1 | item),
+                 data = precrit_trim,
+                 family = lognormal(),
+                 prior = priors_m_tr,
+                 warmup = 2000,
+                 iter = 20000,
+                 cores = 4,
+                 save_pars = save_pars(all = TRUE)
+)
+save(m_m_noint, file = paste("model_fits/Fit_m_noint_precrit.Rda"))
+
+m_l_noint <- brm(rt ~ 1 + sem + sem +
+                   (1 | participant) +
+                   (1 | item),
+                 data = precrit_trim,
+                 family = lognormal(),
+                 prior = priors_l_tr,
+                 warmup = 2000,
+                 iter = 20000,
+                 cores = 4,
+                 save_pars = save_pars(all = TRUE)
+)
+save(m_l_noint, file = paste("model_fits/Fit_l_noint_precrit.Rda"))
+ 
+load("model_fits/Fit_s_full_precrit.rda")
+load("model_fits/Fit_s_nosem_precrit.rda")
+load("model_fits/Fit_s_nosyn_precrit.rda")
+load("model_fits/Fit_s_noint_precrit.rda")
+
+load("model_fits/Fit_m_full_precrit.rda")
+load("model_fits/Fit_m_nosem_precrit.rda")
+load("model_fits/Fit_m_nosyn_precrit.rda")
+load("model_fits/Fit_m_noint_precrit.rda")
+
+load("model_fits/Fit_l_full_precrit.rda")
+load("model_fits/Fit_l_nosem_precrit.rda")
+load("model_fits/Fit_l_nosyn_precrit.rda")
+load("model_fits/Fit_l_noint_precrit.rda")
+
+# bfs
+bf_s_sem1 <- bayes_factor(m_s_full, m_s_nosem)$bf
+bf_s_sem2 <- bayes_factor(m_s_full, m_s_nosem)$bf
+bf_s_syn1 <- bayes_factor(m_s_full, m_s_nosyn)$bf
+bf_s_syn2 <- bayes_factor(m_s_full, m_s_nosyn)$bf
+bf_s_int1 <- bayes_factor(m_s_full, m_s_noint)$bf
+bf_s_int2 <- bayes_factor(m_s_full, m_s_noint)$bf
+
+bf_m_sem1 <- bayes_factor(m_m_full, m_m_nosem)$bf
+bf_m_sem2 <- bayes_factor(m_m_full, m_m_nosem)$bf
+bf_m_syn1 <- bayes_factor(m_m_full, m_m_nosyn)$bf
+bf_m_syn2 <- bayes_factor(m_m_full, m_m_nosyn)$bf
+bf_m_int1 <- bayes_factor(m_m_full, m_m_noint)$bf
+bf_m_int2 <- bayes_factor(m_m_full, m_m_noint)$bf
+
+bf_l_sem1 <- bayes_factor(m_l_full, m_l_nosem)$bf
+bf_l_sem2 <- bayes_factor(m_l_full, m_l_nosem)$bf
+bf_l_syn1 <- bayes_factor(m_l_full, m_l_nosyn)$bf
+bf_l_syn2 <- bayes_factor(m_l_full, m_l_nosyn)$bf
+bf_l_int1 <- bayes_factor(m_l_full, m_l_noint)$bf
+bf_l_int2 <- bayes_factor(m_l_full, m_l_noint)$bf
+
+# save BFs in df
+df.bf <- data.frame(matrix(ncol=6,nrow=0))
+colnames(df.bf) <- c("Region", "Effect","Prior","truncated", "BF10.1", "BF10.2")
+df.bf[nrow(df.bf)+1,] <- c("pre-critical", "semantic","Normal(0, 0.01)", "yes", round(bf_s_sem1,2), round(bf_s_sem2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","semantic","Normal(0, 0.05)","yes", round(bf_m_sem1,2), round(bf_m_sem2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","semantic","Normal(0, 0.1)","yes", round(bf_l_sem1,2), round(bf_l_sem2,2))
+
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","syntactic","Normal(0, 0.01)", "yes", round(bf_s_syn1,2), round(bf_s_syn2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","syntactic","Normal(0, 0.05)","yes", round(bf_m_syn1,2), round(bf_m_syn2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","syntactic","Normal(0, 0.1)","yes", round(bf_l_syn1,2), round(bf_l_syn2,2))
+
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","interaction","Normal(0, 0.01)", "yes", round(bf_s_int1,2), round(bf_s_int2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","interaction","Normal(0, 0.05)","yes", round(bf_m_int1,2), round(bf_m_int2,2))
+df.bf[nrow(df.bf)+1,] <- c("pre-critical","interaction","Normal(0, 0.1)","yes", round(bf_l_int1,2), round(bf_l_int2,2))
+
+save(df.bf, file = paste("BFs_spr_pooled_774_precrit.Rda"))
+
