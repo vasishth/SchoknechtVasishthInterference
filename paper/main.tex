@@ -269,14 +269,16 @@ Self-paced reading times were analyzed with Bayesian linear mixed models in R \c
 The models included fixed effects for syntactic interference (high +0.5, low -0.5), semantic interference (high +0.5, low -0.5) and their interaction.  Varying intercepts for participants and items were included; varying slopes were excluded for reasons explained below. 
 
 \paragraph{Bayes factors for model comparison}
-Model comparisons were carried out using Bayes factors. Because Bayes factors can be very sensitive to prior specifications on the target parameter being tested \parencite{schad_etal_2022_BF}, 
+
+In order to quantify the uncertainty on the parameters of interest, we report 95\% credible intervals.  
+These intervals represent the range over which we can be 95\% certain that the values of the parameter lies, given the statistical model and the data. However, formal hypothesis testing cannot be carried out without a likelihood ratio test that compares two alternative models \parencite{schad_etal_2022_BF,Royall}. For this reason, formal hypothesis tests for the presence or absence of the effects of interest were carried out using Bayes factors. Because Bayes factors can be very sensitive to prior specifications on the target parameter being tested \parencite{schad_etal_2022_BF}, 
 we report a sensitivity analysis using a range of prior specifications for the relevant parameters (see Table \ref{tab:spr_priors}). The priors assume a priori effect sizes for the main effects of syntactic and semantic interference, and their interaction, ranging from 0-8 ms, 0-40 ms, or 0-81 ms.  These priors are based on the observed effect sizes and their uncertainties in previous reading studies that use the present design \parencite{vandyke07,mertzen}.
 
 The Bayes factor is analogous to the frequentist ANOVA or likelihood ratio test: it compares the (marginal) likelihood of a full model to that of a baseline null model; this is often written as $BF_{10}$, with the subscripts indicating that marginal likelihood of the full model is in the numerator and that of the null model is in the denominator. One major advantage of the Bayes factor over the frequentist analogue is that it takes the uncertainty of the parameters into account; this leads to more conservative inferences compared to frequentist ANOVA, which only takes the maximum likelihood estimate of the parameter into account \parencite[see][for detailed discussion]{schad_etal_2022_BF}. Another important advantage of the Bayes factor---one that is very relevant for the present work---is that it is in principle possible to find evidence both for or against an effect; this is contrast to the frequentist ANOVA, which is designed to only furnish evidence against the null. 
 
 Bayes factors can be interpreted as follows \parencite[e.g., ][]{lee2014bayesian}: if BF$_{10}$ > 1, it provides evidence in favor of the effect of interest. If BF$_{10}$ < 1, it provides evidence in favor of the null model. The larger the value of BF$_{10}$, the stronger the evidence for the effect and the smaller the value of BF$_{10}$ is, the stronger the evidence for the null. 
 In general, a large number of iterations is needed in the brms package in order to obtain stable estimates of the Bayes factor  \citep{schad_etal_2022_BF}.
-For this reason, models were run with 4 chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being discarded as the warm-up phase.  Bayes factors were unstable when varying slopes were included; for this reason, we fit the models only with varying intercepts by participant and by item.
+For this reason, models were run with four chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being discarded as the warm-up phase.  Bayes factors were unstable when varying slopes were included; for this reason, we fit the models only with varying intercepts by participant and by item.
 
 \begin{table}[h]
     \caption{Priors used for the analysis of the self-paced reading time data. Priors on the fixed-effects slope parameters were truncated to a lower bound of zero, i.e., only positive values were assumed to be possible a priori. This corresponds to the existing evidence in the literature that high interference conditions lead to longer reading times than low interference conditions. The standard deviation of the fixed-effects slope priors was varied in order to conduct a Bayes factor sensitivity analysis following \citet{schad_etal_2022_BF}. See the corresponding assumed a priori range of the difference between reading times under high vs.\ low interference on the millisecond scale.}
@@ -297,8 +299,6 @@ For this reason, models were run with 4 chains and 20,000 iterations in each cha
   \bottomrule
   \end{tabular}
   \end{table}
-
- %\multirow{3}{1cm}{lb=0}
  
 %\bigskip
 
@@ -319,11 +319,12 @@ For this reason, models were run with 4 chains and 20,000 iterations in each cha
 %\end{table}
 
 
-\subsubsection{Comprehension question accuracy}
-After exclusion of participants with accuracy below 70\,\%, overall accuracy (including fillers) was good; on average 85.9\,\% (range: 71.9 - 100\,\%). Accuracy in critical trials was 81.1\,\% (range: 20 - 100\,\%). Condition-wise accuracy is shown in Table \ref{tab:spr_acc}.
+\subsubsection{Comprehension question accuracy (Experiments 1a and 1b combined)}
+
+After exclusion of participants with accuracy below 70\,\%, overall accuracy (including fillers) was good; on average 85.9\,\% (range: 71.9 - 100\,\%). Accuracy for the critical items was 81.1\,\% (range: 20 - 100\,\%). Condition-wise accuracy is shown in Table \ref{tab:spr_acc}.
 
 \begin{table}[]
-    \caption{By-condition accuracy in critical trials in the SPR experiment.}
+    \caption{By-condition accuracy in critical trials in the SPR experiment (E1a and E1b combined).}
     \label{tab:spr_acc}
     \centering
     \begin{tabular}{llr}
@@ -338,26 +339,27 @@ After exclusion of participants with accuracy below 70\,\%, overall accuracy (in
     \end{tabular}
 \end{table}
 
-Table \ref{tab:spr_acc_mod} shows the results of the generalized mixed model analyzing the comprehension accuracy in critical trials. The estimates and 95\,\% credible intervals in log-odds show primarily a reduction in comprehension accuracy for high compared to low semantic interference conditions.
+Table \ref{tab:spr_acc_mod} shows the results of the generalized mixed model (log-odds scale) analyzing the comprehension accuracy for the critical items (Experiments 1a and 1b combined). The estimates and 95\,\% credible intervals show primarily a reduction in comprehension accuracy for high compared to low semantic interference conditions.
 
 \begin{table}[H]
-    \caption{Results in log-odds from the Bayesian generalized model analyzing the comprehension accuracy in critical trials of the SPR experiment.}
+    \caption{Results in log-odds from the Bayesian generalized model analyzing the comprehension accuracy in the SPR Experiments 1a and 1b.}
     \label{tab:spr_acc_mod}
     \centering
-    \begin{tabular}{lrrr}
+    \begin{tabular}{lrr}
     \toprule
-    & Estimate & Est.Error & 95\% CrI  \\
+    & Estimate &  95\% CrI  \\
     \midrule
-Intercept& 1.66 & 0.14&  1.38 - 1.93\\
-syntactic& -0.08 & 0.04& -0.16 - -0.01\\
-semantic&  -0.61 &0.04& -0.69 - -0.54\\
-interaction& -0.10& 0.06& -0.22 - 0.02\\
+Intercept& 1.66 &   [1.38, 1.93]\\
+syntactic& -0.08 &  [-0.16, -0.01]\\
+semantic&  -0.61 & [-0.69, -0.54]\\
+interaction& -0.10&  [-0.22, 0.02]\\
     \bottomrule
     \end{tabular}
 \end{table}
 
+Since the accuracies are not of primary interest, we do not carry out Bayes factors analyses for these.
 
-\subsubsection{Self-paced reading times}
+\subsubsection{Self-paced reading times (Experiments 1a and 1b combined)}
 Reading times across the whole sentence are shown in Figure \ref{fig:whole_sentence} A and B, separately for high and low syntactic interference because these conditions had partially different sentence structure. 
 %\clearpage
 
@@ -369,7 +371,7 @@ Reading times across the whole sentence are shown in Figure \ref{fig:whole_sente
 \end{sidewaysfigure}
 \clearpage
 
-It is apparent from Figure \ref{fig:whole_sentence} A and B that, at the distractor, regardless of the syntactic manipulation, reading times between high and low semantic interference started to differ. Distractors in the high semantic interference conditions induced longer reading times than in the low semantic interference conditions. This is probably due to encoding interference \citep{mertzen, jaeger_etal_2015_retrieval_encoding} and persisted in the following regions. Nonetheless, we refrained from analyzing the distractor and the immediately following regions, because they differed between conditions. Instead we focused our analyses on regions which were identical across conditions: The pre-critical, critical and spill-over region. Figure \ref{fig:whole_sentence} C shows the pooled reading times of these regions (and additionally the pre-pre-critical region which was identical across conditions as well, but might be confounded by spill-over from the syntactic manipulation). The pre-pre-critical and pre-critical region show longer reading times for high vs.\ low semantic interference conditions. The critical verb was read slowest when syntactic and semantic interference were both high and fastest when syntactic interference was high and semantic interference low. The other two conditions showed intermediate reading times. The spill-over region again primarily showed a difference between high and low semantic interference conditions. 
+It is apparent from Figure \ref{fig:whole_sentence} A and B that, regardless of the syntactic manipulation  at the distractor, reading times between high and low semantic interference started to differ: distractors in the high semantic interference conditions induced longer reading times than in the low semantic interference conditions. This is probably due to encoding interference \citep{mertzen, jaeger_etal_2015_retrieval_encoding} and persisted in the following regions. Nonetheless, we refrained from analyzing the distractor and the immediately following regions, because they differed between conditions. Instead we focused our analyses on regions which were identical across conditions: The pre-critical, critical and spill-over region. Figure \ref{fig:whole_sentence} C shows the pooled reading times of these regions (and additionally the pre-pre-critical region which was identical across conditions as well, but might be confounded by spill-over from the syntactic manipulation). The pre-pre-critical and pre-critical region show longer reading times for high vs.\ low semantic interference conditions. The critical verb was read slowest when syntactic and semantic interference were both high and fastest when syntactic interference was high and semantic interference low. The other two conditions showed intermediate reading times. The spill-over region again primarily showed a difference between high and low semantic interference conditions. 
 
 Panel D shows the reading times of the critical and surrounding regions for each of the sub-parts of the SPR experiment. The sub-experiment with multiple sessions and items 1-60 (N = 204, left most sub-figure) showed results similar to the pooled results presented in Panel C. The sub-experiment with multiple sessions and items 61-120 (N = 160) showed a semantic interference effect at the critical verb and less clear results in the surrounding regions. Additionally, this sub-experiment showed shorter reading times compared to the other sub-experiments in general. This was probably caused by adaptation to the task, because the same participants had completed another session earlier. The sub-experiment with a single session and items 1-60 (N = 350) showed a semantic interference effect in all regions. The sub-experiment with a single session and items 61-120 (N = 220, right most sub-figure) showed a semantic interference effect in the regions surrounding the critical verb, but not at the verb itself. At the verb, reading times were longest when both syntactic and semantic interference were high. Reading times were a bit faster when both syntactic and semantic interference were low. The other two conditions (high syntactic/low semantic and low syntactic/high semantic) lead to the fastest verb reading times in this sub-experiment. These somewhat inconsistent results, especially in the critical region, across the sub-experiments and the random assignment of participants to the sub-experiments motivated us to gain estimates of the effects under investigation for the individual participants (see Figure \ref{fig:spr_individual}).
 
