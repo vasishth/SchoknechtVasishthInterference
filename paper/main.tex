@@ -22,6 +22,8 @@
 \usepackage{multirow}
 \usepackage{subcaption}
 
+\usepackage{bigdelim}
+
 \title{\hspace{1cm} Do syntactic and semantic similarity lead to interference effects?\newline
 %Semantic (but no syntactic) similarity-based interference
 Evidence from self-paced reading and event-related potentials using German}
@@ -112,22 +114,11 @@ However, two important questions remain unanswered. First, as discussed in \cite
 Second, although it is clear and uncontroversial  \parencite[e.g.,][]{vandyke07,mertzen} that syntactic and semantic cues are involved in sentence processing, it is not obvious which cues are relevant for a particular retrieval event. For example, \cite{dillon2013} argued, following \cite{Sturt2003}, that the gender cue was either downweighted or not used at all when an antecedent-reflexive dependency needs to be built; instead, the antecedent of a reflexive could be identified using the syntactic principle A of the binding theory, which correctly identifies the target for retrieval.  Using computational modeling, \cite{dillon2013} suggested that antecedent-reflexive dependencies were immune to interference, and that the reason for this is that principle A of the binding theory is the primary driver of the cue-based retrieval process \parencite[cf. ][]{jaeger_etal_2020,yadav2021individual}. This was a surprising discovery because a priori, cue-based retrieval accounts do not allow for exceptions to retrieval interference in particular syntactic dependency types.
 More broadly, an important implication of the work initiated by \cite{dillon2013}, among others, is that  the precise details of which cues are used during retrieval can affect processing difficulty in possibly surprising ways.
 
-\subsection{The present study}
+\section{The present study}
 
 Reading studies have been the dominant method used to investigate retrieval interference \parencite[see the review in][]{jaeger_etal_2017}.  We aimed to investigate the role of syntactic and semantic cues during sentence comprehension with higher-powered experiments using  self-paced reading as well as EEG, which to our knowledge has never been used to investigate interference during subject-verb dependency resolution
 
 All experiments used the 2 $\times$ 2 design developed by \citet{vandyke07}; the design crosses syntactic and semantic interference. 
-
-% Wrong location for all this detail:
-%This is -- to our knowledge -- the first . The SPR experiments were conducted web-based via Prolific and the EEG experiments required participants to come into the lab. All experiments were run with native speakers of German. Because the high signal-to-noise ratio of EEG data requires a large number of trials per condition and participant, we constructed 120 items which were used in the EEG and SPR experiments. It would have been very taxing for the participants to read all 120 items in one experimental session, therefore we decided to split the experiment into two sessions. The ERP data that we present here, comes only from participants who completed both sessions. In contrast, most of the SPR participants (570 out of 774) finished only one session. This was intentional because we found that participants' reading speed in the second session was increased, probably due to increased familiarity with the task. Figure \ref{fig:project_str} shows the structure of the present study, i.e., how many participants saw which subset of the items and whether these participants completed one or two experimental sessions.
-
-\begin{figure}[H]
-    \caption{The structure of the present study. In total, 120 items were used for the SPR (red branches) and the ERP experiments (blue branches). The color brightness reflects how many sessions were completed by each participant (lighter color: two sessions, darker color: one session).}
-    \label{fig:project_str}
-    \centering
-    \includegraphics[width=0.85\textwidth]{images/pandora_project_structure_figure.pdf}
-\end{figure}
-
 
 \subsection{Materials}
 
@@ -148,7 +139,7 @@ As the same materials were used for all our experiments, we describe them here o
     \end{xlist}
 \end{exe}
 
-Comprehension of the sentences in \ref{ex:materials} requires a memory retrieval operation at the verb \textit{trank} (`drank') to retrieve its non-adjacent subject \textit{Witwer} (`widower'). During this retrieval, the distractor \textit{Einbrecher} (`burglar') / \textit{Verlust} (`loss') might cause interference and impede comprehension. 
+The comprehension of the sentences in \ref{ex:materials} requires a memory retrieval operation at the verb \textit{trank} (`drank') to retrieve its non-adjacent subject \textit{Witwer} (`widower'). During this retrieval, the distractor \textit{Einbrecher} (`burglar') / \textit{Verlust} (`loss') might cause interference and impede comprehension. 
 
 Syntactic interference is manipulated via the syntactic status of the distractor, which is either subject (\ref{ex:hisyn}) of an embedded clause, or part of a prepositional phrase (\ref{ex:losyn}). Following \cite{vandyke07}, the assumption here is that  during the retrieval of the subject, a distractor in any subject position causes more syntactic interference than a distractor inside a prepositional phrase. 
 
@@ -159,10 +150,10 @@ It is well-known \parencite[e.g., ][]{rayner2000effect} that the last word in a 
 \subsubsection{Plausibility norming}
 \citeauthor{vandyke07} conducted a pre-test to ensure that the distractor in high semantic interference conditions was a sufficiently probable subject of the critical verb, i.e., that it could potentially induce semantic interference. Following \citeauthor{vandyke07}, we also conducted a plausibility norming experiment.
 
-\paragraph{Participants}
-Forty participants (18 female, 22 male, mean age: 27.3 years old, age range: 21 - 39 years old) from the SPR experiments were re-invited for the plausibility norming one month after they completed the SPR experiment. We used the same participants who participated in the SPR study in order to ensure that the ratings for the norming came from the same pool of participants that did the reading study.
+\paragraph{Participants in the plausibility norming study}
+Forty participants (18 female, 22 male, mean age: 27.3 years old, age range: 21 - 39 years old) from the SPR experiments were re-invited for the plausibility norming one month after they completed the SPR experiment. We used a subset of the participants who participated in the SPR study in order to ensure that the ratings for the norming came from the same pool of participants that did the reading study.
 
-\paragraph{Materials}
+\paragraph{Materials in the plausibility study}
 For each item quadruplet, four simple sentences with subject-verb-object word order were constructed, so that each of the nouns in the item once functioned as the subject of the critical verb. The norming materials corresponding to the item depicted in \ref{ex:materials} are shown in \ref{ex:materials_norming}.
 
 \begin{exe}  
@@ -187,10 +178,10 @@ For each item quadruplet, four simple sentences with subject-verb-object word or
     \end{xlist}
 \end{exe}
 
-\paragraph{Procedure}
+\paragraph{Procedure for the plausibility study}
 The plausibility norming experiment was implemented in PCIbex \citep{pcibex} and was conducted online. Participants were asked to judge the plausibility of the sentences on a 7-point scale ranging from absolutely implausible (1) to absolutely plausible (7). All sentences belonging to one item were shown on one screen, so that they could be judged relative to each other. The plausibility norming experiment included 120 sentences from a different experiment which functioned as fillers. The participants received \pounds 3.40 as compensation for the norming experiment. A demonstration of the plausibility norming experiment can be accessed via \hyperlink{https://farm.pcibex.net/r/WIeKYM/}{https://farm.pcibex.net/r/WIeKYM/}.
 
-\paragraph{Results}
+\paragraph{Results of the plausibility study}
 The plausibility ratings showed that the semantic manipulation worked as intended. The subject received the highest rating (mean: 6.5, sd: 0.9) and the animate distractor (high semantic interference conditions) was almost as plausible (mean: 6.1, sd: 1.3). In contrast, the inanimate distractor (low semantic interference conditions) was very implausible (mean: 1.7, sd: 1.4). The first noun in the target sentences, which was not part of the experimental manipulation, was tested as well and it received a high plausibility rating (mean: 6.0, sd: 1.4). These results are shown in Figure \ref{fig:plausibility_rating}. The plausibility ratings are similar to those reported for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 3.
 
 \begin{figure}[H]
@@ -200,9 +191,27 @@ The plausibility ratings showed that the semantic manipulation worked as intende
 \end{figure}
 
 
-\section{Experiment 1: SPR}
-\subsection{Methods}
-Initially, we planned to conduct SPR experiment in two sessions to gain data from all participants for all 120 items. Collecting data for 120 items in one session was not considered feasible in a web-based SPR experiment, as the experiment duration would have been close to one hour. So, the first batch of participants (160 out of 774) completed two experimental sessions. This approach was dropped after we realized, that participants adapted to the task quickly which led to a considerable reading time speed-up between sessions (see Figure \ref{fig:whole_sentence} D). After this realization, all further participants took part in a single session during which they read half of the 120 items (for a visualization of the project structure, see Figure \ref{fig:project_str}).
+\subsection{The structure and sample sizes of the SPR and EEG experiments}
+
+The SPR experiments were conducted web-based via Prolific and the EEG experiment was of course run in the lab.  Because the high signal-to-noise ratio of EEG data requires a large number of trials per condition and participant, we constructed 120 items. In order to keep the SPR and EEG studies comparable, we also used 120 items in SPR experiments. In both methods, as it would have been very taxing for the participants to read all 120 items in one experimental session, we split the experiments into two sessions. 
+
+The SPR study, hereafter Experiment 1a, was initially designed so that participants  (N=160) read items in the first session (1-60) and then, after a gap of 1-20 days, they read the the second set of items (61-120). As discussed in detail below, the second session showed an adaptation effect \parencite{prasad2021rapid}: the effects observed in the first session disappeared. The adaptation effect is theoretically interesting per se \parencite{fine2013rapid} and we discuss it below; but it was problematic for our design because the average effect would then be confounded by adaptation. For this reason, we ran a second version of the SPR study, hereafter Experiment 1b, in which participants (N=614) were either shown items 1-60 or items 61-120 (but not both). In the Results section, we present both sets of results as well as the pooled data (N=774) from E1a and E1b.
+As mentioned above, because the ERP method requires a large number of items, all the data come from participants who completed both sessions. 
+
+Figure \ref{fig:project_str} shows the structure of the present study, i.e., how many participants saw which subset of the items and whether these participants completed one or two experimental sessions.
+
+\begin{figure}[H]
+    \caption{The structure of the present study. In total, 120 items were used for the SPR (red branches) and the ERP experiments (blue branches). The color brightness reflects how many sessions were completed by each participant (lighter color: two sessions, darker color: one session).}
+    \label{fig:project_str}
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/pandora_project_structure_figure.pdf}
+\end{figure}
+
+
+\section{Experiments 1a and 1b: SPR}
+%\subsection{Methods}
+
+%Initially, we planned to conduct SPR experiment in two sessions to gain data from all participants for all 120 items. Collecting data for 120 items in one session was not considered feasible in a web-based SPR experiment, as the experiment duration would have been close to one hour. So, the first batch of participants (160 out of 774) completed two experimental sessions. This approach was dropped after we realized, that participants adapted to the task quickly which led to a considerable reading time speed-up between sessions (see Figure \ref{fig:whole_sentence} D). After this realization, all further participants took part in a single session during which they read half of the 120 items (for a visualization of the project structure, see Figure \ref{fig:project_str}).
 
 
 \subsubsection{Participants}
@@ -232,10 +241,10 @@ Initially, we planned to conduct SPR experiment in two sessions to gain data fro
 
 % 224 + 18  + 387 + 279 = 908
 
+Native German-speaking participants were recruited via Prolific. In total, 908 participants took part in the self-paced reading experiments E1a and E1b. 117 participants were excluded due to low comprehension question accuracy (< 70\,\%). Additionally, 16 participants were excluded because the demographic information in their Prolific profile and the information which they provided during the experiment did not match (regarding, e.g., their native language, language impairment, or age). One participant was excluded because of a technical error during their session. The data of 774 participants (mean age: 27 years old, age range: 18 - 40 years, 395 female, 369 male, 10 preferred to not provide sex information) were used for analyses. When asked about their highest level of education, 365 participants reported a bachelor's degree or higher university education. 334 participants reported to have a high-school diploma and 70 another secondary school certificate. Five participants replied with ``other.'' 
+%We conclude that the participants who were recruited via Prolific were slightly older and have a comparable or higher level of education than the typical undergraduate and graduate students who participate in lab-based studies.
 
-Participants for the experiment were recruited via Prolific. In total, 908 participants took part in the self-paced reading experiment. 117 participants were excluded due to low comprehension question accuracy (< 70\,\%). Additionally, 16 participants were excluded because the demographic information in their Prolific profile and the information which they provided during the experiment did not match (regarding, e.g., their native language, language impairment, or age). One participant was excluded because of a technical error during their session. The data of 774 participants (mean age: 27 years old, age range: 18 - 40 years, 395 female, 369 male, 10 preferred to not provide sex information) were used for analyses. When asked about their highest level of education, 365 participants reported a bachelor's degree or higher university education. 334 participants reported to have a high-school diploma and 70 another secondary school certificate. Five participants replied with ``other.'' We conclude that the participants who were recruited via Prolific were slightly older and have a comparable or higher level of education than the typical undergraduate and graduate students who participate in lab-based studies.
-
-A subset of the SPR experiment was carried out in two experimental sessions per participant. Drop-out between sessions led to a lower sample size in the second session (204 vs.\ 160). In this multiple-sessions part of the experiment, compensation for the first session was \pounds 3.5 and for the second session, it was \pounds 5. In the single-session part of the experiment, compensation was \pounds 4. 
+In Experiment 1a, drop-outs between sessions led to a lower sample size in the second session (204 vs.\ 160). In Experiment 1a, compensation for the first session was \pounds 3.5 and for the second session, it was \pounds 5. In Experiment 1b, compensation was \pounds 4. 
 
 \subsubsection{Procedure}
 Participants completed a moving window self-paced reading task \citep{just_etal_1982} on the PCIbex Farm \citep{pcibex}. They were instructed to read for comprehension at a comfortable pace. All sentences were displayed word by word. Masked words were presented as a line indicating its length. Unmasked words were presented in 18 pt Courier font. The space bar on the keyboard was used to unmask words. The length of the sentences required line breaks. These were hard-coded so that in each sentence a line break appeared i) between the subject and the relative clause and ii) two words after the critical verb (see \ref{ex:linebreak}, critical word in bold, | indicate line breaks in the moving window display). In a third of the trials, the sentence was followed by a yes/no comprehension question. The participants received no feedback on their performance.
@@ -249,34 +258,48 @@ In addition to the reading-for-comprehension task, the participants completed tw
     \trans  `The neighbor believed that the widower, who had told her that the loss was awful, regularly drank in the evenings to forget.'\\  
 \end{exe}
 
-In the multiple-sessions part of the experiment, participants were re-invited for session 2 after they completed session 1. The experimental sessions were separated by 1 - 20 days. The procedure of the sessions was identical. Each session lasted approximately 25 minutes.
+In Experiment 1a, participants were re-invited for session 2 after they completed session 1. The experimental sessions were separated by 1 - 20 days. The procedure of the sessions was identical. Each session lasted approximately 25 minutes.
 
 \subsubsection{Statistical analyses}
-Comprehension question accuracy was analyzed with Bayesian generalized linear mixed models, i.e., logistic regression, in R \citep{r}, using the brms package \citep{brms}. The fixed effects were syntactic interference, semantic interference and their interaction. These were sum-contrast coded (high +0.5, low -0.5). Random intercepts for participants and items were included. For the intercept, we used a Normal(0, 1.5) prior and  for all slope parameters, a Normal(0, 0.1) prior was used. No other priors were specified. Models were run with 4 chains and 8,000 iterations in each chain. 2,000 iterations in each chain consisted of a warm-up phase.
 
-Self-paced reading times were analyzed with Bayesian linear mixed models in R \citep{r} with log-normal likelihood, using the brms package \citep{brms}. The critical word for analyses was the verb \textit{trank} `drank' in \ref{ex:materials}, constituting the retrieval site. Additionally, reading times of the pre-critical word (\textit{regelmäßig} `regularly' in \ref{ex:materials}) and the spill-over region (\textit{um} `in.order.to' in \ref{ex:materials}) were analyzed. 
-The models included fixed effects for syntactic interference (high +0.5, low -0.5), semantic interference (high +0.5, low -0.5) and their interaction. Factors were sum-contrast coded \citep{schad_et_al_contrasts}. Random intercepts for participants and items were included. Inclusion of any random slopes led to unstable Bayes factors due to increased model complexity. We used informative priors for all parameters of the models (see Table \ref{tab:spr_priors}). We used a wide range of priors on the parameters of interest, assuming effect sizes ranging from 8 ms up to 81 ms, to carry out a Bayes factors sensitivity analysis. If BF$_{10}$ > 1, it provides evidence in favor of the effect. If BF$_{10}$ < 1, it provides evidence in favor of the null model. The larger the value of BF$_{10}$, the stronger the evidence for the effect and the smaller the value of BF$_{10}$ is, the stronger the evidence for the null. Models were run with 4 chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being the warm-up phase \citep{schad_etal_2022_BF}. 
+\paragraph{Bayesian linear mixed models}
+Comprehension question accuracy was analyzed with Bayesian generalized linear mixed models, i.e., logistic regression, in R \citep{r}, using the brms package \citep{brms}. The fixed effects were syntactic interference, semantic interference and their interaction. These were sum-contrast coded (high +0.5, low -0.5). Varying intercepts for participants and items were included. For the intercept, we used a Normal(0, 1.5) prior and  for all fixed-effect slope parameters, a Normal(0, 0.1) prior. The priors for the variance components were the defaults specified in brms. Models were run with 4 chains and 8,000 iterations in each chain. 2,000 iterations in each chain consisted of a warm-up phase. 
+
+Self-paced reading times were analyzed with Bayesian linear mixed models in R \citep{r} with log-normal likelihood, using the brms package \citep{brms}. The critical word for analyses was the verb \textit{trank} `drank' in \ref{ex:materials}, constituting the retrieval site. Because previous work found effects in the pre-critical and post-critical region, reading times of the pre-critical word (\textit{regelmäßig} `regularly' in \ref{ex:materials}) and the spill-over region (\textit{um} `in.order.to' in \ref{ex:materials}) were analyzed. 
+The models included fixed effects for syntactic interference (high +0.5, low -0.5), semantic interference (high +0.5, low -0.5) and their interaction.  Varying intercepts for participants and items were included; varying slopes were excluded for reasons explained below. 
+
+\paragraph{Bayes factors for model comparison}
+Model comparisons were carried out using Bayes factors. Because Bayes factors can be very sensitive to prior specifications on the target parameter being tested \parencite{schad_etal_2022_BF}, 
+we report a sensitivity analysis using a range of prior specifications for the relevant parameters (see Table \ref{tab:spr_priors}). The priors assume a priori effect sizes for the main effects of syntactic and semantic interference, and their interaction, ranging from 0-8 ms, 0-40 ms, or 0-81 ms.  These priors are based on the observed effect sizes and their uncertainties in previous reading studies that use the present design \parencite{vandyke07,mertzen}.
+
+The Bayes factor is analogous to the frequentist ANOVA or likelihood ratio test: it compares the (marginal) likelihood of a full model to that of a baseline null model; this is often written as $BF_{10}$, with the subscripts indicating that marginal likelihood of the full model is in the numerator and that of the null model is in the denominator. One major advantage of the Bayes factor over the frequentist analogue is that it takes the uncertainty of the parameters into account; this leads to more conservative inferences compared to frequentist ANOVA, which only takes the maximum likelihood estimate of the parameter into account \parencite[see][for detailed discussion]{schad_etal_2022_BF}. Another important advantage of the Bayes factor---one that is very relevant for the present work---is that it is in principle possible to find evidence both for or against an effect; this is contrast to the frequentist ANOVA, which is designed to only furnish evidence against the null. 
+
+Bayes factors can be interpreted as follows \parencite[e.g., ][]{lee2014bayesian}: if BF$_{10}$ > 1, it provides evidence in favor of the effect of interest. If BF$_{10}$ < 1, it provides evidence in favor of the null model. The larger the value of BF$_{10}$, the stronger the evidence for the effect and the smaller the value of BF$_{10}$ is, the stronger the evidence for the null. 
+In general, a large number of iterations is needed in the brms package in order to obtain stable estimates of the Bayes factor  \citep{schad_etal_2022_BF}.
+For this reason, models were run with 4 chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being discarded as the warm-up phase.  Bayes factors were unstable when varying slopes were included; for this reason, we fit the models only with varying intercepts by participant and by item.
 
 \begin{table}[h]
-    \caption{Informative priors for the analysis of the self-paced reading time data. Priors on the slope parameters were truncated to a lower bound of zero, i.e., only positive values. This corresponds to the assumption that high interference conditions lead to longer reading times than low interference conditions. The standard deviation of the slope priors was varied in order to conduct a Bayes factor sensitivity analysis following \citet{schad_etal_2022_BF}. See the corresponding assumed a priori range of the difference between reading times under high vs.\ low interference on the millisecond scale.}
+    \caption{Priors used for the analysis of the self-paced reading time data. Priors on the fixed-effects slope parameters were truncated to a lower bound of zero, i.e., only positive values were assumed to be possible a priori. This corresponds to the existing evidence in the literature that high interference conditions lead to longer reading times than low interference conditions. The standard deviation of the fixed-effects slope priors was varied in order to conduct a Bayes factor sensitivity analysis following \citet{schad_etal_2022_BF}. See the corresponding assumed a priori range of the difference between reading times under high vs.\ low interference on the millisecond scale.}
     \label{tab:spr_priors}
     \centering
      \begin{tabular}{lllr}
     \toprule
-    Parameter&Prior & &Assumed Range\\
+    Parameter&Prior & &Assumed Range in ms\\
     \midrule
-  Intercept & Normal(6, 0.6)& &\\
+  Intercept & Normal(6, 0.6)& & 125-1308\\
   \cmidrule{2-4}
-  \multirow{3}{1cm}{slope} & Normal(0, 0.01) & \multirow{3}{1cm}{lb=0} & 0 - 8 ms\\
-  &  Normal(0, 0.05)& &0 - 40 ms\\
-  & Normal(0, 0.1) & &0 - 81 ms\\
+  \multirow{3}{1cm}{slope} & Normal(0, 0.01) & \hspace{-1em}\rdelim\}{3}{*}[lower bound: 0] & 0 - 8\\
+  &  Normal(0, 0.05)& &0 - 40\\
+  & Normal(0, 0.1) & &0 - 81\\
   \cmidrule{2-4}
-  sigma & Normal(0, 0.5)&&\\
+  sigma & Normal(0, 0.5)&  \hspace{-1em}\rdelim\}{2}{*}[lower bound: 0]&\\
   SD & Normal(0, 0.1)& &\\
   \bottomrule
   \end{tabular}
   \end{table}
 
+ %\multirow{3}{1cm}{lb=0}
+ 
 %\bigskip
 
 %\begin{table}[ht]
@@ -295,8 +318,6 @@ The models included fixed effects for syntactic interference (high +0.5, low -0.
 %    \end{tabular}
 %\end{table}
 
-\subsection{Results}
-Data and analysis scripts can be accessed via https://osf.io/4fpru/?view$\_$only=.
 
 \subsubsection{Comprehension question accuracy}
 After exclusion of participants with accuracy below 70\,\%, overall accuracy (including fillers) was good; on average 85.9\,\% (range: 71.9 - 100\,\%). Accuracy in critical trials was 81.1\,\% (range: 20 - 100\,\%). Condition-wise accuracy is shown in Table \ref{tab:spr_acc}.
@@ -639,6 +660,11 @@ representation of event structures. This view has been put forward by \citet{rab
 %The present large-scale self-paced reading study examined the role of syntactic and semantic features during sentence comprehension. At a verb that initiated retrieval of its subject, high semantic interference led to longer reading times than low semantic interference, but only when syntactic interference was high as well. This result provided empirical support for the assumption that different types of cues are used simultaneously during memory retrieval in subject-verb dependency formation. Furthermore, it suggests that distractors must match all available retrieval cues to cause similarity-based retrieval interference. The results of the present study are similar to the predictions of cue-based retrieval models of sentence processing with non-linear combinatorics.
 
 This project investigated the use of  syntactic and semantic cues during subject-verb dependency resolution with self-paced reading and event-related potentials. While our results did not directly replicate previous results from eye-tracking while reading studies \citep{vandyke07, mertzen}, our SPR and ERP results were consistent. We attributed differences between the present and previous studies to differences in statistical power and experimental methodology. Both our experiments showed semantic interference, i.e., more processing difficulty during long-distance subject-verb dependency resolution in the presence of a semantically matching distractor. This manifested in longer self-paced reading times starting at the distractor and in a more negative N400 amplitude for the high vs.\ low semantic interference conditions elicited by the critical verb. We discussed that these different time courses in the two experiments are due to different types of interference: Encoding interference in the SPR experiment and retrieval interference in the ERP experiment. We did not find effects of syntactic interference. We assume that the syntactic cue \{± grammatical subject\} which was manipulated in our materials, was not used during sentence processing. We proposed that another syntactic cue \{± same clause\} might be used \citep[see also][]{mertzen}. We suggest that the present findings, which are in line with various sentence processing accounts, highlight the importance of semantic cues during sentence processing. 
+
+\section{Data availability statement}
+
+The data and analysis scripts can be accessed via https://osf.io/4fpru/?view$\_$only=.
+
 
 \newpage
 \printbibliography
