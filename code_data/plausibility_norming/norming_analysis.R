@@ -42,7 +42,7 @@ dfp$cond <- factor(dfp$cond, levels = c("intro", "subject", "distr_anim", "distr
 
 ggplot(dfp, aes(x=cond, y=rating))+
   geom_jitter(color="lightblue", alpha=0.2)+
-  geom_boxplot(fill="grey", alpha=0.7)+
+  geom_boxplot(fill="grey", alpha=0.7, outlier.shape = NA)+
   stat_summary(fun=mean, geom="point", shape=18, size=4) + #adding the mean
   expand_limits(y=c(0.5,7.5))+
   scale_y_continuous(name="plausibility rating", breaks=seq(1, 7, 1))+
