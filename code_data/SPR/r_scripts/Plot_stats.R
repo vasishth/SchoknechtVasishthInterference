@@ -123,10 +123,13 @@ ggsave("plots/posteriors_spr_pooled_774.png", width = 20, height = 10, units = "
 # load region-wise BFs
 load("BFs_spr_pooled_774_precrit.Rda")
 bf_precrit <- df.bf
+bf_precrit$Region <- "pre-critical"
 load("BFs_spr_pooled_774_crit.Rda")
 bf_crit <- df.bf
 load("BFs_spr_pooled_774_spill.Rda")
 bf_spill <- df.bf
+bf_spill$Region <- "spill-over"
+
 
 # combine
 df.bf <- rbind(bf_precrit, bf_crit, bf_spill)
@@ -136,7 +139,7 @@ df.bf$Prior2 <- ifelse(df.bf$Prior == "Normal(0, 0.01)", "N+(0, 0.01)",
 
 df.bf$BF10 <- as.numeric(df.bf$BF10.1)
 df.bf$Effect <- factor(df.bf$Effect, levels=c("semantic", "interaction", "syntactic"))
-df.bf$Region <- factor(df.bf$Region, levels=c("precritical", "critical", "spillover"))
+df.bf$Region <- factor(df.bf$Region, levels=c("pre-critical", "critical", "spill-over"))
 
 # Plot all BFs
 # Plot different BFs
@@ -158,7 +161,7 @@ ggsave("plots/BF_plot_spr_774_allregions.png", width = 24, height = 12, units = 
 
 
 # Plot different BFs
-plot_BF_precrit <- ggplot(filter(df.bf, Region =="precritical"), aes(x = Prior, y = BF10, group = Effect)) +
+plot_BF_precrit <- ggplot(filter(df.bf, Region =="pre-critical"), aes(x = Prior, y = BF10, group = Effect)) +
                       geom_point(aes(color=Effect)) +
                       geom_line(aes(color=Effect)) +
                       geom_hline(yintercept = 1, linetype="dashed") +
@@ -195,7 +198,7 @@ ggsave("plots/BF_plot_spr_774_crit.png", width = 12, height = 6, units = "cm", d
 
 
 
-plot_BF_spill <- ggplot(filter(df.bf, Region =="spillover"), aes(x = Prior, y = BF10, group = Effect)) +
+plot_BF_spill <- ggplot(filter(df.bf, Region =="spill-over"), aes(x = Prior, y = BF10, group = Effect)) +
   geom_point(aes(color=Effect)) +
   geom_line(aes(color=Effect)) +
   geom_hline(yintercept = 1, linetype="dashed") +
