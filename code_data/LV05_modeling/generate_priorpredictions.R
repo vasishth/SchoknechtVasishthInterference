@@ -90,7 +90,7 @@ model_4cond <- list(
   distractor_match = list(c(0,0), c(0,1), c(0,0), c(0,1)),
   Target =     c("LoSyn","LoSyn","HiSyn","HiSyn"),
   Distractor = c("LoSem","HiSem","LoSem","HiSem"),
-  weights = list(c(0.33,0.33,0.33))
+  weights = list(c(strWeight(),semWeight()))
 )
 
 mas <<- c(1.5) # Maximum associative strength
