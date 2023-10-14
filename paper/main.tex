@@ -499,7 +499,7 @@ We used Bayesian linear mixed models to analyze the single trial EEG data in res
     \midrule
   Intercept & Normal(2, 5)& &\\
   \cmidrule{2-4}
-  \multirow{4}{1cm}{beta} & Normal(0, 0.1) &\hspace{-1em}\rdelim\}{3}{*}[upper bound: 0]& [-0.2, - 0]\\
+  \multirow{4}{1cm}{slope} & Normal(0, 0.1) &\hspace{-1em}\rdelim\}{3}{*}[upper bound: 0]& [-0.2, - 0]\\
   &  Normal(0, 0.5)& & [-1, 0]\\
   & Normal(0, 1) && [-2, 0]\\
   & Normal(0, 5) && [-11, 0]\\
@@ -658,12 +658,16 @@ The Bayes factors analyses found strong evidence for semantic interference in th
 
 Our finding that retrieval interference modulates the N400 amplitude supports the N400 as a marker of memory retrieval \citep{kutas&federmeier_2000, kutas_federmeier2011, brouwer2017_n4_p6, lau2008_n400}.
 
-Consistent with the self-paced reading study, there is clear evidence for semantic interference, and evidence against syntactic interference.  How do these observed patterns compare to the theoretical predictions of cue-based retrieval theory? It turns out that the answer to this question crucially depends on which cues one assumes are being used during retrieval. We turn to this point next by discussing the predictions of the \cite{Lewis2005} model.
+Consistent with the self-paced reading study, there is clear evidence for semantic interference, and evidence against syntactic interference.  How do these observed patterns compare to the theoretical predictions of cue-based retrieval theory? We turn to this point next by discussing the quantiative predictions of the \cite{Lewis2005} model.
 
 %The to date rather small body of ERP studies on interference effects during sentence comprehension gives an indeterminate picture of the nature of interference effects in ERP measures. The present study adds a large data point to the body of literature which reported negativities or more specifically N400 effects for high vs.\ low interference conditions \citep{vasishth_drenhaus_2011, martinetal2014, schoknecht2022, lee_garnsey}. Therefore, it contributes to the debate of how interference effects manifest themselves electrophysiologically (interference effects have also been reported in differences in the P600, \cite{Tanner_etal_2017, martinetal2014}). 
 
-\section{Quantitative predictions of the Lewis and Vasishth (2005) model for the current design}
-% stopped here xxx
+\section{Quantitative predictions of the Lewis and Vasishth (2005) model for the present design}
+
+ \cite{mertzen} presented simulations that show approximately equally sized interference effects 
+for both the syntactic and semantic manipulations. Figure \ref{fig:model_predictions} reproduces thes simulations; these are prior predictive distributions of the effects of interest, holding all parameters in the model at fixed values and sampling from a prior distribution ($Beta(a=4,b=6)$), for the scaling parameter F in the \citet{Lewis2005}. This parameter scales the activation to a retrieval time.
+ 
+The \citet{Lewis2005} model does not only overestimate the effect size of semantic interference, but it also predicts equally sized semantic and syntactic interference effects (see Figure \ref{fig:model_predictions}). 
 
 There is another point to make regarding the small size of the effects observed in the present study: The observed semantic effect in self-paced reading times (8 ms, 95\,\% CrI [4, 12]) only slightly overlaps with the quantitative predictions from the \citet{Lewis2005} model of cue-based retrieval for the \citet{vandyke07} design (95\,\% CrI [9, 49]\,ms, implementation of the model by \cite{engelmann_etal_2019}, adapted to the current design with the retrieval cues \{± animate\} and \{± grammatical subject\}). The \citet{Lewis2005} model does not only overestimate the effect size of semantic interference, but it also predicts equally sized semantic and syntactic interference effects (see Figure \ref{fig:model_predictions}). The syntactic effect is absent in our data.
 
