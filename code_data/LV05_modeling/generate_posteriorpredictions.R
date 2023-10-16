@@ -27,31 +27,32 @@ VERBOSE <<- FALSE
 
 # Load simulated data
 load("simdat_2cues_sameclause.Rda")
-# values used to generate prior predictions: 
-# nsims<-5000
-# lfs<-rbeta(nsims,a,b)
 
 # Run ABC with rejection sampling
-# results from Schoknecht & Vasishth (critical region): 
-# syntactic mean effect 2ms CrI [0,4] --> Normal(2,1) --> SE: 1
-# semantic mean effect 8ms CrI [4,12] --> Normal(8,2) --> SE: 2
-# interaction mean effect 14ms, CrI [7, 22] --> Normal(14,4) --> SE: 4
+# results from Schoknecht & Vasishth (N400 elicited by critical verb): 
+# syntactic mean effect -0.2 muV, CrI [-0.4,0.0] --> Normal(-0.2,0.1) --> SE: 0.1
+# semantic mean effect -0.3 muV, CrI [-0.6,-0.1] --> Normal(-0.3,0.15) --> SE: 0.15
+# interaction mean effect -0.1 muV, CrI [-0.4, 0.0] --> Normal(-0.1,0.1) --> SE: 0.1
 
-synlower <- 2-1 # mean effect - 1*SE
-synupper <- 2+1 # mean effect + 1*SE
+# I'm changing the sign of the effect here (sem: -0.3 --> 0.3)
+# to match the sign of the latency factor
+# --> a positive effect represents are more negative N400 
 
-semlower <- 8-2 # mean effect - 1*SE
-semupper <- 8+2 # mean effect + 1*SE
+synlower <- 0.2-(2*0.1) # mean effect - 2*SE
+synupper <- 0.2+(2*0.1) # mean effect + 2*SE
 
-synsemlower <- 14-4 # mean effect - 1*SE
-synsemupper <- 14+4 # mean effect + 1*SE
+semlower <- 0.3-(2*0.15) # mean effect - 2*SE
+semupper <- 0.3+(2*0.15) # mean effect + 2*SE
+
+synsemlower <- 0.1-(2*0.1) # mean effect - 2*SE
+synsemupper <- 0.1+(2*0.1) # mean effect + 2*SE
 
 # posterior latency factor (we base this only on the semantic interference result)
 SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
 table(SEM)
 posterior_lf_sem <-simdat_2cues_sameclause[SEM,]$lfs
 
-length(posterior_lf_sem)/nsims
+length(posterior_lf_sem)
 quantile(posterior_lf_sem,probs=c(0.025,0.975))
 mean(posterior_lf_sem)
 hist(posterior_lf_sem, xlab="Latency factor")
@@ -111,7 +112,7 @@ postpreds_longer$effect <- factor(postpreds_longer$effect, levels = c("syntactic
 ggplot(postpreds_longer, aes(x=rts)) +
   geom_density(aes(),fill="darkgrey")+
   facet_wrap(.~effect)+
-  xlim(c(-2,12))+
+  xlim(c(-2,20))+
   xlab("Predicted effect (ms)")+
   geom_vline(xintercept=0, linetype="dashed")+
   theme_bw(base_size = 12)
@@ -142,9 +143,9 @@ interference <- c("syntactic", "semantic", "interaction")
 posteriors2 <- cbind(real_model, interference, posteriors)
 
 # add data from Schoknecht & Vasishth SPR experiment
-dat_syn <- c("data S&V", "syntactic", 2, 0, 4) 
-dat_sem <- c("data S&V","semantic",  8, 4, 12) 
-dat_synsem <- c("data S&V", "interaction", 14, 7, 22) 
+dat_syn <- c("data S&V", "syntactic", 0.2, 0, 0.4) 
+dat_sem <- c("data S&V","semantic",  0.3, 0.1, 0.6) 
+dat_synsem <- c("data S&V", "interaction", 0.1, 0, 0.4) 
 
 posteriors3 <- rbind(posteriors2, dat_syn, dat_sem, dat_synsem)
 
@@ -163,7 +164,7 @@ ggplot(posteriors3,aes(x=interference,y=mean,ymin=lower,ymax=upper)) +
                 width=.25, position = position_dodge2(.25)) +
   geom_hline(yintercept=0, linetype="dashed")+
   theme_bw(base_size = 12)+
-  scale_y_continuous(name="retrieval/reading time difference (ms)") + 
+  scale_y_continuous(name="N400 amplitude difference (microV)") + 
   scale_color_manual(values = c("darkgray", "black"),
                      name="data source",
                      breaks=c("data S&V", "model 2cues.sameclause"),
