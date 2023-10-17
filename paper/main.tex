@@ -226,7 +226,7 @@ Figure \ref{fig:project_str} shows the structure of the present study, i.e., how
 
 %Initially, we planned to conduct SPR experiment in two sessions to gain data from all participants for all 120 items. Collecting data for 120 items in one session was not considered feasible in a web-based SPR experiment, as the experiment duration would have been close to one hour. So, the first batch of participants (160 out of 774) completed two experimental sessions. This approach was dropped after we realized, that participants adapted to the task quickly which led to a considerable reading time speed-up between sessions (see Figure \ref{fig:whole_sentence} D). After this realization, all further participants took part in a single session during which they read half of the 120 items (for a visualization of the project structure, see Figure \ref{fig:project_str}).
 
-
+\subsection{Methods}
 \subsubsection{Participants}
 %two sessions, session 1
 % 224 participants completed
@@ -331,7 +331,7 @@ For this reason, models were run with four chains and 20,000 iterations in each 
 %    \end{tabular}
 %\end{table}
 
-
+\subsection{Results}
 \subsubsection{Comprehension question accuracy (Experiments 1a and 1b combined)}
 
 After exclusion of participants with accuracy below 70\,\%, overall accuracy (including fillers) was good; on average 85.9\,\% (range: 71.9 - 100\,\%). Accuracy for the critical items was 81.1\,\% (range: 20 - 100\,\%). Condition-wise accuracy is shown in Table \ref{tab:spr_acc}.
@@ -432,10 +432,10 @@ Was there any evidence for the effects estimated above? The Bayes factor analysi
     \includegraphics[width=\textwidth]{images/BF_plot_spr_774_allregions.png}
 \end{figure}
 
-\section{Discussion}
+\subsection{Discussion}
 We presented a relatively large-sample self-paced reading study that investigated the use of syntactic and semantic features during subject-verb dependency formation. Reading times at the critical verb showed clear evidence for semantic interference, but evidence against syntactic interference. The semantic interference effect was already present at the pre-critical region; i.e., semantic interference occured even before the retrieval event could begin. 
 
-\subsection{The effects in the pre-critical region}
+\subsubsection{The effects in the pre-critical region}
 
 At the distractor (which occurred well before the pre-critical region), high semantic interference (animate distractors) lead to longer reading times than low semantic interference (inanimate distractors, see Figure \ref{fig:whole_sentence} A and B). One might argue that this pattern could be due to differences in word length. The animate distractors in our materials were on average 1.1 letters longer than the inanimate distractors (mean length of animate distractors: 9.3, sd: 2.6, mean length of inanimate distractors: 8.2, sd: 2.9). It seems unlikely that this small difference in word length caused such large and long-lasting effects, but in order to be conservative we do not try to interpret this difference.
 
@@ -446,7 +446,7 @@ Indeed, previous work using the same design as in the present paper has also fou
 \textcite{mertzen} observed both syntactic and semantic interference effects in the pre-critical region. 
 They discuss several alternative explanations for their observed effects. In addition to encoding interference, \textcite{mertzen} propose three other alternative explanations for their data: parafoveal-on-foveal effects, sentence structure confounds across conditions, and predictive processing effects. Our results cannot be explained by the parafoveal-on-foveal explanation, because there is no parafoveal preview in self-paced reading. The observed difference between the high and low semantic interference conditions is independent of the syntactic manipulation. Therefore, the sentence structure confound is also not a good explanation for the effect in our study. Regarding the predictive-processing explanation, \citet{mertzen} argued that the pre-critical adverb must attach to the upcoming verbal phrase; this leads to an anticipatory creation of a verb phrase chunk in memory, which triggers a retrieval of the subject already at the pre-critical region. However, in our study, the effect started at the distractor and became smaller as the two pre-critical adverbs were read (see Figure \ref{fig:whole_sentence} A and B). The predictive-processing explanation would incorrectly predict that the effect begins at the first adverb, which is the first word of the verbal phrase. Consequently, the prediction explanation is also ruled out in our data, rendering encoding interference as the most likely explanation of the effects found prior to the critical verb in our data. Crucially this line of reasoning should not be limited to the explanation of the pre-critical effects, but should be extended to the effects in the critical region as well. The reading times for high vs.\ low semantic interference conditions started to differ at the distractor and differed throughout the rest of the sentence. It is not possible to pinpoint whether the effect in the critical region is due to a retrieval initiated at this region, or still due to encoding and maintaining the distractor in memory, or a combination of the two kinds of interference.
 
-\subsection{Comparison with previous findings}
+\subsubsection{Comparison with previous findings}
 The results of the present study stand in contrast to previous findings \citep{vandyke07, mertzen}. The present study is the only one to find semantic and no syntactic interference effect. The difference in observed effects could be explained by differences in statistical power or by methodological differences. The present study has higher statistical power than the previous studies. \citet{vandyke07} had 35 - 40 participants and 36 - 48 items in each of her three experiments, respectively. \textcite{mertzen} tested 61 English speakers and 121 German speakers with 40 items each. In contrast, we tested 774 participants with at least 60 items each (a subset of 160 participants read all 120 items). Therefore, the present study is the study with the highest power to date using this 2 $\times$ 2 interference design. Consequently, the estimates from the present study are the most precise ones so far for this design. The smaller effect size in the present study is a consequence of higher power, and the magnitude of the effects observed is comparable to that of other large-scale reading studies \citep{nicenboim} and meta-analyses on interference \citep{jaeger_etal_2017}.
 
 An obvious difference from previous studies is the experimental methodology. The majority of the previous experiments employed eye-tracking while reading, while we used a self-paced reading task. Self-paced reading (SPR) could trigger a greater tendency to cause interference effects compared to natural reading (as in eye-tracking studies), due to the restricted reading format in SPR: Comprehenders have no opportunity to revisit previous material during conventional self-paced reading \citep[but see][]{BSPR}. SPR is likely to be more demanding on the comprehender's memory, which might make it easier to detect interference effects. This argumentation is supported by our estimation of the results of \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 1, the only other self-paced reading experiment using this design (see Figure \ref{fig:previous} in the appendix):  In the critical region, the estimates of both main effects (syntactic and semantic interference) are very similar to the results of the present study; the interaction effect observed by \citeauthor{vandyke07} in the spill-over region is also similar to our estimate. However, it remains unclear why semantic interference was especially prominent in our study compared to the previous ones.
@@ -512,6 +512,7 @@ We used Bayesian linear mixed models to analyze the single trial EEG data in res
 
 Models were run with four chains and 20,000 iterations of which 2,000 were used as warm-up phase \citep{schad_etal_2022_BF}. For the calculation of Bayes factors and the corresponding sensitivity analysis, we defined a range of priors on the parameters of interest, assuming a range of effect sizes \citep{nicenboim_stats}. We chose slope priors which assume a wide range of effect sizes from $-0.2$ to $-11$\,$\mu V$. However, the more realistic a priori effect sizes probably range from $-0.2$ to at most $-2$\,$\mu V$. This assessment is based on our expectation that the interference effect investigated here, being a subtle manipulation, is probably smaller in magnitude than the well-established  effect of cloze probability on the N400 amplitude analyzed by \textcite{nicenboim_stats}, which ranges from $0$ to $5$\,$\mu V$ \parencite[see section 5.2.5][]{nicenboim_stats}.
 
+\subsection{Results}
 \subsubsection{Comprehension question accuracy}
 After exclusion of participants with accuracy below 70\,\%, the overall accuracy (including fillers) was 82.8\,\% (range: [71.9, 100]\,\%). Accuracy in critical trials was 75.6\,\% ([55, 95]\,\%). By-condition accuracy is presented in Table \ref{tab:eeg_acc}. 
 
