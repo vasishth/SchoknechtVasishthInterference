@@ -47,9 +47,9 @@ synsemlower <- 14-(2*4) # mean effect - 2*SE
 synsemupper <- 14+(2*4) # mean effect + 2*SE
 
 # posterior latency factor (we base this only on the semantic interference result)
-SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
+SEM<-semlower<=simdat_2cues_sameclause_complete$MESem & simdat_2cues_sameclause_complete$MESem<=semupper
 table(SEM)
-posterior_lf_sem <-simdat_2cues_sameclause[SEM,]$lfs
+posterior_lf_sem <-simdat_2cues_sameclause_complete[SEM,]$lfs
 
 length(posterior_lf_sem)
 quantile(posterior_lf_sem,probs=c(0.025,0.975))
@@ -106,6 +106,7 @@ postpreds <-data.frame(lfs=lf,syntactic=maineffectSyn,semantic=maineffectSem, in
 postpreds_longer <- pivot_longer(postpreds, cols = c("syntactic", "semantic", "interaction"),
                                   names_to = "effect", values_to = "rts")
 postpreds_longer$effect <- factor(postpreds_longer$effect, levels = c("syntactic", "semantic", "interaction"))
+postpreds_longer$pred <- "posterior predictive"
 
 # plot
 ggplot(postpreds_longer, aes(x=rts)) +
@@ -118,57 +119,37 @@ ggplot(postpreds_longer, aes(x=rts)) +
 ggsave("posteriors.png", width=6, height=3, dpi=600)
 
 
-#### compare posteriors and data ####
-## compute mean and 95% CI of each posterior
-## combine all posteriors in a list
-vectors <- list(maineffectSyn, maineffectSem, interactionSynSem)
-
-## length of list vectors
-vec_len <- length(vectors)
-## initialize empty data.frame to store values
-names <- c("mean", "lower", "upper")
-posteriors <- as.data.frame(matrix(numeric(),nrow = vec_len, ncol = 3))
-colnames(posteriors) <- names
-
-for (i in 1:vec_len){
-  posteriors[i,1] <- mean(vectors[[i]])
-  posteriors[i,2] <- unname(quantile(vectors[[i]], probs=0.025))
-  posteriors[i,3] <- unname(quantile(vectors[[i]], probs=0.975))
-}
-
-## add info regarding experiment, measure and cue (interference) to posteriors dataframe
-real_model <- rep(c("model 2cues.sameclause"), times=3)
-interference <- c("syntactic", "semantic", "interaction")
-posteriors2 <- cbind(real_model, interference, posteriors)
+# plot together with prior predictives
+prior_predictions <- simdat_2cues_sameclause_complete
+colnames(prior_predictions) <- c("lfs", "syntactic", "semantic", "interaction", "sample.id", "RT_LoSynLoSem", "RT_LoSynHiSem", "RT_HiSynLoSem", "RT_HiSynHiSem", "Acc_LoSynLoSem", "Acc_LoSynHiSem", "Acc_HiSynLoSem", "Acc_HiSynHiSem")
+prior_predictions <- select(prior_predictions, "syntactic", "semantic", "interaction",)
+prior_predictions_long <- tidyr::pivot_longer(prior_predictions, cols=c("syntactic","semantic","interaction"),
+                                              names_to="effect", values_to="rts")
+prior_predictions_long$rts <- as.numeric(prior_predictions_long$rts)
+prior_predictions_long$effect <- factor(prior_predictions_long$effect, levels=c("syntactic", "semantic", "interaction"))
+prior_predictions_long$pred <- "prior predictive"
+postpreds_longer$lfs <- NULL
+preds <- rbind(postpreds_longer, prior_predictions_long)
 
 # add data from Schoknecht & Vasishth SPR experiment
-dat_syn <- c("data S&V", "syntactic", 2, 0, 4) 
-dat_sem <- c("data S&V","semantic",  8, 4, 12) 
-dat_synsem <- c("data S&V", "interaction", 14, 7, 22) 
+dat <- data.frame(pred   = rep("data",3),
+                  effect    = c("syntactic", "semantic", "interaction"), 
+                  mean  = c(2,8,14),
+                  lower=c(0,4,7),
+                  upper=c(4,12,22))
 
-posteriors3 <- rbind(posteriors2, dat_syn, dat_sem, dat_synsem)
+dat$effect <- factor(dat$effect, levels=c("syntactic", "semantic", "interaction"))
 
-## change ordering of factors to make plot look nicer
-posteriors3$interference <- factor(posteriors3$interference, levels = c("syntactic", "semantic", "interaction"))
-posteriors3$real_model <- factor(posteriors3$real_model, levels = c("data S&V", "model 2cues.sameclause"))
-posteriors3$mean <- as.numeric(posteriors3$mean)
-posteriors3$upper <- as.numeric(posteriors3$upper)
-posteriors3$lower <- as.numeric(posteriors3$lower)
-
-## plot
-ggplot(posteriors3,aes(x=interference,y=mean,ymin=lower,ymax=upper)) +
-  geom_point(aes(color=real_model), size=3, 
-             position =  position_dodge2(.25))+
-  geom_errorbar(aes(ymin=lower, ymax=upper, color=real_model),
-                width=.25, position = position_dodge2(.25)) +
-  geom_hline(yintercept=0, linetype="dashed")+
+ggplot(data=preds, x=rts) +
+  geom_point(data=dat, aes(x=mean, y=0), color="darkred", size=3)+
+  geom_errorbar(data=dat, aes(y=0, xmin=lower, xmax=upper), color="darkred", width=0.001, size=1) +
+  geom_density(aes(x=rts,fill=pred), color="black", alpha=0.3) +
+  scale_fill_grey(start = 0, end = .9) +
+  ggh4x::facet_grid2(. ~ effect, scales = "free_y", independent = "y")+
   theme_bw(base_size = 12)+
-  scale_y_continuous(name="retrieval/reading time difference (ms)") + 
-  scale_color_manual(values = c("darkgray", "black"),
-                     name="data source",
-                     breaks=c("data S&V", "model 2cues.sameclause"),
-                     labels=c("data S&V", "model 2cues.sameclause")
-  )
+  #geom_abline(intercept=0, linetype="dashed")+
+  xlab("retrieval time difference (ms)")+
+  guides(fill = guide_legend(reverse=TRUE))+
+  theme(legend.title=element_blank(), legend.position = c(0.87, 0.8))
 
-ggsave("posteriors_vs_data.png", width=6, height=4, dpi=600)
-
+ggsave("priorpred_vs_postpred_vs_data.png", width=7, height=3, dpi=600)
