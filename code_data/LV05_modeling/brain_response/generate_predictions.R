@@ -38,8 +38,15 @@ nsims<-20000
 ## Visualization of priors
 
 #Truncated Normal
-latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
+## the first two are not reasonable, they cause bimodality.
+#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
                                                     a=0.003, b=0.04, mean=0.01, sd=0.005))
+
+#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
+                                                    a=0, mean=0.01, sd=0.005))
+
+latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
+                                                    a=0.005, b=0.04, mean=0.02, sd=0.005))
 
 prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
   geom_histogram(aes(y=..density..),
@@ -52,7 +59,15 @@ prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
 prior_lf
 ggsave("LF_Prior.png", width=5, height=3, dpi=600)
 
-lfs<-rtruncnorm(nsims, a=0.003, b=0.04, mean=0.01, sd=0.005)
+## not reasonable, cause bimodality:
+#lfs<-rtruncnorm(nsims, a=0.003, b=0.04, mean=0.01, sd=0.005)
+#lfs<-rtruncnorm(nsims, a=0, mean=0.01, sd=0.005)
+
+lfs<-rtruncnorm(nsims, a=0.005, b=0.04, mean=0.02, sd=0.005)
+
+## check:
+hist(lfs,freq=FALSE)
+
 maineffectSyn<-rep(NA,nsims)
 maineffectSem<-rep(NA,nsims)
 interactionSynSem<-rep(NA,nsims)
