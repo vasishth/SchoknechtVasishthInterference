@@ -38,13 +38,6 @@ nsims<-20000
 ## Visualization of priors
 
 #Truncated Normal
-## the first two are not reasonable, they cause bimodality.
-#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0.003, b=0.04, mean=0.01, sd=0.005))
-
-#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0, mean=0.01, sd=0.005))
-
 latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
                                                     a=0.005, b=0.04, mean=0.02, sd=0.005))
 
@@ -226,7 +219,7 @@ postpreds_longer$effsize_neg <- -1 * postpreds_longer$effsize
 ggplot(postpreds_longer, aes(x=effsize_neg)) +
   geom_density(aes(),fill="darkgrey")+
   ggh4x::facet_grid2(. ~ effect, scale="free_y", independent = "y")+
-  #xlim(c(-0.2,2))+
+  xlim(c(-0.7,0.1))+
   xlab("Predicted effect (ms)")+
   geom_vline(xintercept=0, linetype="dashed")+
   theme_bw(base_size = 12)
@@ -239,7 +232,7 @@ prior_predictions$pred <- "prior predictions"
 postpreds_longer$pred <- "posterior predictions"
 preds <- rbind(postpreds_longer, prior_predictions)
 
-# add data from Schoknecht & Vasishth SPR experiment
+# add data from Schoknecht & Vasishth ERP experiment
 dat <- data.frame(pred   = rep("data",3),
                   effect    = c("syntactic", "semantic", "interaction"), 
                   mean  = c(-0.2,-0.3,-0.1),
@@ -260,4 +253,4 @@ ggplot(data=preds, x=effsize_neg) +
   guides(fill = guide_legend(reverse=TRUE))+
   theme(legend.title=element_blank(), legend.position = c(0.83, 0.8))
 
-ggsave("ERP_priorpred_vs_postpred_vs_data.png", width=7, height=3, dpi=600)
+ggsave("ERP_priorpred_vs_postpred_vs_data.png", width=7.5, height=3, dpi=600)
