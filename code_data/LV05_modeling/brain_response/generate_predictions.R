@@ -46,7 +46,10 @@ nsims<-20000
                                                     a=0, mean=0.01, sd=0.005))
 
 latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0.005, b=0.04, mean=0.02, sd=0.005))
+                                                    a=0.005, b=0.04, mean=0.0001, sd=0.0005))
+
+
+hist(latency_factor_prior$x_temp)
 
 prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
   geom_histogram(aes(y=..density..),
@@ -59,11 +62,13 @@ prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
 prior_lf
 ggsave("LF_Prior.png", width=5, height=3, dpi=600)
 
+
+
 ## not reasonable, cause bimodality:
 #lfs<-rtruncnorm(nsims, a=0.003, b=0.04, mean=0.01, sd=0.005)
 #lfs<-rtruncnorm(nsims, a=0, mean=0.01, sd=0.005)
 
-lfs<-rtruncnorm(nsims, a=0.005, b=0.04, mean=0.02, sd=0.005)
+lfs<-rtruncnorm(nsims, a=0.005, b=0.04, mean=0.0001, sd=0.0005)
 
 ## check:
 hist(lfs,freq=FALSE)
@@ -142,7 +147,7 @@ load("simdat_2cues_sameclause.Rda")
 # Run ABC with rejection sampling
 # results from Schoknecht & Vasishth (N400 elicited by critical verb): 
 # syntactic mean effect -0.2 muV, CrI [-0.4,0.0] --> Normal(-0.2,0.1) --> SE: 0.1
-# semantic mean effect -0.3 muV, CrI [-0.6,-0.1] --> Normal(-0.3,0.15) --> SE: 0.15
+# semantic mean effect -0.3 muV, CrI [-0.6,-0.1] --> Normal(-0.3,0.15) --> SE should be 0.125 but set slightly wider at SE: 0.15
 # interaction mean effect -0.1 muV, CrI [-0.4, 0.0] --> Normal(-0.1,0.1) --> SE: 0.1
 
 # I'm changing the sign of the effect here (sem: -0.3 --> 0.3)
@@ -159,7 +164,9 @@ synsemlower <- 0.1-(2*0.1) # mean effect - 2*SE
 synsemupper <- 0.1+(2*0.1) # mean effect + 2*SE
 
 # posterior latency factor (we base this only on the semantic interference result)
-SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
+## Pia, this line does not work for me:
+#SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
+SEM<-semlower<=simdat_2cues_sameclause$semantic & simdat_2cues_sameclause$semantic<=semupper
 table(SEM)
 posterior_lf_sem <-simdat_2cues_sameclause[SEM,]$lfs
 
