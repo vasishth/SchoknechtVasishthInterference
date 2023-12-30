@@ -36,26 +36,13 @@ nsims<-20000
 
 ## Initial hyperparameters for latency factor
 ## Visualization of priors
-
-#Truncated Normal
-## the first two are not reasonable, they cause bimodality.
-#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0.003, b=0.04, mean=0.01, sd=0.005))
-
-#latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0, mean=0.01, sd=0.005))
-
-# latency_factor_prior <-data.frame(x_temp=rtruncnorm(1000000, 
-                                                    a=0.005, b=0.04, mean=0.0001, sd=0.05))
-
 latency_factor_prior <-data.frame(x_temp=runif(1000000,min=0.005,max=0.04))
-                                    
-hist(latency_factor_prior$x_temp)
+hist(latency_factor_prior$x_temp, freq=FALSE)
 
 prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
   geom_histogram(aes(y=..density..),
-                 position="identity",fill="gray",
-                 binwidth=0.001, center = 0.0005)+
+                 position="identity",fill="gray", color="black",
+                 binwidth=0.003)+
   theme_bw()+
   theme(strip.text.x = element_text(size = 16, colour = "black", angle = 0))+
   xlab("latency factor")+
@@ -63,19 +50,14 @@ prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
 prior_lf
 ggsave("LF_Prior.png", width=5, height=3, dpi=600)
 
-
-
-## not reasonable, cause bimodality:
-#lfs<-rtruncnorm(nsims, a=0.003, b=0.04, mean=0.01, sd=0.005)
-#lfs<-rtruncnorm(nsims, a=0, mean=0.01, sd=0.005)
-
-lfs<-rtruncnorm(nsims, a=0.005, b=0.04, mean=0.0001, sd=0.0005)
-
 ## trying a uniform:
 lfs<-runif(nsims,min=0.005,max=0.04)
+lfs<-runif(nsims,min=0.005,max=0.025)
+
 
 ## check:
 hist(lfs,freq=FALSE)
+
 
 maineffectSyn<-rep(NA,nsims)
 maineffectSem<-rep(NA,nsims)
@@ -135,7 +117,7 @@ simdat_2cues_sameclause_long$effsize_neg <- -1 * simdat_2cues_sameclause_long$ef
 
 
 ggplot(data=simdat_2cues_sameclause_long, x=effsize_neg) +
-  geom_density(aes(x=effsize_neg), fill="lightgrey") +
+  geom_density(aes(x=effsize_neg), fill="lightgrey", bw=0.1) +
   ggh4x::facet_grid2(. ~ effect, scale="free_y", independent = "y")+
   theme_bw(base_size = 10)+
   geom_vline(xintercept=0, linetype="dashed")+
@@ -168,9 +150,7 @@ synsemlower <- 0.1-(2*0.1) # mean effect - 2*SE
 synsemupper <- 0.1+(2*0.1) # mean effect + 2*SE
 
 # posterior latency factor (we base this only on the semantic interference result)
-## Pia, this line does not work for me:
-#SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
-SEM<-semlower<=simdat_2cues_sameclause$semantic & simdat_2cues_sameclause$semantic<=semupper
+SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
 table(SEM)
 posterior_lf_sem <-simdat_2cues_sameclause[SEM,]$lfs
 
@@ -235,10 +215,10 @@ postpreds_longer$effsize_neg <- -1 * postpreds_longer$effsize
 
 # plot
 ggplot(postpreds_longer, aes(x=effsize_neg)) +
-  geom_density(aes(),fill="darkgrey")+
+  geom_density(aes(),fill="darkgrey", bw=0.1)+
   ggh4x::facet_grid2(. ~ effect, scale="free_y", independent = "y")+
   #xlim(c(-0.2,2))+
-  xlab("Predicted effect (ms)")+
+  xlab("Predicted effect (microV)")+
   geom_vline(xintercept=0, linetype="dashed")+
   theme_bw(base_size = 12)
 ggsave("posteriors.png", width=6, height=3, dpi=600)
@@ -250,7 +230,7 @@ prior_predictions$pred <- "prior predictions"
 postpreds_longer$pred <- "posterior predictions"
 preds <- rbind(postpreds_longer, prior_predictions)
 
-# add data from Schoknecht & Vasishth SPR experiment
+# add data from Schoknecht & Vasishth ERP experiment
 dat <- data.frame(pred   = rep("data",3),
                   effect    = c("syntactic", "semantic", "interaction"), 
                   mean  = c(-0.2,-0.3,-0.1),
@@ -262,14 +242,14 @@ dat$effect <- factor(dat$effect, levels=c("syntactic", "semantic", "interaction"
 ggplot(data=preds, x=effsize_neg) +
   geom_point(data=dat, aes(x=mean, y=0), color="darkred", size=3)+
   geom_errorbar(data=dat, aes(y=0, xmin=lower, xmax=upper), color="darkred", width=0.001, size=1) +
-  geom_density(aes(x=effsize_neg,fill=pred), color="black", alpha=0.3) +
+  geom_density(aes(x=effsize_neg,fill=pred), color="black", alpha=0.3, bw=0.1) +
   scale_fill_grey(start = 0, end = .9) +
   ggh4x::facet_grid2(. ~ effect, scales = "free_y", independent = "y")+
-  theme_bw(base_size = 12)+
+  theme_bw(base_size = 11)+
   #geom_abline(xintercept=0, linetype="dashed")+
   xlab("amplitude difference (microV)")+
   guides(fill = guide_legend(reverse=TRUE))+
-  theme(legend.title=element_blank(), legend.position = c(0.83, 0.8))
+  theme(legend.title=element_blank(), legend.position = c(0.825, 0.8))
 
 ggsave("ERP_priorpred_vs_postpred_vs_data.png", width=7, height=3, dpi=600)
 
