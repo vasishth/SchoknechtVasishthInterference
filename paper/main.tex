@@ -1,5 +1,4 @@
 \documentclass[a4paper, man, floatsintext]{apa7}
-%dvipsnames
 
 % Language setting
 \usepackage[english]{babel}
@@ -24,7 +23,6 @@
 
 \usepackage{bigdelim}
 
-% Which clause are you from? Evidence for interference effects from SPR and ERPs using German
 \title{\hspace{1cm} Do syntactic and semantic similarity lead to interference effects?
 \newline
 Evidence from self-paced reading and event-related potentials using German}
@@ -88,7 +86,6 @@ In a sentence like (\ref{ex:1_vandyke07}), the retrieval cues generated at the v
 By contrast, syntactic interference is expected to be triggered if the distractor matches the \{+grammatical subject\} cue. This situation can occur when the relative clause  in (\ref{ex:1_vandyke07}) that modifies \textit{the resident} were to be changed to \textit{who said that the warehouse was dangerous}. Now, the distractor matches the \{+grammatical subject\} cue. 
 
 Thus, a distractor which matches a semantic cue, here, \{+animate\}, is predicted to induce semantic interference and a distractor which matches a syntactic cue, here, \{+grammatical subject\}, is predicted to induce syntactic interference. More generally, interference that is induced by such an overlap between retrieval cues and features of items in memory is called retrieval interference. 
-%In grammatical sentences, where the retrieval cues match with the features of the target of the memory retrieval (e.g., the subject \textit{the resident} in Example \ref{ex:1_vandyke07}), interference from distractors is assumed to cause processing difficulty. 
 
 Previous work has shown clear evidence for this kind of retrieval interference \parencite{vandyke07, vandyke_mcelree06, vandyke_mcelree2011, nicenboim,  vandyke_lewis03,jaeger_etal_2017}.
 However, two important questions remain unanswered. First, as discussed in \textcite{jaeger_etal_2017}, almost all the published studies on interference effects are severely underpowered. Low power has the consequence that published estimates will tend to be overestimates or misestimates of the effect size \parencite{vasishth2018_signficancefilter}. Over-/misestimates have important implications for theory evaluation. One example is discussed in \textcite{vasishth2018_signficancefilter}, where a key prediction of surprisal theory \parencite{levy&keller_2013} could not be validated when a larger-sample study was conducted. By contrast, the original small-sample study \parencite{levy&keller_2013} showed suggestive evidence consistent with the theory. Another example is the recent heated debate \parencite{nieuwland_etal_2018} on prediction in sentence comprehension, which was largely focused on the results of low-powered studies, leading to potentially misleading conclusions \parencite{nicenboim_etal_2020}.
@@ -202,40 +199,11 @@ Figure \ref{fig:project_str} shows the structure of the present study, i.e., how
 
 
 \section{Experiments 1a and 1b: SPR}
-%\subsection{Methods}
-
-%Initially, we planned to conduct SPR experiment in two sessions to gain data from all participants for all 120 items. Collecting data for 120 items in one session was not considered feasible in a web-based SPR experiment, as the experiment duration would have been close to one hour. So, the first batch of participants (160 out of 774) completed two experimental sessions. This approach was dropped after we realized, that participants adapted to the task quickly which led to a considerable reading time speed-up between sessions (see Figure \ref{fig:whole_sentence} D). After this realization, all further participants took part in a single session during which they read half of the 120 items (for a visualization of the project structure, see Figure \ref{fig:project_str}).
 
 \subsection{Methods}
 \subsubsection{Participants}
-%two sessions, session 1
-% 224 participants completed
-% 17 low acc
-% 2 inconsistent demographic info
-% 1 technical error
-% final 204
-
-% two sessions, session 2
-% 178 participants completed
-% 18 low acc
-% final 160
-
-% rep s1
-% 387 participants completed
-% 31 low acc
-% 6 inconsistent demographic info
-% final 350 
-
-% rep s2
-% 279 participants completed
-% 51 low acc
-% 8 inconsistent demographic info
-% final 220
-
-% 224 + 18  + 387 + 279 = 908
 
 Native German-speaking participants were recruited via Prolific. In total, 908 participants took part in the self-paced reading experiments E1a and E1b. 117 participants were excluded due to low comprehension question accuracy (< 70\,\%). Additionally, 16 participants were excluded because the demographic information in their Prolific profile and the information which they provided during the experiment did not match (regarding, e.g., their native language, language impairment, or age). One participant was excluded because of a technical error during their session. The data of 774 participants (mean age: 27 years old, age range: 18 - 40 years, 395 female, 369 male, 10 preferred to not provide sex information) were used for analyses. When asked about their highest level of education, 365 participants reported a bachelor's degree or higher university education. 334 participants reported to have a high-school diploma and 70 another secondary school certificate. Five participants replied with ``other.'' 
-%We conclude that the participants who were recruited via Prolific were slightly older and have a comparable or higher level of education than the typical undergraduate and graduate students who participate in lab-based studies.
 
 In Experiment 1a, drop-outs between sessions led to a lower sample size in the second session (204 vs.\ 160). In Experiment 1a, compensation for the first session was \pounds 3.5 and for the second session, it was \pounds 5. In Experiment 1b, compensation was \pounds 4. 
 
@@ -292,24 +260,6 @@ For this reason, models were run with four chains and 20,000 iterations in each 
   \bottomrule
   \end{tabular}
   \end{table}
- 
-%\bigskip
-
-%\begin{table}[ht]
-%    \centering
-%        \caption{Contrast coding.}
-%    \label{tab:contrasts}
-%    \begin{tabular}{cccc}
-%\toprule
-%condition & syntactic interference & semantic interference & interaction\\
-%\midrule
-%a)  LoSyn LoSem &  $-1$& $-1$ & $+1$ \\
-%b)  LoSyn HiSem & $-1$ & $+1$ & $-1$  \\
-%c)  HiSyn LoSem &  $+1$ &$-1$ & $-1$    \\ 
-%d)  HiSyn HiSem &  $+1$ &$+1$  & $+1$   \\
-%\bottomrule
-%    \end{tabular}
-%\end{table}
 
 \subsection{Results}
 \subsubsection{Comprehension question accuracy (Experiments 1a and 1b combined)}
@@ -370,27 +320,11 @@ It is apparent from Figure \ref{fig:whole_sentence} A and B that, regardless of 
 
 Because the distractor and the immediately following regions differ between conditions, we did not compute Bayes factors for the observed reading time differences. Instead we focused our Bayes factors analyses on regions which were identical across conditions. These are the pre-critical, critical and spill-over regions.
 
-%This is probably due to encoding interference \citep{mertzen, jaeger_etal_2015_retrieval_encoding} and persisted in the following regions.  
-
 Figure \ref{fig:whole_sentence} C shows the reading times of these regions; here, we also show the pre-pre-critical region, which was identical across conditions as well, but will be harder to interpret because of possible spill-over from the syntactic manipulation. The pre-pre-critical and pre-critical region show longer reading times for high vs.\ low semantic interference conditions. The critical verb was read slowest when syntactic and semantic interference were both high and fastest when syntactic interference was high and semantic interference low. The other two conditions showed intermediate reading times. The spill-over region again primarily showed a difference between high and low semantic interference conditions. 
 
 Panels D and E show the reading times of the critical and surrounding regions for each of the two Experiments 1a and 1b. Panel D shows the results from Experiment 1a. The first session of Experiment 1a (items 1-60, N = 204, left sub-figure) showed results similar to the pooled results presented in Panel C. In the second session of Experiment 1a (items 61-120, N = 160, right sub-figure) a semantic interference effect was seen at the critical verb and the patterns in the surrounding regions were less clear than in the first session. Additionally, the second session in Experiment 1b showed shorter reading times compared to the first session. As mentioned earlier, this attenuation in reading times and differences between conditions are likely due to  adaptation to the SPR task in the second session. 
 
 Panel E shows that Experiment 1b with items 1-60 (N = 350, left sub-figure) showed a pattern consistent with semantic interference in all regions. Experiment 1b with items 61-120 (N = 220, right sub-figure) showed a pattern consistent with semantic interference in the regions surrounding the critical verb, but not at the verb itself. At the verb, reading times were longest when both syntactic and semantic interference were high. Reading times were a bit faster when both syntactic and semantic interference were low. The other two conditions (high syntactic/low semantic and low syntactic/high semantic) lead to the fastest verb reading times in Experiment 1b with items 61-120. 
-
-%These somewhat inconsistent results, especially in the critical region, across the sub-experiments and the random assignment of participants to the sub-experiments motivated us to gain estimates of the effects under investigation for the individual participants (see Figure \ref{fig:spr_individual}).
-
-%\begin{figure}[H]
- %   \caption{Individual estimates of syntactic and semantic interference and their interaction at the critical verb for all 774 participants in the self-paced reading experiment. Shown are shrunken estimates from a Bayesian hierarchical linear mixed model. Circles show individual’s mean effects, errors bars are 95\,\% credible intervals. The red dashed line shows an effect of zero (difference of zero milliseconds). Two solid red lines mark an effect size of 10 and 20 ms, respectively.}
-%    \label{fig:spr_individual}
- %   \centering
-  %  \includegraphics[width=\textwidth]{images/individual_diffs.jpg}
-%\end{figure}
-
-%The individual-level effects were derived from a Bayesian linear mixed model with the priors shown in Table \ref{tab:spr_priors} with the intermediate slope prior of Normal(0, 0.05) and random slopes for syntactic and semantic interference and their interaction but without correlations of random effects.
-
-
-%Figure \ref{fig:spr_individual} shows that at the critical verb, the 95\,\% credible intervals for the syntactic interference effect of all participants were centered around zero. In contrast, participants consistently displayed a small effect of semantic interference with narrow 95\,\% credible intervals. The individual-level estimates of the interaction were a bit larger but they were associated with more uncertainty (wider 95\,\% credible intervals). The individual-level results help to understand the population-level posteriors presented in Figure \ref{fig:spr_posteriors} and the population-level Bayes factor analysis (see Figure \ref{fig:spr_bfs}). 
 
 Turning now to the estimates of the main effects and interaction parameters in the pooled data (Experiments 1a and 1b combined), Figure \ref{fig:spr_posteriors} shows that the pre-critical, critical and spill-over regions showed very similar posterior distributions for the parameters. For syntactic interference, they were close to zero in all regions. In contrast, for semantic interference, the estimates ranged between [8,14] ms (pre-critical), [4, 12] ms (critical), and [5, 11] ms (spill-over region). The posteriors for the interaction were consistent with an interaction effect. The interaction was the  largest in the critical region ([7, 22 ms]). 
 
@@ -440,16 +374,6 @@ The contrast between our results and those from  \citeauthor{mertzen}'s (\citeye
 We will revisit the absence of syntactic interference in our data in the general discussion, where we investigate the question using computational modeling.
 
 We turn next to the event-related potentials experiment.
-
-%We derived quantitative predictions from four versions of an adapted \citet{Lewis2005} model for the investigated 2 $\times$ 2 interference design \citep{mertzen}. The versions of the model differed in their cue-combinatorics (linear, non-linear) and cue-weighting (equal weighting, higher weighting of syntactic/structural cues). We described in our Predictions section that previous findings \citep{vandyke07, mertzen} were most compatible with linear cue-combinatorics with higher weighing of syntactic/structural cues. This was mainly driven by the lack of an interaction in the previous studies. In contrast, the results of the present study are only compatible with non-linear cue-combinatorics. As predicted by the non-linear cue-combinatorics model, only distractors which matched all retrieval cues induced interference; see the interaction / nested semantic interference effect. The predictions of non-linear cue-combinatorics models changed only slightly when the cue-weighting was varied (equal weighting or higher weighting of syntactic/structural cues). Therefore, we do not claim that our results provide evidence for one type of cue-weighting over the other \citep[for a detailed discussion of cue-weighting, see e.g.,][]{yadav2021individual}. 
-
-%The present findings can inform the debate on cue-combinatorics in cue-based retrieval models as they provide evidence in favor of non-linear cue-weighting \citep{parker2019cue,vandyke07, raaijmakers_shiffrin_1981, hintzman1984minerva}. Non-linear cue-weighting is an alternative to linear cue-weighting; the latter assumes a simple additive process in cue combination. In contrast, non-linear cue-weighting denotes that cues are combined via multiplication. One mismatching cue multiplies all other cues, even if they match, with zero. Therefore, a distractor which mismatches at least one of the retrieval cues will be dismissed. The present study provides evidence that cues are non-linearly combined. Distractors which only partially matched retrieval cues did not induce interference.
-
-%The observed effect sizes are smaller than the predicted effect sizes, but that might just be due to the latency parameter in the models (the scaling parameter used to link activation levels to reading times). We used the latency parameter distribution which was previously used \citep[][]{jaeger_etal_2020, engelmann_etal_2019, vasishth2020_abc}. In future research, it might be adjusted to better match the smaller effect sizes found in large-scale self-paced reading studies of interference \citep[see][]{nicenboim}.
-
-
-
-%The observed interaction at the critical verb, i.e., a semantic interference effect only within the high syntactic interference conditions, was predicted by syntax-first models of sentence processing. But as described above no main effect of syntactic interference was observed. Such an effect would be a prerequisite to claim primacy or dominance of syntactic features. The observed interaction and the corresponding nested comparisons rather suggest that syntactic and semantic cues are used simultaneously to guide retrieval (see constraint-based sentence processing models, \cite[e.g.,][]{macdonald1994}). 
 
 \clearpage
 \section{Experiment 2: EEG}
@@ -646,8 +570,6 @@ Our finding that retrieval interference modulates the N400 amplitude supports th
 
 Consistent with the self-paced reading study, there is clear evidence for semantic interference, and evidence against syntactic interference.  How do these observed patterns compare to the theoretical predictions of cue-based retrieval theory? We turn to this point next by discussing the quantitative predictions of the \textcite{Lewis2005} model.
 
-%The to date rather small body of ERP studies on interference effects during sentence comprehension gives an indeterminate picture of the nature of interference effects in ERP measures. The present study adds a large data point to the body of literature which reported negativities or more specifically N400 effects for high vs.\ low interference conditions \citep{vasishth_drenhaus_2011, martinetal2014, schoknecht2022, lee_garnsey}. Therefore, it contributes to the debate of how interference effects manifest themselves electrophysiologically (interference effects have also been reported in differences in the P600, \textcite{Tanner_etal_2017, martinetal2014}). 
-
 \section{Quantitative predictions of the Lewis and Vasishth (2005) model for the present design}
 
 \textcite{mertzen} presented simulations that show approximately equally sized interference effects 
@@ -686,7 +608,6 @@ We evaluated the predictions of the model assuming that the cues are \{$\pm$ sub
 It is informative to fit the model to the data and then examine the posterior predictive distribution of the reading times for each effect. 
 We generated posterior predictive distributions for the effects of interest by fitting the $F$ parameter to the SPR data. This was done by implementing an Approximate Bayesian Computation approach \parencite{SissonABC}: the model's predictions are generated iteratively, and only those parameter values for the  scaling parameter $F$ are retained that predict values for the semantic interference effect that are close to the observed effect size $d$ in the SPR data. `Close' is defined as $d \pm \,2\times SE$ ms; for details of this approach as applied to the cue-based retrieval model, see  \textcite{vasishth2020_abc}.
 
-%New data was simulated using only the values of $F$ which produced a semantic interference effect in the range of the semantic interference effect in our SPR data. This applied to only 355 out of 20,000 sampled values of $F$. 
 To avoid overfitting, we fitted the scaling parameter $F$ only to the semantic interference effect (and not the syntactic interference effect or interaction). 
 We obtained only 355 samples of $F$ (from 20,000 iterations of the ABC algorithm); this is not surprising given the relatively wide prior on $F$.
 Figure \ref{fig:model_predictions_posterior} shows the posterior predictive distributions of the effects of interest in comparison to the prior predictive distribution and our SPR data. The posterior predictions match the syntactic and semantic interference effects in our data, but underestimate the interaction.
@@ -710,18 +631,10 @@ The \citet{Lewis2005} model is generally used to predict reading times. The scal
 
 Thus, the theoretical assumption that is consistent with the observed SPR and ERP data is that although the parser uses the animacy cue exactly as proposed in previous work on cue-based retrieval, the syntactic cue keeps track of the clausal location of the subject. This is of course a speculative claim that would need to be further investigated empirically. 
 
-
-%There is another point to make regarding the small size of the effects observed in the present study: The observed semantic effect in self-paced reading times (8 ms, 95\,\% CrI [4, 12]) only slightly overlaps with the quantitative predictions from the \citet{Lewis2005} model of cue-based retrieval for the \citet{vandyke07} design (95\,\% CrI [9, 49]\,ms, implementation of the model by \textcite{engelmann_etal_2019}, adapted to the current design with the retrieval cues \{± animate\} and \{± grammatical subject\}). The \citet{Lewis2005} model does not only overestimate the effect size of semantic interference, but it also predicts equally sized semantic and syntactic interference effects (see Figure \ref{fig:model_predictions}). The syntactic effect is absent in our data.
-
-%It would be implausible to argue that the absence of the syntactic interference effect suggests that the comprehender does not use syntactic information for subject-verb dependency resolution at all. We rather suggest that the \{± grammatical subject\} cue was not the right syntactic cue to investigate. In line with \citet{mertzen}, we suggest that a syntactic or structural cue along the lines of \{± same clause\} might be used during comprehension. Figure \ref{fig:model_predictions} presents the predictions of the \citet{Lewis2005} model for the \citet{vandyke07} design where additionally to the \{± animate\} cue either the canonical cue \{± grammatical subject\} or the alternative cue \{± same clause\} was implemented. The \{± same clause\} cue model does predict the syntactic interference effect to be centered around zero (95\,\% CrI [-4, 3]\,ms). This prediction is consistent with the results of the present study. However, the \{± same clause\} model still overestimates the semantic interference effect (95\,\% CrI [10, 67]\,ms).
-
 \section{General discussion}
 
 Taken together, the SPR and ERP experiments consistently showed effects of semantic interference and no effects of syntactic interference. This pattern was not only found in the dependent measures of the experiments that were of primary interest, but also in the comprehension accuracy. 
 The modeling reported here suggests that one way to explain the observed pattern in the context of cue-based retrieval is to assume the following: the parser searches for a subject that is within the same clause, but uses the animacy cue without reference to the clause that a noun appears in. A broader implication is that the human sentence comprehension system may be using the hierarchical syntactic structure to selectively target nouns for retrieval; this is an idea that has independent support in the literature \citep[e.g.,][]{Sturt2003,dillon2013}.
-
-%Given the replicability / reproducibility crises in psycholinguistics \citep[see e.g., ][]{vasishth2018_signficancefilter,jaeger_etal_2020,nicenboim,}, and other (related) sciences \citep[see e.g., ][]{openscience2015_reproducibility,nicenboim_etal_2020,nieuwland_etal_2018}, the cross-methodological consistency is aston. It might be due to the very high sample sizes of the present experiments which granted the present study higher power than most comparable psycholinguistic studies. The higher power led to more precise estimates of the investigated effects with less uncertainty than in previous studies. 
-%This also partially explains the comparatively smaller effect sizes in the present experiments than have been previously reported.
 
 In the remainder of this section, we discuss two important issues that relate to previous experiments that investigated syntactic and semantic interference. The first is the role of encoding vs.\ retrieval interference, and the second is broader implications of our findings in the context of previous related work.
 
@@ -752,11 +665,8 @@ it is reasonable to assume that the semantic interference effect observed at the
 
 \subsection{Relation to other sentence processing accounts}
 
-%Besides our considerations above regarding the possibility that another syntactic cue (e.g., \{± same clause\}) was used, our results highlight the importance of the semantic cue for subject-verb dependency resolution.
-
 The evidence against a main effect of syntactic interference for subject-verb dependency resolution in our study is not consistent with the assumption in previous work, e.g., \textcite{vandyke07,mertzen}, that the parser searches for a subject simply by setting the retrieval cue \{$\pm$ grammatical subject\}.
   However, the semantic interference effect we found can be easily reconciled with previous work in  sentence processing. In the modeling section above, we have already discussed how our results relate to predictions from the \citet{Lewis2005} cue-based retrieval model.  
-  %Our results may also be consisted with constraint-based models \citep[e.g.,][]{macdonald1994, mcrae1998modeling, trueswell1993}. Under constraint-based accounts, it is assumed that multiple constraints simultaneously and immediately influence processing. These accounts predict our ERP results: Compared to an inanimate distractor, an animate distractor -- regardless of its syntactic status -- would impede processing at a verb which requires an animate subject. The lack of a syntactic interference effect could indicate that the status `grammatical subject' was not used as a syntactic constraint. As discussed above, a plausible syntactic constraint is that a verb and its arguments need to be within the same clause. 
  Our results could also be seen as consistent with the good-enough processing account \citep{ferreira2007goodenough}, which assumes that comprehenders do not always aim to build a fully fleshed-out analysis of a sentence, but instead might accept incomplete, underspecified, or even incorrect analyses. The high number of participants that needed to be excluded in our experiments due to accuracy below 70\,\% (117 out of 908 participants in the SPR experiment, 29 out of 146 participants in the EEG experiment), suggests that our materials led to high processing demands. It is reasonable to assume that the participants might have -- at least occasionally -- adopted a good-enough processing mode when faced with high task demands \parencite{swets2008underspecification,LogacevMultiple,LogacevVasishthQJEP2016} or due to working memory capacity limitations \parencite{MalsburgVasishth2013}, or both. So, given a good-enough processing mode which leaves some syntactic relations within the sentence underspecified, it makes sense for the comprehender to use a simple heuristic for subject-verb dependency resolution. Animacy is an obvious choice for such a heuristic. Animate entities are proto-typical agents \citep{dowty1991thematic} and therefore, the primary use of the \{+ animate\} cue to retrieve a subject leads to the correct analysis with high probability (not just within the experiment context, but also in everyday language use). Finally, our findings are also consistent with the possibility that language processing relies predominantly on semantic associations to form (probabilistic)
 representation of event structures. This view has been put forward by \textcite{rabovsky_etal_2018}, when they used the neural-network sentence gestalt model \parencite{mcclelland1989_sentence_gestalt}, to model the N400 amplitude. This model assumes that language comprehension relies on associative form-to-meaning mapping instead of syntactic rules. This assumption is consistent with our results.
 
@@ -766,10 +676,8 @@ the importance of word order \parencite[e.g.,][]{meng2000mode}.
 There are of course important examples of the parser ignoring syntactic information. Three dramatic examples are the grammaticality illusion in multiple embeddings in English \parencite{gibsonthomas99}, local coherence effects \parencite{taboretal04}, and the agreement attraction phenomenon across different languages \parencite{wagersetal,lago_etal_2021,jaeger_etal_2017}.  However, there are languages (such as German and Dutch) in which the grammaticality illusion does not occur \parencite{VSLK11,FrankEtAl2015}, and a large-sample study \parencite{lcpaape2023} presents evidence against the syntactic local coherence effect that was reported by \textcite{taboretal04}. Also, there seems to be at least one language that has rich case marking (Czech) that does not show any evidence of agreement attraction \parencite{chromy2023number}. Thus, it seems that, cross-linguistically, the role of syntax in building incremental structure and in completing dependencies remains an open question.
 
 \section{Conclusion}
-%The present large-scale self-paced reading study examined the role of syntactic and semantic features during sentence comprehension. At a verb that initiated retrieval of its subject, high semantic interference led to longer reading times than low semantic interference, but only when syntactic interference was high as well. This result provided empirical support for the assumption that different types of cues are used simultaneously during memory retrieval in subject-verb dependency formation. Furthermore, it suggests that distractors must match all available retrieval cues to cause similarity-based retrieval interference. The results of the present study are similar to the predictions of cue-based retrieval models of sentence processing with non-linear combinatorics.
-
 This project investigated the use of  syntactic and semantic cues during subject-verb dependency resolution with self-paced reading and event-related potentials.  Both our experiments consistently showed semantic interference, i.e., more processing difficulty during long-distance subject-verb dependency resolution in the presence of a semantically matching distractor. This manifested in longer self-paced reading times starting at the distractor and continuing into the post-critical region, and in a more negative N400 amplitude for the high vs.\ low semantic interference conditions elicited by the critical verb. These different time courses in the two experiments are likely to be due to a mix of encoding and retrieval interference. 
-%different types of interference: In SPR, the effects at the pre-critical region are likely to be due to encoding interference; and at the critical region, the effects could be a mix of encoding and retrieval interference. In the ERP experiment, the patterns seen could be due to encoding interference but they are   in the pre-critical regions in the SPR experiment, and retrieval (and possibly also encoding) interference in the ERP experiment. 
+ 
 The observed differences in the time course in the SPR and ERP studies are likely to be due to the methods used in the two sets of experiments (self-paced vs.\ auto-paced reading). Overall, we found evidence against the use of a syntactic cue such as \{$\pm$ grammatical subject\}, as previously assumed in the literature; computational modeling shows that--at least given the present data--the parser uses the syntactic cue  \{$\pm$ subject-in-same-clause\}  to identify the correct target for retrieval.  A broader implication is that the parser may be able to use hierarchical structure in the input to target the correct syntactic dependent from memory, leading to no syntactic interference from a distractor that is in subject position within an embedded clause.
 
 %\section{Data availability statement}
@@ -779,36 +687,5 @@ The observed differences in the time course in the SPR and ERP studies are likel
 
 \newpage
 \printbibliography
-
-%\appendix 
-
-%\section{Previous work on syntactic and semantic interference in reading}
-
-%Are both syntactic and semantic cues used during memory retrieval? \citet{vandyke07} and \citet{mertzen} investigated the effects of syntactic and semantic interference during long-distance subject-verb dependencies (see Example \ref{ex:1_vandyke07}) in a series of self-paced reading and eye-tracking while reading experiments. Overall, the original study by \citet{vandyke07} and the replication by \citet{mertzen} showed relatively consistent results. They consistently found syntactic interference but only rarely semantic interference (only in some measures of some of the experiments and sometimes in regions outside of the critical region). These results are not in line with the predictions from the standard cue-based retrieval models \citep{Lewis2005, mcelree}: While both previous studies found effects of syntactic and semantic interference, they emerged in different regions -- sometimes even prior to the retrieval site. Figure \ref{fig:previous} gives an overview of the previous findings.
-
-%One possibly problematic aspect of the studies from \citet{vandyke07} and \citet{mertzen} is that effects were found in pre-critical regions. \citet{mertzen} suggested that the pre-critical effects could be due to structural confounds, encoding interference, preview effects during natural reading in the eye-tracking experiments or anticipatory retrieval at the pre-critical word because participants could predict that the verb would follow. It is unclear from the previous studies when exactly the pre-critical effects emerged, i.e., when the conditions started to differ. But it is important to know the timecourse of the pre-critical effects to determine their cause. If the structural confounds explanation is correct, then the pre-critical effects should appear only in relation to the syntactic manipulation. For the encoding interference explanation to be correct, it would be necessary that conditions start to differ at (or shortly after) the distractor. The preview and anticipatory retrieval explanations can only apply if the pre-critical effects are found only close to the critical verb.
-
-%The previous estimates had relatively wide 95\,\% confidence/credible intervals in some of the experiments, which is probably due to the relatively small sample sizes. \citet{vandyke07} had a typical number of participants and items for psycholinguistic experiments (35 - 40 participants per experiment, 36 - 48 items per experiment). \citet{mertzen} used the same number of items as \citet{vandyke07}, but larger participant sample sizes (English: N = 61, German N = 121). Large uncertainty raises the possibility of Type M errors, leading to misleading conclusions \citep{gelman_carlin}.  
-
-%\begin{figure}[H]
-%    \caption{Overview of previous findings of syntactic and semantic interference and their interaction by \citet{vandyke07} (three experiments in English with 35, 36 or 40 participants) and \citet{mertzen} (one experiment in German with 121 participants, one experiment in English with 61 participants). Experiments used either Self-paced Reading (SPR) or Eye-tracking methodology (Eye-Tracking measures: FPRT = first-pass reading time, RPD = regression-path duration, TFT = total fixation time). Error bars are 95\% confidence intervals for \citet{vandyke07} and 95\% credible intervals for \citet{mertzen}. }
-%    \label{fig:previous}
-%    \centering
-%    \includegraphics[width=0.95\textwidth]{images/previous_findings_allregions_long.png}
-%    \figurenote{The estimates for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) data were derived form the published paper. For non-significant effects, where no statistics were reported, we used a t-value of 1.95 to compute the confidence intervals. \citet{mertzen} provided their estimates and credible intervals.}
-%\end{figure}
-
-%The results of the previous studies raise two questions: 1) Why were semantic interference effects found less consistently than syntactic interference effects? 2) Why were effects of retrieval interference observed in the pre-critical region? To answer question 1, we decided to run large-sample studies revisiting \citeauthor{vandyke07}'s (\citeyear{vandyke07}) design to gain more precise estimates of the effects of syntactic and semantic interference. To answer question 2 -- or to disentangle the possible causes of the pre-critical effects -- we decided it is best to use methods which provide responses which are unambiguously related to the processing of single words. The methods of our choice being self-paced reading (SPR) and electroencephalography (EEG) or event-related potentials (ERPs), respectively, with typical rapid serial visual presentation (RSVP) of single words. Both these methods provide responses directly linked to the processing of single words and, unlike eye-tracking while reading, do not grant any preview of upcoming stimuli. To reduce the structural confound at the pre-critical region identified by \citet{mertzen}, we added an additional pre-pre-critical region. These changes in the experimental design between the present and previous studies will help to distinguish between the different explanations for the pre-critical effects put forward by \citet{mertzen}.
-
-%In the previous studies, surprising effects were not only found in the pre-critical region, but also in the sentence-final region: Specifically, \citet{vandyke07} found semantic interference effects at the sentence-final region. She proposed that the effect was delayed to this late region because ``it simply takes longer for individuals to compute the semantic association between the distractor and the verb'' \citep[][p. 427]{vandyke07}. An alternative explanation for this late effect is that eye-movement control constraints can push the eye to move on before processing is finished. In contrast, ERPs are a time-sensitive direct measure of brain activity in response to the stimuli without confounds of planning and execution of motor activity (i.e., planning of saccades during natural reading in eye-tracking experiments or planning of button presses in SPR experiments). The well-studied N400 ERP component is associated with integration in the sentence context and / or memory retrieval induced by the current stimulus \citep{brouwer2017_n4_p6, lau2008_n400, kutas&federmeier_2000, kutas_federmeier2011}. The N400 is a negativity that peaks 400 ms after a word appeared on the screen in word-by-word presentation. The canonical finding is that the N400 amplitude is more negative for words which provide a poor semantic fit into the sentence context compared to words which fit the context perfectly \citep{kutas_hillyard}. Therefore, the N400 can provide insights into the immediate semantic processing of a word. This should prevent a potential semantic interference effect to be only detected at later regions in the sentence. 
-
-%Although the N400 is primarily associated with semantic processing, if one follows the memory retrieval account it is reasonable to assume that retrieval of all aspects of a memory entry will modulate the N400 amplitude. The potential complications during memory retrieval due to interference should not differ dependent on the specific cue used for retrieval, i.e., \{$\pm$ grammatical subject\} or \{$\pm$ animate\}.  Moreover, previous ERP studies investigating interference have found negativities in the typical N400 time window (300 - 500 ms post-stimulus onset), although the scalp topographies were not typical for the N400, being either broad \citep{schoknecht2022} or left anterior \citep{vasishth_drenhaus_2011}. Therefore, ERPs and especially the N400, are suited to be used for the investigation of interference (in the design from \citet{vandyke07} and in general).  We chose to focus our EPR analyses on the N400 and expected to find interference effects -- both syntactic and semantic -- in N400 amplitude differences due to a more complex memory retrieval under high compared to low interference. 
-
-
-
-%\section{I don't know why this is here}
-%In their \citeyear{vandyke07} paper, \citeauthor{vandyke07} reported a series of reading studies (one self-paced reading experiment and two eye-tracking experiments). For the eye-tracking experiments, \citet{vandyke07} reported three reading time measures: First-pass reading times (FPRT), regression-path durations (RPD) and total fixaton times (TFT). Reading times in multiple regions were reported, but the critical region was the verb. At the verb, \citet{vandyke07} found syntactic interference in both eye-tracking experiments and in all measures, but semantic interference was only found in Experiment 2 and only in RPD and TFT. In contrast, the spill-over region showed semantic interference more consistently than semantic interference. Surprisingly, the pre-critical region, which was only present in \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 3, showed main effects of syntactic and semantic interference. On top of that, the RPDs of the sentence-final region in Experiment 2 and 3 were consistent with effects of syntactic and  semantic interference.
-
-%\citeauthor{mertzen}'s (\citeyear{mertzen}) estimates at the pre-critical region showed slowdowns for high vs.\ low  syntactic and semantic interference in English and German in RPD and TFT. In the reading times of the critical verb, \citeauthor{mertzen}'s (\citeyear{mertzen}) estimates were consistent with syntactic interference effects in all measures in English and German. Additionally, the estimates suggested a semantic interference effect in English. In the spill-over region, the estimates only suggested a semantic interference effect in German.
 
 \end{document}
