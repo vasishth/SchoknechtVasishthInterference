@@ -35,7 +35,7 @@ VERBOSE <<- FALSE
 nsims<-20000
 
 ## Initial hyperparameters for latency factor
-## Visualization of priors
+## Visualization of uniform prior
 latency_factor_prior <-data.frame(x_temp=runif(1000000,min=0.005,max=0.04))
 hist(latency_factor_prior$x_temp, freq=FALSE)
 
@@ -50,10 +50,8 @@ prior_lf <-ggplot(latency_factor_prior,aes(x=x_temp))+
 prior_lf
 ggsave("LF_Prior.png", width=5, height=3, dpi=600)
 
-## trying a uniform:
+## uniform prior (effect between 0.5 and 4 muV):
 lfs<-runif(nsims,min=0.005,max=0.04)
-lfs<-runif(nsims,min=0.005,max=0.025)
-
 
 ## check:
 hist(lfs,freq=FALSE)
@@ -117,7 +115,7 @@ simdat_2cues_sameclause_long$effsize_neg <- -1 * simdat_2cues_sameclause_long$ef
 
 
 ggplot(data=simdat_2cues_sameclause_long, x=effsize_neg) +
-  geom_density(aes(x=effsize_neg), fill="lightgrey", bw=0.1) +
+  geom_density(aes(x=effsize_neg), fill="lightgrey") +
   ggh4x::facet_grid2(. ~ effect, scale="free_y", independent = "y")+
   theme_bw(base_size = 10)+
   geom_vline(xintercept=0, linetype="dashed")+
@@ -127,13 +125,10 @@ ggsave("PriorPredicted.png", width=6, height=4, dpi=600)
 
 #### Generate posterior predictions ####
 
-# Load simulated data
-load("simdat_2cues_sameclause.Rda")
-
 # Run ABC with rejection sampling
 # results from Schoknecht & Vasishth (N400 elicited by critical verb): 
 # syntactic mean effect -0.2 muV, CrI [-0.4,0.0] --> Normal(-0.2,0.1) --> SE: 0.1
-# semantic mean effect -0.3 muV, CrI [-0.6,-0.1] --> Normal(-0.3,0.15) --> SE should be 0.125 but set slightly wider at SE: 0.15
+# semantic mean effect -0.3 muV, CrI [-0.6,-0.1] --> Normal(-0.3,0.125) --> SE: 0.125
 # interaction mean effect -0.1 muV, CrI [-0.4, 0.0] --> Normal(-0.1,0.1) --> SE: 0.1
 
 # I'm changing the sign of the effect here (sem: -0.3 --> 0.3)
@@ -143,14 +138,14 @@ load("simdat_2cues_sameclause.Rda")
 synlower <- 0.2-(2*0.1) # mean effect - 2*SE
 synupper <- 0.2+(2*0.1) # mean effect + 2*SE
 
-semlower <- 0.3-(2*0.15) # mean effect - 2*SE
-semupper <- 0.3+(2*0.15) # mean effect + 2*SE
+semlower <- 0.3-(2*0.125) # mean effect - 2*SE
+semupper <- 0.3+(2*0.125) # mean effect + 2*SE
 
 synsemlower <- 0.1-(2*0.1) # mean effect - 2*SE
 synsemupper <- 0.1+(2*0.1) # mean effect + 2*SE
 
 # posterior latency factor (we base this only on the semantic interference result)
-SEM<-semlower<=simdat_2cues_sameclause$MESem & simdat_2cues_sameclause$MESem<=semupper
+SEM<-semlower<=simdat_2cues_sameclause$semantic & simdat_2cues_sameclause$semantic<=semupper
 table(SEM)
 posterior_lf_sem <-simdat_2cues_sameclause[SEM,]$lfs
 
@@ -242,14 +237,15 @@ dat$effect <- factor(dat$effect, levels=c("syntactic", "semantic", "interaction"
 ggplot(data=preds, x=effsize_neg) +
   geom_point(data=dat, aes(x=mean, y=0), color="darkred", size=3)+
   geom_errorbar(data=dat, aes(y=0, xmin=lower, xmax=upper), color="darkred", width=0.001, size=1) +
-  geom_density(aes(x=effsize_neg,fill=pred), color="black", alpha=0.3, bw=0.1) +
+  geom_density(aes(x=effsize_neg,fill=pred), color="black", alpha=0.3) +
   scale_fill_grey(start = 0, end = .9) +
   ggh4x::facet_grid2(. ~ effect, scales = "free_y", independent = "y")+
-  theme_bw(base_size = 11)+
+  theme_bw(base_size = 12)+
   #geom_abline(xintercept=0, linetype="dashed")+
   xlab("amplitude difference (microV)")+
   guides(fill = guide_legend(reverse=TRUE))+
-  theme(legend.title=element_blank(), legend.position = c(0.825, 0.8))
+  theme(legend.title=element_blank(), legend.position = c(0.825, 0.8), legend.text=element_text(size=8))
+
 
 ggsave("ERP_priorpred_vs_postpred_vs_data.png", width=7, height=3, dpi=600)
 
