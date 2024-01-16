@@ -1,0 +1,186 @@
+import mne
+import glob
+import pandas as pd
+import os.path as op
+import numpy as np
+
+from philistine.mne import retrieve, abs_threshold
+#from phil import retrieve, abs_threshold
+
+
+# ensures that we can see interactive plots
+%matplotlib qt
+
+mne.set_log_level('WARNING')
+
+#parameters for artefact detection and epoching
+tmin, tmax = -0.2, 1.0
+baseline = None
+reject = dict(eeg=150e-6)
+flat = dict(eeg=5e-6)
+
+# define critical events
+# verbs (position before condition trigger)
+event_id = {'x':215,
+            'y':216}
+
+# conditions
+event_id_LoSyn = {'a':225,
+            'b':235}
+
+event_id_HiSyn = {'c':245,
+            'd':255}
+
+#########################################
+# create to retrieve single-trial data
+# define time windows of interest
+windows = {"prestim":(-200, 0)}
+
+#"prestim":(-200, 0),"n400_narrow" : (350, 450)#, "n400_trad" : (300, 500),#"late_pos1": (600,1000), #"late_pos2": (800,1000)
+            
+# create a list to store our retrieved values in
+retrieved = []
+
+#  create a list for epoch dfs
+epochs_for_export = list()
+##########################################
+
+# create list of preprocessed raw files
+raw_files = glob.glob('processed/*.fif.gz')
+#raw_files = raw_files[2:]
+
+# loop through the list of preprocessed files for epoching and single-trial data export
+for raw_name in raw_files:
+    
+    # extract participant number
+    subj_no = op.split(raw_name)[1][0:15]
+        
+    print('processing participant ' + subj_no)
+    raw = mne.io.read_raw_fif(raw_name, preload = True)
+        
+    # extract events
+    events = mne.events_from_annotations(raw)[0]
+    
+    # adapt events so that the condition trigger (225, 235, 245, 255) includes item info as well  
+    # to do so, loop through the events array
+    for x in range(0,len(events)):
+        # get trigger info from column 3 of events
+        trigger = events[x,2]
+        # check if trigger is a condition trigger 
+        # due to different word order, we need to do this separately for HiSyn and LoSyn conditions
+        if trigger in event_id_HiSyn.values():
+            # go back 17 triggers to get item info
+            item = events[x-17,2]
+            # create composite trigger
+            new_trigger = (trigger)*1000 + item
+            # insert new trigger at old location
+            events[x,2] = new_trigger
+        if trigger in event_id_LoSyn.values():
+            # go back 16 triggers to get item info
+            item = events[x-16,2]
+            # create composite trigger
+            # see slides for rationale
+            new_trigger = (trigger)*1000 + item
+            # insert new trigger at old location
+            events[x,2] = new_trigger
+            # the new triggers look like this e.g., 255049 (255 = condition, 049 = item)
+    
+    # adapt events to include item and condition info at verb position (215 or 216)
+    # to do so, loop through the events array
+    for x in range(0,len(events)):
+        # get trigger info from column 3 of events
+        trigger = events[x,2] # to check x = 21 (hisyn) or 68 (lowsyn)
+        # check if trigger is a distractor event
+        if trigger == 216:
+            # go down 1 row to get trigger with item and condition info
+            tr = events[x+1,2]
+            # create composite trigger
+            # only if trigger has length=6 (=critical) and if cond = HiSyn
+            if len(str(tr)) == 6 and int(str(tr)[0:3]) in event_id_HiSyn.values():
+                comb_trigger = (trigger)*1000000 + tr
+                # insert new trigger at old location
+                events[x,2] = comb_trigger
+        if trigger == 215:
+            # go down 1 row to get trigger with item and condition info
+            tr = events[x+1,2]
+             # create composite trigger
+             # only if verb trigger has length=6 (=critical) and if cond = LoSyn
+            if len(str(tr)) == 6 and int(str(tr)[0:3]) in event_id_LoSyn.values():
+                comb_trigger = (trigger)*1000000 + tr
+                # insert new trigger at old location
+                events[x,2] = comb_trigger
+
+    # create new event-id dict with cond + item combinations
+    conditions = [225, 235, 245, 255]
+    event_id_new = {}
+    for cond in event_id:
+        for item in range(1,121):
+                for c in conditions:
+                    event_key = str(c) +'/' + str(item)
+                    event_val = (event_id[cond])*1000000 + (c*1000) + item
+                    # only add to new dict if actually present for the current participant
+                    if event_val in events[:,2]:
+                        event_id_new[event_key] = event_val
+    
+    # pick types of channels to epoch
+    picks = mne.pick_types(raw.info, eeg=True, eog=True, stim=False, misc=False)
+
+    # create epochs
+    epochs = mne.Epochs(raw, events, event_id=event_id_new, tmin=tmin, tmax=tmax, proj=False, picks=picks, baseline=None, detrend=0, reject_by_annotation=False, flat=flat, reject=reject, preload=True)
+    
+    # apply absolute threshold criterion
+    bad_epoch_mask = abs_threshold(epochs, 75e-6)
+    epochs.drop(bad_epoch_mask,reason="absolute threshold")
+    
+    # save epochs
+    epochs_file = 'epochs_verb_item/' + subj_no + '-epo.fif.gz'
+    epochs.save(epochs_file, overwrite = True)
+
+    # plot rejections
+    print("Plot rejections")
+    # note the use of op.join() here to create a path + filename combination
+    r_name = op.join('rejections_item/', subj_no + '_epo.png')
+    rejections = epochs.plot_drop_log(show=False)
+    rejections.savefig(r_name)
+    
+    # retrieve (export single-trial data)
+#    wins = retrieve(epochs, windows, subj_no)
+#    retrieved.append(wins)
+    
+#    print('Convert to data frame')
+#    df_epo = epochs.to_data_frame()
+#    df_epo['subj'] = subj_no
+#    epochs_for_export.append(df_epo)
+
+# concatenate epochs for export   
+#df=pd.concat(retrieved, ignore_index=False)
+#df_epochs=pd.concat(epochs_for_export, ignore_index=False)
+
+#df.rename(columns={'item': 'subj', 'mean':'amplitude'}, inplace=True)
+#new1 = df['condition'].str.split('/', expand=True)
+#new1.columns = ['cond','item']
+#new2 = df['subj'].str.split('_', expand=True)
+#new2.columns = ['session','exp', 'subject']
+#df3 = pd.concat([df,new1, new2], axis=1)
+#df3.drop(columns = ['condition', 'subj', 'exp', 'epoch'], inplace=True)
+#df3.round(decimals=4)
+
+#save 
+#df3.to_csv('Pandora_verb_n400narrow.csv',sep=',', index=False)
+
+### tidy up columns of single trial df (df_epochs)
+#columns = list(df_epochs)
+#new_epo1 = df_epochs['condition'].str.split('/', expand=True)
+#new_epo1.columns = ['cond','item']
+#new_epo2 = df_epochs['subject'].str.split('_', expand=True)
+#new_epo2.columns = ['session','exp', 'subj']
+#df2_epo = pd.concat([df_epochs,new_epo1, new_epo2], axis=1)
+#df2_epo.drop(columns = ['condition', 'subject', 'exp', 'epoch', 'ch_type'], inplace=True)
+#df3_epo = df2_epo.round(decimals=4)
+#df_epochs.to_csv('Pandora_verb_sampling.csv', sep=',', index=False)
+
+
+
+# look at new triggers
+#with np.printoptions(threshold=np.inf):
+#    print(events)
