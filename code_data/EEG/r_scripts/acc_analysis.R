@@ -7,7 +7,7 @@ library(brms)
 
 
 # load all .csv files from logs folder
-tbl <- list.files(path = "logs/", pattern = "*.csv", full.names = TRUE) %>% 
+tbl <- list.files(path = "../data/logs/", pattern = "*.csv", full.names = TRUE) %>% 
                   map_df(~read_csv(., col_types = cols(.default = "c"))) 
 
 tbl$subject_nr <- ifelse(tbl$subject_nr == "136" & tbl$datetime == "Mon May  8 10:21:50 2023", "135", tbl$subject_nr)
@@ -25,12 +25,12 @@ dat2 <- dat %>% mutate(subject_nr = fct_recode(subject_nr, "1" = "200",  "3" = "
 (N_subj <- length(unique(dat2$subject_nr)))
 
 # exclude participants who were excluded due to low accuracy or to many artefacts
-ex_s1 <- read.table("exclude_s1.txt")
+ex_s1 <- read.table("../data/exclude/exclude_s1.txt")
 ex_s1$subj <- as.factor(ex_s1$subj)
-ex_s2 <- read.table("exclude_s2.txt")
+ex_s2 <- read.table("../data/exclude/exclude_s2.txt")
 ex_s2$subj <- as.factor(ex_s2$subj)
 
-ex_arte <- read.csv("../TooManyArtefacts.csv")
+ex_arte <- read.csv("../data/exclude/TooManyArtefacts.csv")
 ex_arte$subject <- as.factor(ex_arte$subject)
 
 
