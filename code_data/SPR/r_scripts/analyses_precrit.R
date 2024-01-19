@@ -12,7 +12,7 @@ library(bayesplot)
 
 
 # load data
-precrit_trim <- read.csv("data/pandora_spr_774_precrit.csv")
+precrit_trim <- read.csv("../data/pandora_spr_774_precrit.csv")
 
 
 # Inferential statistics
@@ -39,13 +39,6 @@ priors_l_tr <- c(
   prior(normal(0, 0.5), class = sigma),
   prior(normal(0, 0.1), class = sd)
 ) 
-
-# check priors
-round(exp(6-2*0.6));round(exp(6+2*0.6)) # intercept
-round(exp(6+0.01) - exp(6-0.01))  # beta normal-(0, 0.01)
-round(exp(6+0.05) - exp(6-0.05))  # beta normal-(0, 0.05)
-round(exp(6+0.1) - exp(6-0.1))    # beta normal-(0, 0.1)
-
 
 # models
 m_s_full <- brm(rt ~ 1 + syn * sem +
