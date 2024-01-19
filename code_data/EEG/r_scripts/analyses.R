@@ -397,23 +397,30 @@ df.bf$BF10 <- as.numeric(df.bf$BF10.1)
 df.bf$effect <- factor(df.bf$effect, levels=c("semantic", "syntactic", "interaction"))
 
 
+df.bf$prior2 <- ifelse(df.bf$prior == "Normal(0, 0.1)", "Normal_(0, 0.1)", (
+                          ifelse(df.bf$prior == "Normal(0, 0.5)", "Normal_(0, 0.5)",(
+                               ifelse(df.bf$prior == "Normal(0, 1)", "Normal_(0, 1)",
+                                  "Normal_(0, 5)")))))
+
 
 # Plot different BFs
 library(ggbreak)
 library(ggimage) 
 
 ## original plot
-plot_BF<- ggplot(df.bf, aes(x = prior, y = BF10, group = interaction(effect, truncated))) +
+plot_BF<- ggplot(df.bf, aes(x = prior2, y = BF10, group = interaction(effect, truncated))) +
   geom_point(aes(color=effect)) +
   geom_line(aes(color=effect)) +
   geom_hline(yintercept = 1, linetype="dashed") +
-  #coord_cartesian(ylim = c(0, 50)) +
-  #annotate("text", x =3,y= 1.5, label = "Evidence in favor of H1", size =3)+
-  #annotate("text", x =3,y= 2/3, label = "Evidence in favor of H0", size =3) +
-  theme_bw(base_size = 8)+
-  theme(legend.position = c(0.8, 0.8), legend.text=element_text(size=6))+
-  #scale_y_break(c(12, 21), scales=2) + #scale_y_continuous(limits = c(0, 90), breaks =  c(1, 3, 10, 30, 50, 80, 90))+
-  #scale_y_break(c(12, 21), scales=2) +
+#  annotate("text", x =4,y= 2, label = "evidence for effect ")+
+#  geom_segment(aes(x = 3.35, y = 1.5, xend = 3.35, yend = 2.75), color="black",
+#               arrow = arrow(length = unit(0.15, "cm")), inherit.aes = FALSE)+
+#  annotate("text", x =3.82,y= -0.75, label = "evidence against effect") +
+#  geom_segment(aes(x = 3.05, y = -0.25, xend = 3.05, yend = -1.5), color="black",
+#               arrow = arrow(length = unit(0.15, "cm")), inherit.aes = FALSE)+
+  theme_bw(base_size = 12)+
+  theme(legend.position = c(0.7, 0.7))+
+  scale_y_continuous(limits = c(0, 90), breaks =  c(0.1, 0.5, 1, 2.5, 10, 30, 50, 70, 90))+
   xlab("Truncated Prior")
 
 ## ggbreak plot without legend
@@ -426,5 +433,5 @@ leg = cowplot::get_legend(plot_BF)
 p3 <- ggplotify::as.ggplot(print(p2))
 
 ## place the legend 
-p3 + ggimage::geom_subview(x=.85, y=.78, subview=leg)
-ggsave("plots/BF_plot_N103_cp_300_500.jpg", width = 10, height = 8, units = "cm", dpi=300)
+p3 + ggimage::geom_subview(x=.8, y=.78, subview=leg)
+ggsave("plots/BF_plot_N103_cp_300_500_evidence.jpg", width = 16, height = 12, units = "cm", dpi=300)
