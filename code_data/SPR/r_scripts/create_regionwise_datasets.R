@@ -8,9 +8,9 @@ library(tidyverse)
 
 
 # load data
-df1 <- read.csv("../pandora_web/data/pandora_web_data_allsessions_short.csv", sep=";")
-df2 <- read.csv("../pandora_repS1/data/pandora_repS1_data_cleaned_short.csv", sep=";")
-df3 <- read.csv("../pandora_repS2/data/pandora_repS2_data_cleaned_short.csv", sep=";")
+df1 <- read.csv("../data/pandora_web_data_allsessions_short.csv", sep=";")
+df2 <- read.csv("../data/pandora_repS1_data_cleaned_short.csv", sep=";")
+df3 <- read.csv("../data/pandora_repS2_data_cleaned_short.csv", sep=";")
 
 # delete some columns in df1 to have identical columns in all data sets
 df1$delay <- NULL
