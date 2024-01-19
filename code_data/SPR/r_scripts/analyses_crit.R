@@ -10,7 +10,7 @@ library(truncnorm)
 
 
 # load data
-crit_trim <- read.csv("data/pandora_spr_774_crit.csv")
+crit_trim <- read.csv("../data/pandora_spr_774_crit.csv")
 
 
 # Inferential statistics
@@ -37,13 +37,6 @@ priors_l_tr <- c(
   prior(normal(0, 0.5), class = sigma),
   prior(normal(0, 0.1), class = sd)
 ) 
-
-# check priors
-round(exp(6-2*0.6));round(exp(6+2*0.6)) # intercept
-round(exp(6+0.01) - exp(6-0.01))  # beta normal-(0, 0.01)
-round(exp(6+0.05) - exp(6-0.05))  # beta normal-(0, 0.05)
-round(exp(6+0.1) - exp(6-0.1))    # beta normal-(0, 0.1)
-
 
 # models
 m_s_full <- brm(rt ~ 1 + syn * sem +
@@ -260,19 +253,3 @@ df.bf[nrow(df.bf)+1,] <- c("critical", "interaction","Normal(0, 0.05)","yes", ro
 df.bf[nrow(df.bf)+1,] <- c("critical", "interaction","Normal(0, 0.1)","yes", round(bf_l_int1,2), round(bf_l_int2,2))
 
 save(df.bf, file = paste("BFs_spr_pooled_774_crit.Rda"))
-
-
-#### model with random slopes for individual estimates ####
-
-m_m_full_slopes <- brm(rt ~ 1 + syn * sem +
-                  (1 + syn * sem|| participant) +
-                  (1 + syn * sem|| item),
-                data = crit_trim,
-                family = lognormal(),
-                prior = priors_m,
-                warmup = 2000,
-                iter = 20000,
-                cores = 4,
-                save_pars = save_pars(all = TRUE)
-)
-save(m_m_full_slopes, file = paste("model_fits/Fit_m_Full_RSLOPES_crit.Rda"))
