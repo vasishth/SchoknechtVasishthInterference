@@ -18,8 +18,8 @@ library(stats)
 options(scipen = 999)
 
 #load data
-prestim <- read_csv("data/Pandora_mean_200_0.csv")
-n400 <- read_csv("data/Pandora_mean_300_500.csv")
+prestim <- read_csv("../data/Pandora_mean_200_0.csv")
+n400 <- read_csv("../data/Pandora_mean_300_500.csv")
 
 # remove subjects who have only one good session
 xtabs(~ session + subject, n400)
@@ -49,7 +49,7 @@ plot(keptseg$subj, keptseg$num_seg, keptseg$cond)
 low10 <- subset(keptseg, keptseg$num_seg < 20)
 lows <- low10[!duplicated(low10[1]),]
 
-write.csv(lows, file="TooManyArtefacts.csv", row.names = FALSE)
+write.csv(lows, file="../data/exclude/TooManyArtefacts.csv", row.names = FALSE)
 
 # exclude subjects with less than 20 trials per condition
 n400.3 <- anti_join(n400.2, lows, by="subject")
@@ -128,13 +128,6 @@ priors_xl_tr <- c(
   prior(normal(10, 5), class = sigma),
   prior(normal(0, 2), class = sd)
 )  
-
-# check priors
-round(2-2*5);round(2+2*5) # intercept
-(2+(-0.1))-(2-(-0.1)) # beta normal-(0, 0.1)
-(2+(-0.5))-(2-(-0.5)) # beta normal-(0, 0.5)
-(2+(-1))-(2-(-1))     # beta normal-(0, 1)
-(2+(-5))-(2-(-5))     # beta normal-(0, 5)
 
 # full models with truncated priors
 m_s_tr <- brm(amplitude ~ 1 + prestim_amp + syn * sem  + (1 + sem ||subject) + (1|item),
