@@ -6,9 +6,9 @@ library(tidyverse)
 library(brms)
 
 # load data
-df1 <- read.csv("../pandora_web/data/pandora_web_data_allsessions_short.csv", sep=";")
-df2 <- read.csv("../pandora_repS1/data/pandora_repS1_data_cleaned_short.csv", sep=";")
-df3 <- read.csv("../pandora_repS2/data/pandora_repS2_data_cleaned_short.csv", sep=";")
+df1 <- read.csv("../data/pandora_web_data_allsessions_short.csv", sep=";")
+df2 <- read.csv("../data/pandora_repS1_data_cleaned_short.csv", sep=";")
+df3 <- read.csv("../data/pandora_repS2_data_cleaned_short.csv", sep=";")
 
 # add session info to df2 and df3 (both experiments had only one session)
 df2$session <- 1
