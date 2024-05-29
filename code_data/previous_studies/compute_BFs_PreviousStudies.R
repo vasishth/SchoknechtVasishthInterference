@@ -301,16 +301,16 @@ df.bf_mertzen$Prior2 <- ifelse(df.bf_mertzen$Prior == "Normal(0, 0.01)", "N+(0, 
 df.bf_mertzen$BF10 <- as.numeric(df.bf_mertzen$BF10)
 df.bf_mertzen$effect <- factor(df.bf_mertzen$Effect, levels=c("syntactic", "semantic", "interaction"))
 
-ggplot(df.bf_mertzen, aes(x = Prior, y = BF10, group = effect)) +
+ggplot(df.bf_mertzen, aes(x = Prior2, y = BF10, group = effect)) +
   geom_point(aes(color=effect)) +
   geom_line(aes(color=effect)) +
   facet_grid(.~Language)+
   geom_hline(yintercept = 1, linetype="dashed") +
-  theme_bw(base_size = 12)+
+  theme_bw(base_size = 10)+
   xlab("Truncated Prior")+
   theme(legend.position = "top")
 
-ggsave("BF_plot_mertzen.png", width = 14, height = 8, units = "cm", dpi=300)
+ggsave("BF_plot_mertzen.png", width = 11, height = 6, units = "cm", dpi=300)
 
 
 #####################################################################################
@@ -323,6 +323,8 @@ load("VD07_M21_estimates.rda")
 
 # as a test case, we first try this approach with the Mertzen data, for which we properly computed the BFs above
 # note: This is done on the ms scale!
+
+#### German ####
 (MG_tft <- previous %>% filter(experiment == "M21.G (N=121)") %>% filter(region == "critical") %>% filter(measure == "TFT"))
 
 # simulate data for a reasonable prior (effect between 0 and 40 ms) and the estimates of Mertzen
@@ -377,3 +379,57 @@ df.bf_mertzen %>% filter(Prior == "Normal(0, 0.05)")
 
 # --> Evidence for/against an effect is the same (BFs above or below 1), 
 # but the magnitude of the BF for the syntactic effect is very off
+
+#### English ####
+(ME_tft <- previous %>% filter(experiment == "M21.E (N=61)") %>% filter(region == "critical") %>% filter(measure == "TFT"))
+
+# simulate data for a reasonable prior (effect between 0 and 40 ms) and the estimates of Mertzen
+set.seed(2)
+prior_samples <- data.frame(b = round(rtruncnorm(n = 100000, a=0, mean = 15, sd = 5.5),1))
+data_samples_syn <- data.frame(b = round(rnorm(n = 100000, mean = 14.9, sd = 4.25),1))
+data_samples_sem <- data.frame(b = round(rnorm(n = 100000, mean = 12.6, sd = 4.6),1))
+data_samples_int <- data.frame(b = round(rnorm(n = 100000, mean = 2.8, sd = 3.75),1))
+
+# the range of the simulated data should approximate Mertzen's CrIs (see MG_tft)
+range(prior_samples)
+range(data_samples_syn)
+range(data_samples_sem)
+range(data_samples_int)
+
+# visualize
+combined_samples <- rbind(
+  data.frame(Value = prior_samples$b, Distribution = "Prior"),
+  data.frame(Value = data_samples_syn$b, Distribution = "syntactic"),
+  data.frame(Value = data_samples_sem$b, Distribution = "semantic"),
+  data.frame(Value = data_samples_int$b, Distribution = "interaction")
+)
+ggplot(combined_samples, aes(x = Value, fill = Distribution)) +
+  geom_density(alpha = 0.5) +
+  geom_abline(intercept=0, linewidth=1, linetype="dashed")+
+  labs(x = "b",
+       y = "Density") +
+  scale_fill_manual(values = c("green", "red", "yellow", "blue")) +
+  theme_minimal()
+
+
+data_samples_syn <- data.frame(b = round(rnorm(n = 100000, mean = 14.9, sd = 4.25),1))
+data_samples_sem <- data.frame(b = round(rnorm(n = 100000, mean = 12.6, sd = 4.6),1))
+data_samples_int <- data.frame(b = round(rnorm(n = 100000, mean = 2.8, sd = 3.75),1))
+
+# Compute BF10
+# find points where the distributions cross the x=0 line
+value_prior <- dtruncnorm(0, a=0, mean = 15, sd = 5.5)
+value_syn <- dnorm(0, mean=14.9,sd=4.25)
+value_sem <- dnorm(0, mean=12.6,sd=4.6)
+value_int <- dnorm(0, mean=2.8,sd=3.75)
+
+1 / (value_syn/value_prior) 
+1 / (value_sem/value_prior)
+1 / (value_int/value_prior)
+
+# compare these approximated BFs with the properly computed BFs from the models above
+load("BFs_mertzen_english_crit.Rda")
+df.bf_mertzen %>% filter(Prior == "Normal(0, 0.05)")
+
+# --> both types of BFs provide evidence for syntactic interference and against the interaction, but the BF values differ 
+# results for semantic interference differ, but are both rather inconclusive (BF10=0.86 vs. BF10=1.49)
