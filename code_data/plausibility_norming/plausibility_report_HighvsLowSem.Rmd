@@ -1,0 +1,202 @@
+---
+title: "Plausibility Norming"
+author: "Pia Schoknecht"
+date: "17 06 2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(lme4)
+library(ordinal)
+library(brms)
+```
+
+
+# Load and check
+```{r load}
+# load data
+df <- read.csv("norming_data_HighvsLowSem.csv")
+
+#dfp_ex <- dfp  %>% filter(subject !="plausib_anim19" & subject !="plausib_anim1") 
+
+uniq <- df[!duplicated(df[2]),]
+(N_subj <- length(unique(df$subject)))
+
+xtabs(~ latin_square_list, data=df)/160
+```
+
+
+# Ratings
+```{r}
+df$condition <- factor(df$condition, levels = c("c", "d", "f"))
+
+df %>% group_by(condition) %>%
+             dplyr::summarize(mean_rating = mean(value, na.rm=TRUE), 
+                              sd_rating = sd(value, na.rm=TRUE))
+
+ggplot(df, aes(x=condition, y=value))+
+  geom_jitter(color="lightblue", alpha=0.2)+
+  geom_boxplot(fill="grey", alpha=0.7)+
+  stat_summary(fun=mean, geom="point", shape=18, size=4) + #adding the mean
+  expand_limits(y=c(0.5,7.5))+
+  scale_y_continuous(name="plausibility rating", breaks=seq(1, 7, 1))+
+  scale_x_discrete(name="", labels=c("c" = "low semantic\ninterference condition", "d" = "high semantic\ninterference condition", "f" = "implausible filler"))+
+  theme_bw()+
+  labs(title = "Plausibility ratings",
+      subtitle = "1 = absolutely implausible; 7 = absolutely plausible")
+
+ggsave("plausibility_ratings.jpg", dpi=600, width=4, height=4)
+
+```
+
+# t-test
+```{r}
+
+test <- df %>% filter(condition != "f") %>%
+             group_by(subject, condition) %>%
+             dplyr::summarize(mean_rating = mean(value))
+
+test_wider <- test %>% pivot_wider(names_from = condition, values_from = mean_rating)
+
+
+t.test(test_wider$c, test_wider$d, paired=TRUE)
+
+```
+
+
+# Ratings per participant and per item
+```{r scale_p}
+N <- length(df$value)
+
+p_scale_use <- df %>%
+             group_by(subject, condition) %>%
+             dplyr::summarize(mean_rating = mean(value, na.rm=TRUE), 
+                              sd_rating = sd(value, na.rm=TRUE), 
+                              se_rating = sd_rating / sqrt(N))
+
+
+ggplot(p_scale_use, aes(x=condition, y=mean_rating, colour=subject)) +
+  geom_point(size=1, position = position_dodge(width = 0.3))+
+geom_errorbar(aes(ymin=mean_rating-se_rating, ymax=mean_rating+se_rating),
+              width=1, position= position_dodge(width = 0.3)) +  
+  facet_wrap(.~subject, nrow=4)+
+  xlab("condition")+
+  ylab("mean_rating")+
+  theme_bw()+
+  theme(legend.position="none")+
+  ggtitle("Pausibility Ratings per subject \n 7 = absolutely plausible, 1 = absolutely implausible \n errorbars = SE")
+ggsave("scale_use.jpg", dpi=600, width=5)
+
+
+#### PER ITEM
+p_scale_use <- df %>% filter(condition != "f") %>%
+             group_by(item, condition) %>%
+             dplyr::summarize(mean_rating = mean(value, na.rm=TRUE), 
+                              sd_rating = sd(value, na.rm=TRUE), 
+                              se_rating = sd_rating / sqrt(N))
+
+write.csv(p_scale_use, "plausib_rating_semantics.csv")
+
+p_scale_use$condition <- factor(p_scale_use$condition, levels = c("d", "c"))
+
+
+items_wide <- p_scale_use %>% select(-sd_rating, -se_rating) %>%
+                          pivot_wider(names_from = condition, values_from = mean_rating) %>%
+                          mutate(diff = c-d)
+
+
+ggplot(p_scale_use, aes(x=item, y=mean_rating, colour=condition, group=item)) +
+  geom_point(size=1, position = position_dodge(width = 0.3))+
+  geom_line(color="grey")+
+geom_errorbar(aes(ymin=mean_rating-se_rating, ymax=mean_rating+se_rating),
+              width=1, position= position_dodge(width = 0.3)) +  
+  xlab("item")+
+  ylab("mean_rating")+
+  scale_color_discrete(name="", labels=c("c" = "low semantic\ninterference condition", "d" = "high semantic\ninterference condition", "f" = "implausible filler"))+
+  theme_bw()+
+  theme(legend.position="bottom")+
+  ggtitle("Pausibility Ratings per item \n 7 = absolutely plausible, 1 = absolutely implausible \n errorbars = SE")
+
+```
+
+# Does the plausibility affect reading times in the pre-critical region?
+```{r}
+precrit <- read.csv("../SPR/data/pandora_spr_774_precrit.csv")
+
+precrit_plausib <- inner_join(precrit, p_scale_use, by=c("item", "condition"))
+
+# null model
+m_null <- lmer(log(rt) ~ 1 +
+                       (1 |fullname)+  
+                       (1 |item), 
+                     data=precrit_plausib, REML=FALSE)
+
+
+# raw plausibility rating as predictor
+m_plausib <- lmer(log(rt) ~ mean_rating +
+                       (1 |fullname)+  
+                       (1 |item), 
+                     data=precrit_plausib, REML=FALSE)
+
+summary(m_plausib)
+
+# semantic interference as predictor
+m_sem <- lmer(log(rt) ~ sem +
+                       (1 |fullname)+  
+                       (1 |item), 
+                     data=precrit_plausib, REML=FALSE)
+
+summary(m_sem)
+
+# semantic interference AND plausibility as predictors
+m_sem.plausib <- lmer(log(rt) ~ sem + scale(mean_rating)+
+                       (1 |fullname)+  
+                       (1 |item), 
+                     data=precrit_plausib, REML=FALSE)
+
+summary(m_sem.plausib)
+
+# do they interact?
+m_interaction <- lmer(log(rt) ~ sem*scale(mean_rating)+
+                       (1 |fullname)+  
+                       (1 |item), 
+                     data=precrit_plausib, REML=FALSE)
+
+summary(m_interaction)
+```
+
+
+# look at reading times for high vs. low plausibility and high vs. low semantic interference
+
+```{r}
+# dichotomize plausibility ratings
+precrit_plausib$plausibility_cat <- ifelse(precrit_plausib$mean_rating > 5.9, "high",
+                                                ifelse(precrit_plausib$mean_rating < 5.5, "low", "med"))
+
+table(precrit_plausib$plausibility_cat)
+                        
+precrit_plausib %>% filter(plausibility_cat != "med") %>%
+                      group_by(plausibility_cat) %>%
+                      dplyr::summarize(mean_rt = mean(rt, na.rm=TRUE))
+```
+
+
+```{r}
+precrit_plausib %>% filter(plausibility_cat != "med") %>%
+                      group_by(sem) %>%
+                      dplyr::summarize(mean_rt = mean(rt, na.rm=TRUE))
+
+```
+
+```{r}
+precrit_plausib %>% filter(plausibility_cat != "med") %>%
+                      group_by(sem, plausibility_cat) %>%
+                      dplyr::summarize(mean_rt = mean(rt, na.rm=TRUE))
+
+```
+
