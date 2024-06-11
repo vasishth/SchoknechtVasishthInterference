@@ -22,10 +22,18 @@ library(brms)
 # load data
 df <- read.csv("norming_data_HighvsLowSem.csv")
 
+head(df)
+
+
 #dfp_ex <- dfp  %>% filter(subject !="plausib_anim19" & subject !="plausib_anim1") 
 
 uniq <- df[!duplicated(df[2]),]
 (N_subj <- length(unique(df$subject)))
+
+## SV: isn't this simpler than your obscure code above?
+length(unique(df$md5_hash_participant_IP))
+
+colnames(df)
 
 xtabs(~ latin_square_list, data=df)/160
 ```
@@ -35,6 +43,7 @@ xtabs(~ latin_square_list, data=df)/160
 ```{r}
 df$condition <- factor(df$condition, levels = c("c", "d", "f"))
 
+## SV: this calculation is incorrect as it is not aggregated first:
 df %>% group_by(condition) %>%
              dplyr::summarize(mean_rating = mean(value, na.rm=TRUE), 
                               sd_rating = sd(value, na.rm=TRUE))
@@ -61,9 +70,38 @@ test <- df %>% filter(condition != "f") %>%
              group_by(subject, condition) %>%
              dplyr::summarize(mean_rating = mean(value))
 
+
+## SV: redone so I can understand it
+xtabs(~subject+condition,df_crit)
+
+df_crit<-subset(df,condition!="f")
+
+xtabs(~subject+condition,df_crit)
+
+xtabs(~item+condition,df_crit)
+
+## c is low, d is high int:
+df_crit$cond<-ifelse(df_crit$condition=="c",0.5,-0.5)
+
+library(lme4)
+m<-lmer(value~cond + (1+cond|subject) + (1+cond|item),df_crit)
+## low semantic int conditions are more plausible than high:
+summary(m)
+library(car)
+## normal approximation seems OK:
+qqPlot(residuals(m))
+
+## looks OK:
+acf(residuals(m))
+
+## SV: why are we doing this t-test at all?
 test_wider <- test %>% pivot_wider(names_from = condition, values_from = mean_rating)
 
+head(test_wider)
 
+## SV: You can see that this t-test is over-enthusiastic because it
+## hides significant by-item variance by averaging it away (see the lmer
+## results above--by item variability is remarkably high)
 t.test(test_wider$c, test_wider$d, paired=TRUE)
 
 ```
@@ -138,12 +176,46 @@ m_null <- lmer(log(rt) ~ 1 +
 
 
 # raw plausibility rating as predictor
+library(MASS)
+m_lm<-lm(rt~mean_rating,precrit_plausib)
+
 m_plausib <- lmer(log(rt) ~ mean_rating +
                        (1 |fullname)+  
                        (1 |item), 
                      data=precrit_plausib, REML=FALSE)
+```
+
+```{r}
+summary(m_plausib)
+## strong skew:
+qqPlot(residuals(m_plausib)
+### massive autocorrelation:       
+acf(residuals(m_plausib))
+
+m_plausib <- lmer(log(rt) ~ scale(mean_rating,scale=FALSE) +
+                       (1 + scale(mean_rating,scale=FALSE)|fullname)+  
+                       (1 + scale(mean_rating,scale=FALSE)|item), 
+                     data=precrit_plausib, REML=FALSE)
 
 summary(m_plausib)
+### massive autocorrelation remains. Why?       
+acf(residuals(m_plausib))
+```
+
+SV: here, instead of fitting to mean ratings only, can you store the mean by-item ratings as well as the SE in the data frame used for the inner join above? Then center the mean ratings. 
+So, the data frame used in the model m_plausib should then have not just the centered mean_rating but also the SE. Then the measurement error model would be (possible in brms only):
+
+```
+mbrms<-brm(formula = rt ~ me(c_mean_rating, se_mean_rating) +
+(1 | fullname) + (1|item),
+data = precrit_plausib, family = lognormal(), prior = some_uninf_priors,
+iter = 2000, chains = 4,
+control = list(adapt_delta = 0.999,
+max_treedepth = 15))
+```
+
+SV: Then use the measurement error syntax in the model below where you compare sem with ratings.
+
 
 # semantic interference as predictor
 m_sem <- lmer(log(rt) ~ sem +
