@@ -1,26 +1,13 @@
 # author: Pia Schoknecht
-# date: June 13, 2024
-# R version: 4.1.3
+# date: June 14, 2024
+# R version: 4.3.3
 
 #load packages
 library(tidyverse)
-#library(dplyr)
-#library(plyr)
-
 library(brms)
-# library(truncnorm)
-# #library(lattice)
-# #library(graphics)
-# #library("gridExtra")     ## for grid.arrange()
-# #library(stats)
 library(bayesplot)
 library(ggplot2)
-library(ggbreak)
-# library(ggimage) 
-# library(cowplot)
-# 
-# options(scipen = 999)
-# 
+
 #load data
 prestim <- read_csv("data/Pandora_mean_200_0.csv")
 n400 <- read_csv("data/Pandora_mean_300_500.csv")
