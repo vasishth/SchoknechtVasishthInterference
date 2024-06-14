@@ -1,38 +1,42 @@
 # author: Pia Schoknecht
-# date: July 20, 2023
+# date: June 13, 2024
 # R version: 4.1.3
 
 #load packages
 library(tidyverse)
-library(dplyr)
-library(ggplot2)
-library(brms)
-library(bayesplot)
-library(truncnorm)
-library(plyr)
-library(cowplot)
-library(lattice)
-library(graphics)
-library("gridExtra")     ## for grid.arrange()
-library(stats)
-options(scipen = 999)
+#library(dplyr)
+#library(plyr)
 
+library(brms)
+# library(truncnorm)
+# #library(lattice)
+# #library(graphics)
+# #library("gridExtra")     ## for grid.arrange()
+# #library(stats)
+library(bayesplot)
+library(ggplot2)
+library(ggbreak)
+# library(ggimage) 
+# library(cowplot)
+# 
+# options(scipen = 999)
+# 
 #load data
-prestim <- read_csv("../data/Pandora_mean_200_0.csv")
-n400 <- read_csv("../data/Pandora_mean_300_500.csv")
+prestim <- read_csv("data/Pandora_mean_200_0.csv")
+n400 <- read_csv("data/Pandora_mean_300_500.csv")
 
 # remove subjects who have only one good session
 xtabs(~ session + subject, n400)
 n400.2 <- n400 %>% filter(subject != "0001" & subject != "0005" & subject != "0006" & subject != "0011" & subject != "0021"
-                      & subject != "0040" & subject != "0041" & subject != "0055" & subject != "0062" & subject != "0067" 
-                      & subject != "0069" & subject != "0079" & subject != "0085" & subject != "0089" & subject != "0094" 
+                      & subject != "0040" & subject != "0041" & subject != "0055" & subject != "0062" & subject != "0067"
+                      & subject != "0069" & subject != "0079" & subject != "0085" & subject != "0089" & subject != "0094"
                       & subject != "0095" & subject != "0106" & subject != "0122" & subject != "0123" & subject != "0129"
                       & subject != "0150")
 n400.2$subject <- factor(n400.2$subject)
 
 prestim.2 <- prestim %>% filter(subject != "0001" & subject != "0005" & subject != "0006" & subject != "0011" & subject != "0021"
-                                & subject != "0040" & subject != "0041" & subject != "0055" & subject != "0062" & subject != "0067" 
-                                & subject != "0069" & subject != "0079" & subject != "0085" & subject != "0089" & subject != "0094" 
+                                & subject != "0040" & subject != "0041" & subject != "0055" & subject != "0062" & subject != "0067"
+                                & subject != "0069" & subject != "0079" & subject != "0085" & subject != "0089" & subject != "0094"
                                 & subject != "0095" & subject != "0106" & subject != "0122" & subject != "0123" & subject != "0129"
                                 & subject != "0150")
 prestim.2$subject <- factor(prestim.2$subject)
@@ -49,7 +53,7 @@ plot(keptseg$subj, keptseg$num_seg, keptseg$cond)
 low10 <- subset(keptseg, keptseg$num_seg < 20)
 lows <- low10[!duplicated(low10[1]),]
 
-write.csv(lows, file="../data/exclude/TooManyArtefacts.csv", row.names = FALSE)
+write.csv(lows, file="TooManyArtefacts.csv", row.names = FALSE)
 
 # exclude subjects with less than 20 trials per condition
 n400.3 <- anti_join(n400.2, lows, by="subject")
@@ -98,6 +102,8 @@ eeg_cp_agg <- eeg_cp %>% dplyr::group_by(subject, session, item, cond) %>%
 eeg_cp_agg$sem <- ifelse(eeg_cp_agg$cond %in% c("235", "255"), 0.5, -0.5)
 eeg_cp_agg$syn <- ifelse(eeg_cp_agg$cond %in% c("245", "255"), 0.5, -0.5)
 
+#write.csv(eeg_cp_agg, "data_eeg.csv")
+#eeg_cp_agg <- read.csv("data_eeg.csv")
 
 # varying priors 
 # truncated (only negative effects)
@@ -129,169 +135,64 @@ priors_xl_tr <- c(
   prior(normal(0, 2), class = sd)
 )  
 
+# check priors
+extraDistr::qtnorm(0.025,mean=2, sd=5) # intercept normal(2, 5) lower bound
+extraDistr::qtnorm(0.975,mean=2, sd=5) # intercept normal(2, 5) upper bound
+extraDistr::qtnorm(0.025,mean=0, sd=.1,b=0) # normal-(0, 0.1)
+extraDistr::qtnorm(0.025,mean=0, sd=.5,b=0) # normal-(0, 0.5)
+extraDistr::qtnorm(0.025,mean=0, sd=1,b=0)  # normal-(0, 1)
+extraDistr::qtnorm(0.025,mean=0, sd=5,b=0)  # normal-(0, 5)
+
 # full models with truncated priors
-m_s_tr <- brm(amplitude ~ 1 + prestim_amp + syn * sem  + (1 + sem ||subject) + (1|item),
+m_s_tr <- brm(amplitude ~ 1 + prestim_amp + syn*sem + (1+syn*sem|subject) + (1+syn*sem|item),
                  prior = priors_s_tr,
                  warmup = 2000,
                  iter = 20000,
                  cores = 4,
                  control = list(adapt_delta = 0.9),
                  save_pars = save_pars(all = TRUE),
-                 data = eeg_cp_agg)
+                 data = eeg_cp_agg, 
+                 sample_prior="yes")
 save(m_s_tr, file = paste("model_fits/Fit_s_tr.Rda"))
 
-m_m_tr <- brm(amplitude ~ 1 + prestim_amp + syn * sem  + (1 + sem ||subject) + (1|item),
+m_m_tr <- brm(amplitude ~ 1 + prestim_amp + syn*sem + (1+syn*sem|subject) + (1+syn*sem|item),
               prior = priors_m_tr,
               warmup = 2000,
               iter = 20000,
               cores = 4,
               control = list(adapt_delta = 0.9),
               save_pars = save_pars(all = TRUE),
-              data = eeg_cp_agg)
+              data = eeg_cp_agg, 
+              sample_prior="yes")
 save(m_m_tr, file = paste("model_fits/Fit_m_tr.Rda"))
 
-m_l_tr <- brm(amplitude ~ 1 + prestim_amp + syn * sem  + (1 + sem ||subject) + (1|item),
+m_l_tr <- brm(amplitude ~ 1 + prestim_amp + syn*sem + (1+syn*sem|subject) + (1+syn*sem|item),
               prior = priors_l_tr,
               warmup = 2000,
               iter = 20000,
               cores = 4,
               control = list(adapt_delta = 0.9),
               save_pars = save_pars(all = TRUE),
-              data = eeg_cp_agg)
+              data = eeg_cp_agg, 
+              sample_prior="yes")
 save(m_l_tr, file = paste("model_fits/Fit_l_tr.Rda"))
 
-m_xl_tr <- brm(amplitude ~ 1 + prestim_amp + syn * sem  + (1 + sem ||subject) + (1|item),
+m_xl_tr <- brm(amplitude ~ 1 + prestim_amp + syn*sem + (1+syn*sem|subject) + (1+syn*sem|item),
               prior = priors_xl_tr,
               warmup = 2000,
               iter = 20000,
               cores = 4,
               control = list(adapt_delta = 0.9),
               save_pars = save_pars(all = TRUE),
-              data = eeg_cp_agg)
+              data = eeg_cp_agg, 
+              sample_prior="yes")
 save(m_xl_tr, file = paste("model_fits/Fit_xl_tr.Rda"))
 
-# models without semantic effect
-m_s_nullsem <- brm(amplitude ~ 1 + prestim_amp + syn + syn:sem  + (1 + sem ||subject) + (1|item),
-               prior = priors_s_tr,
-               warmup = 2000,
-               iter = 20000,
-               cores = 4,
-               control = list(adapt_delta = 0.9),
-               save_pars = save_pars(all = TRUE),
-               data = eeg_cp_agg)
-save(m_s_nullsem, file = paste("model_fits/Fit_s_nullsem.Rda"))
 
-m_m_nullsem <- brm(amplitude ~ 1 + prestim_amp + syn + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_m_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_m_nullsem, file = paste("model_fits/Fit_m_nullsem.Rda"))
-
-m_l_nullsem <- brm(amplitude ~ 1 + prestim_amp + syn + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_l_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_l_nullsem, file = paste("model_fits/Fit_l_nullsem.Rda"))
-
-m_xl_nullsem <- brm(amplitude ~ 1 + prestim_amp + syn + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_xl_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_xl_nullsem, file = paste("model_fits/Fit_xl_nullsem.Rda"))
-
-# models without syntactic effect
-m_s_nullsyn <- brm(amplitude ~ 1 + prestim_amp + sem + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_s_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_s_nullsyn, file = paste("model_fits/Fit_s_nullsyn.Rda"))
-
-m_m_nullsyn <- brm(amplitude ~ 1 + prestim_amp + sem + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_m_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_m_nullsyn, file = paste("model_fits/Fit_m_nullsyn.Rda"))
-
-m_l_nullsyn <- brm(amplitude ~ 1 + prestim_amp + sem + syn:sem  + (1 + sem ||subject) + (1|item),
-                   prior = priors_l_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_l_nullsyn, file = paste("model_fits/Fit_l_nullsyn.Rda"))
-
-m_xl_nullsyn <- brm(amplitude ~ 1 + prestim_amp + sem + syn:sem  + (1 + sem ||subject) + (1|item),
-                    prior = priors_xl_tr,
-                    warmup = 2000,
-                    iter = 20000,
-                    cores = 4,
-                    control = list(adapt_delta = 0.9),
-                    save_pars = save_pars(all = TRUE),
-                    data = eeg_cp_agg)
-save(m_xl_nullsyn, file = paste("model_fits/Fit_xl_nullsyn.Rda"))
-
-# models without interaction
-m_s_nullint <- brm(amplitude ~ 1 + prestim_amp + sem + syn + (1 + sem ||subject) + (1|item),
-                   prior = priors_s_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_s_nullint, file = paste("model_fits/Fit_s_nullint.Rda"))
-
-m_m_nullint <- brm(amplitude ~ 1 + prestim_amp + sem + syn  + (1 + sem ||subject) + (1|item),
-                   prior = priors_m_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_m_nullint, file = paste("model_fits/Fit_m_nullint.Rda"))
-
-m_l_nullint <- brm(amplitude ~ 1 + prestim_amp + sem + syn  + (1 + sem ||subject) + (1|item),
-                   prior = priors_l_tr,
-                   warmup = 2000,
-                   iter = 20000,
-                   cores = 4,
-                   control = list(adapt_delta = 0.9),
-                   save_pars = save_pars(all = TRUE),
-                   data = eeg_cp_agg)
-save(m_l_nullint, file = paste("model_fits/Fit_l_nullint.Rda"))
-
-m_xl_nullint <- brm(amplitude ~ 1 + prestim_amp + sem + syn  + (1 + sem ||subject) + (1|item),
-                    prior = priors_xl_tr,
-                    warmup = 2000,
-                    iter = 20000,
-                    cores = 4,
-                    control = list(adapt_delta = 0.9),
-                    save_pars = save_pars(all = TRUE),
-                    data = eeg_cp_agg)
-save(m_xl_nullint, file = paste("model_fits/Fit_xl_nullint.Rda"))
+load("model_fits/Fit_s_tr.Rda")
+load("model_fits/Fit_m_tr.Rda")
+load("model_fits/Fit_l_tr.Rda")
+load("model_fits/Fit_xl_tr.Rda")
 
 ## Posterior predictive check
 # for our favorite model
@@ -309,13 +210,12 @@ syn_eff <- exp(samples$b_Intercept + samples$b_syn) -
 sem_eff <- exp(samples$b_Intercept + samples$b_sem) -
   exp(samples$b_Intercept- samples$b_sem)
 
-colnames(samples)
-int_eff <- exp(samples$b_Intercept + samples[,5]) -
-  exp(samples$b_Intercept- samples[,5])
+int_eff <- exp(samples$b_Intercept + samples$`b_syn:sem`) - 
+  exp(samples$b_Intercept- samples$`b_syn:sem`)
 
-round(c(mean = mean(syn_eff), quantile(syn_eff, probs = c(.025, .975))),1)
-round(c(mean = mean(sem_eff), quantile(sem_eff, probs = c(.025, .975))),1)
-round(c(mean = mean(int_eff[-1,]), quantile(int_eff[,1], probs = c(.025, .975))),1)
+round(c(mean = mean(syn_eff), quantile(syn_eff, probs = c(.025, .975))),2)
+round(c(mean = mean(sem_eff), quantile(sem_eff, probs = c(.025, .975))),2)
+round(c(mean = mean(int_eff), quantile(int_eff, probs = c(.025, .975))),2)
 
 samples$syntactic <- syn_eff
 samples$semantic <- sem_eff
@@ -327,111 +227,97 @@ mcmc_areas(
   prob = 0.8, # 80% intervals
   #prob_outer = 0.99, # 99%
   point_est = "mean")+
-  labs( x = "effect in ms")+
+  labs( x = "effect in microvolts")+
   vline_0(linetype="dashed")+
-  #scale_y_discrete(labels=c(
-  #  "int.syn.sem_eff" = "interaction")
-  #)+
-  #scale_x_continuous(n.breaks = 3)+
-  theme_bw(base_size=10)
-ggsave("plots/posteriors_eeg.jpg", width = 10, height = 5, units = "cm", dpi=300)
+  scale_x_continuous(n.breaks = 5)+
+  theme_bw(base_size=9)+
+  annotate("text", x = -0.4, y = 3.75, label = "-0.37 — -0.16 — -0.02", size=2) +
+  annotate("text", x = -0.57, y = 2.65, label = "-0.59 — -0.32 — -0.10", size=2) +
+  annotate("text", x = -0.35, y = 1.7, label = "-0.44 — -0.14 — -0.01", size=2)
+ggsave("plots/posteriors_eeg.jpg", width = 8, height = 6, units = "cm", dpi=300)
 
+# bfs
+# model_s
+h <- hypothesis(m_s_tr, "syn = 0")
+SD_bf10.m_s_syn <- 1 / h$hypothesis$Evid.Ratio
 
-# BFs
-# SEM effect
-sem_bf_s_tr1 <- bayes_factor(m_s_tr, m_s_nullsem)$bf
-sem_bf_m_tr1 <- bayes_factor(m_m_tr, m_m_nullsem)$bf
-sem_bf_l_tr1 <- bayes_factor(m_l_tr, m_l_nullsem)$bf
-sem_bf_xl_tr1 <- bayes_factor(m_xl_tr, m_xl_nullsem)$bf
+h <- hypothesis(m_s_tr, "sem = 0")
+SD_bf10.m_s_sem <- 1 / h$hypothesis$Evid.Ratio
 
-sem_bf_s_tr2 <- bayes_factor(m_s_tr, m_s_nullsem)$bf
-sem_bf_m_tr2 <- bayes_factor(m_m_tr, m_m_nullsem)$bf
-sem_bf_l_tr2 <- bayes_factor(m_l_tr, m_l_nullsem)$bf
-sem_bf_xl_tr2 <- bayes_factor(m_xl_tr, m_xl_nullsem)$bf
+h <- hypothesis(m_s_tr, "syn:sem = 0")
+SD_bf10.m_s_int <- 1 / h$hypothesis$Evid.Ratio
 
-# SYN effect
-syn_bf_s_tr1 <- bayes_factor(m_s_tr, m_s_nullsyn)$bf
-syn_bf_m_tr1 <- bayes_factor(m_m_tr, m_m_nullsyn)$bf
-syn_bf_l_tr1 <- bayes_factor(m_l_tr, m_l_nullsyn)$bf
-syn_bf_xl_tr1 <- bayes_factor(m_xl_tr, m_xl_nullsyn)$bf
+# model_m
+h <- hypothesis(m_m_tr, "syn = 0")
+SD_bf10.m_m_syn <- 1 / h$hypothesis$Evid.Ratio
 
-syn_bf_s_tr2 <- bayes_factor(m_s_tr, m_s_nullsyn)$bf
-syn_bf_m_tr2 <- bayes_factor(m_m_tr, m_m_nullsyn)$bf
-syn_bf_l_tr2 <- bayes_factor(m_l_tr, m_l_nullsyn)$bf
-syn_bf_xl_tr2 <- bayes_factor(m_xl_tr, m_xl_nullsyn)$bf
+h <- hypothesis(m_m_tr, "sem = 0")
+SD_bf10.m_m_sem <- 1 / h$hypothesis$Evid.Ratio
 
-# INTERACTION
-int_bf_s_tr1 <- bayes_factor(m_s_tr, m_s_nullint)$bf
-int_bf_m_tr1 <- bayes_factor(m_m_tr, m_m_nullint)$bf
-int_bf_l_tr1 <- bayes_factor(m_l_tr, m_l_nullint)$bf
-int_bf_xl_tr1 <- bayes_factor(m_xl_tr, m_xl_nullint)$bf
+h <- hypothesis(m_m_tr, "syn:sem = 0")
+SD_bf10.m_m_int <- 1 / h$hypothesis$Evid.Ratio
 
-int_bf_s_tr2 <- bayes_factor(m_s_tr, m_s_nullint)$bf
-int_bf_m_tr2 <- bayes_factor(m_m_tr, m_m_nullint)$bf
-int_bf_l_tr2 <- bayes_factor(m_l_tr, m_l_nullint)$bf
-int_bf_xl_tr2 <- bayes_factor(m_xl_tr, m_xl_nullint)$bf
+# model_l
+h <- hypothesis(m_l_tr, "syn = 0")
+SD_bf10.m_l_syn <- 1 / h$hypothesis$Evid.Ratio
+
+h <- hypothesis(m_l_tr, "sem = 0")
+SD_bf10.m_l_sem <- 1 / h$hypothesis$Evid.Ratio
+
+h <- hypothesis(m_l_tr, "syn:sem = 0")
+SD_bf10.m_l_int <- 1 / h$hypothesis$Evid.Ratio
+
+# model_xl
+h <- hypothesis(m_xl_tr, "syn = 0")
+SD_bf10.m_xl_syn <- 1 / h$hypothesis$Evid.Ratio
+
+h <- hypothesis(m_xl_tr, "sem = 0")
+SD_bf10.m_xl_sem <- 1 / h$hypothesis$Evid.Ratio
+
+h <- hypothesis(m_xl_tr, "syn:sem = 0")
+SD_bf10.m_xl_int <- 1 / h$hypothesis$Evid.Ratio
 
 # save BFs in df
-df.bf <- data.frame(matrix(ncol=8,nrow=0))
-colnames(df.bf) <- c("N", "time.window","roi", "effect","prior","truncated", "BF10.1", "BF10.2")
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal", "semantic","Normal(0, 0.1)", "yes", round(sem_bf_s_tr1,2), round(sem_bf_s_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","semantic","Normal(0, 0.5)","yes", round(sem_bf_m_tr1,2), round(sem_bf_m_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","semantic","Normal(0, 1)","yes", round(sem_bf_l_tr1,2), round(sem_bf_l_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","semantic","Normal(0, 5)","yes", round(sem_bf_xl_tr1,2), round(sem_bf_xl_tr2,2))
+df.bf_eeg <- data.frame(matrix(ncol=7,nrow=0))
+colnames(df.bf_eeg) <- c("BF_method", "language", "region", "effect","prior","truncated", "BF10")
 
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","syntactic","Normal(0, 0.1)", "yes", round(syn_bf_s_tr1,2), round(syn_bf_s_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","syntactic","Normal(0, 0.5)","yes", round(syn_bf_m_tr1,2), round(syn_bf_m_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","syntactic","Normal(0, 1)","yes", round(syn_bf_l_tr1,2), round(syn_bf_l_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","syntactic","Normal(0, 5)","yes", round(syn_bf_xl_tr1,2), round(syn_bf_xl_tr2,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "syntactic","Normal(0, 0.1)","yes", round(SD_bf10.m_s_syn,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "syntactic","Normal(0, 0.5)","yes", round(SD_bf10.m_m_syn,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "syntactic","Normal(0, 1)","yes", round(SD_bf10.m_l_syn,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "syntactic","Normal(0, 5)","yes", round(SD_bf10.m_xl_syn,2))
 
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","interaction","Normal(0, 0.1)", "yes", round(int_bf_s_tr1,2), round(int_bf_s_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","interaction","Normal(0, 0.5)","yes", round(int_bf_m_tr1,2), round(int_bf_m_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","interaction","Normal(0, 1)","yes", round(int_bf_l_tr1,2), round(int_bf_l_tr2,2))
-df.bf[nrow(df.bf)+1,] <- c("103","300-500","centro-parietal","interaction","Normal(0, 5)","yes", round(int_bf_xl_tr1,2), round(int_bf_xl_tr2,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "semantic","Normal(0, 0.1)","yes", round(SD_bf10.m_s_sem,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "semantic","Normal(0, 0.5)","yes", round(SD_bf10.m_m_sem,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "semantic","Normal(0, 1)","yes", round(SD_bf10.m_l_sem,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "semantic","Normal(0, 5)","yes", round(SD_bf10.m_xl_sem,2))
 
-save(df.bf, file = paste("BFs.Rda"))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "interaction","Normal(0, 0.1)","yes", round(SD_bf10.m_s_int,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "interaction","Normal(0, 0.5)","yes", round(SD_bf10.m_m_int,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "interaction","Normal(0, 1)","yes", round(SD_bf10.m_l_int,2))
+df.bf_eeg[nrow(df.bf_eeg)+1,] <- c("S-D", "German", "N400", "interaction","Normal(0, 5)","yes", round(SD_bf10.m_xl_int,2))
 
-load("BFs.Rda")
+save(df.bf_eeg, file = paste("BFs_eeg_critN400.Rda"))
 
-df.bf$BF10 <- as.numeric(df.bf$BF10.1)
-df.bf$effect <- factor(df.bf$effect, levels=c("semantic", "syntactic", "interaction"))
+df.bf_eeg$BF10 <- as.numeric(df.bf_eeg$BF10)
+df.bf_eeg$effect <- factor(df.bf_eeg$effect, levels=c("semantic", "syntactic", "interaction"))
 
 
-df.bf$prior2 <- ifelse(df.bf$prior == "Normal(0, 0.1)", "Normal_(0, 0.1)", (
-                          ifelse(df.bf$prior == "Normal(0, 0.5)", "Normal_(0, 0.5)",(
-                               ifelse(df.bf$prior == "Normal(0, 1)", "Normal_(0, 1)",
+df.bf_eeg$prior2 <- ifelse(df.bf_eeg$prior == "Normal(0, 0.1)", "Normal_(0, 0.1)", (
+                          ifelse(df.bf_eeg$prior == "Normal(0, 0.5)", "Normal_(0, 0.5)",(
+                               ifelse(df.bf_eeg$prior == "Normal(0, 1)", "Normal_(0, 1)",
                                   "Normal_(0, 5)")))))
 
-
 # Plot different BFs
-library(ggbreak)
-library(ggimage) 
-
-## original plot
-plot_BF<- ggplot(df.bf, aes(x = prior2, y = BF10, group = interaction(effect, truncated))) +
+ggplot(df.bf_eeg, aes(x = prior2, y = BF10, group = interaction(effect, truncated))) +
+  geom_hline(yintercept = 1, linetype="dashed") +
   geom_point(aes(color=effect)) +
   geom_line(aes(color=effect)) +
-  geom_hline(yintercept = 1, linetype="dashed") +
-#  annotate("text", x =4,y= 2, label = "evidence for effect ")+
-#  geom_segment(aes(x = 3.35, y = 1.5, xend = 3.35, yend = 2.75), color="black",
-#               arrow = arrow(length = unit(0.15, "cm")), inherit.aes = FALSE)+
-#  annotate("text", x =3.82,y= -0.75, label = "evidence against effect") +
-#  geom_segment(aes(x = 3.05, y = -0.25, xend = 3.05, yend = -1.5), color="black",
-#               arrow = arrow(length = unit(0.15, "cm")), inherit.aes = FALSE)+
   theme_bw(base_size = 12)+
-  theme(legend.position = c(0.7, 0.7))+
-  scale_y_continuous(limits = c(0, 90), breaks =  c(0.1, 0.5, 1, 2.5, 10, 30, 50, 70, 90))+
+  theme(legend.position = c(0.85, 0.85))+
+  scale_y_log10("Bayes factor (BF10)",
+                breaks =  c(0.05, 0.1, 0.2, 0.35, 0.5, 0.8, 1, 2, 5, 10, 80),
+                labels = c(0.05, 0.1, 0.2, 0.35, 0.5, 0.8, 1, 2, 5, 10, 80)) +
   xlab("Truncated Prior")
 
-## ggbreak plot without legend
-p2 <- plot_BF + scale_y_break(c(3, 10), scales=1.5) + theme(legend.position="none") 
+ggsave("plots/BF_plot_N103_cp_300_500.jpg", width = 16, height = 12, units = "cm", dpi=300)
 
-## extract legend from original plot
-leg = cowplot::get_legend(plot_BF)
-
-## redraw the figure
-p3 <- ggplotify::as.ggplot(print(p2))
-
-## place the legend 
-p3 + ggimage::geom_subview(x=.8, y=.78, subview=leg)
-ggsave("plots/BF_plot_N103_cp_300_500_evidence.jpg", width = 16, height = 12, units = "cm", dpi=300)
