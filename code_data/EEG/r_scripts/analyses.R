@@ -202,6 +202,8 @@ pp_check(m_m_tr, ndraws = 100, type = "stat", stat = "mean")
 pp_check(m_m_tr, ndraws = 100, type = "stat", stat = "min")
 pp_check(m_m_tr, ndraws = 100, type = "stat", stat = "max")
 
+plot(m_m_tr)
+summary(m_m_tr)
 
 samples <- as_draws_df(m_m_tr)
 syn_eff <- exp(samples$b_Intercept + samples$b_syn) -
