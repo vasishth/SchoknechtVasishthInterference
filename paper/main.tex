@@ -195,7 +195,7 @@ Figure \ref{fig:project_str} shows the structure of the present study, i.e., how
     \includegraphics[width=\textwidth]{images/pandora_project_structure_figure.pdf}
 \end{figure}
 
-\textcolor{red}{\section{Data availability statement}
+\textcolor{blue}{\section{Data availability statement}
 All materials, data and analysis scripts can be accessed via https://osf.io/4fpru/?view$\_$only=2d2a004d3e4147bc975b5e8c455c27df.}\label{statement}
 
 
@@ -309,12 +309,13 @@ Since the accuracies are not of primary interest, we do not carry out Bayes fact
 
 Reading times across the whole sentence are shown in Figure \ref{fig:whole_sentence} A and B, separately for high and low syntactic interference because these conditions had partially different sentence structures. 
 
+\Copy{figwhole_sentence}{
 \begin{sidewaysfigure}[h]
     \caption{Self-paced reading times with 95\% confidence intervals. Panel A and B show the pooled reading times across the whole sentence; separately for high (A) and low (B) syntactic interference due to differing sentence structure. Panel C shows the pooled reading times of all conditions in the critical and surrounding regions. Panels D and E show the reading times of all conditions in the critical and surrounding regions in the different parts of the self-paced reading experiment.}
     \label{fig:whole_sentence}
     \centering
     \includegraphics[width=0.85\textwidth]{images/Pandora_all_wholesentence_pooled_zoom_exp.jpg}
-\end{sidewaysfigure}
+\end{sidewaysfigure}}
 \clearpage
 
 It is apparent from Figure \ref{fig:whole_sentence} A and B that, regardless of the syntactic manipulation, at the distractor, reading times between high and low semantic interference started to differ: distractors in the high semantic interference conditions induced longer reading times than in the low semantic interference conditions. This pattern persisted in the following regions.
@@ -371,8 +372,16 @@ The results of the present study stand in contrast to previous findings \citep{v
 An obvious difference from previous studies is the experimental methodology. The majority of the previous experiments employed eye-tracking while reading, while we used a self-paced reading task. Self-paced reading (SPR) might have a greater tendency to be affected by interference compared to natural reading (as in eye-tracking studies), due to the restricted reading format in SPR: Comprehenders have no opportunity to revisit previous material during conventional self-paced reading \citep[but see][]{BSPR}. SPR is likely to be more demanding on the comprehender's memory, which might make it easier to detect interference effects. This argumentation is supported by our estimation of the results of \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 1, the only other SPR experiment using this design: 
 In the critical region, the estimates of both main effects (syntactic and semantic interference) are very similar to the results of the present study; the interaction effect observed by \citeauthor{vandyke07} in the spill-over region is also similar to our estimate. However, it remains unclear why semantic interference was especially prominent in our study compared to the previous ones.
 
-The contrast between our results and those from  \citeauthor{mertzen}'s (\citeyear{mertzen}) German experiment is surprising given that both used German items and partially even the same linguistic material. So, why did we find a semantic interference effect in all regions, whereas \citet{mertzen} only found one in the pre-critical region? Apart from the methodological difference (eye-tracking vs.\ self-paced reading), a plausible  explanation for the divergence is lower power in \citeauthor{mertzen}'s (\citeyear{mertzen}) study. While they already had considerably more participants and items than many psycholinguistic studies, in the present study the number of participants was much higher than in theirs (774 vs.\ 121) and the number of items was also higher (60/120 vs.\ 40). 
-We will revisit the absence of syntactic interference in our data in the general discussion, where we investigate the question using computational modeling.
+The contrast between our results and those from  \citeauthor{mertzen}'s (\citeyear{mertzen}) German experiment is surprising given that both used German items and partially even the same linguistic material. \Copy{items_mertzen}{\textcolor{blue}{However, \citet{mertzen} changed the structure of the relative clause modifying the subject by adding an additional animate distractor to all conditions (see an example of one of their English items in \ref{ex:mertzen}; their items had this structure cross-linguistically). This was done to ``increase the strength of the manipulation.'' \citep[][p. 9]{mertzen}. The additional distractor (`the secretary' in \ref{ex:mertzen}) was animate and the subject of the relative clause, therefore theoretically it should have affected both syntactic and semantic interference equally. But it is possible that it increased syntactic interference in \citeauthor{mertzen}'s (\citeyear{mertzen}) experiment to a larger extent because the additional distractor (`the secretary') was a ``stronger'' subject than the manipulated distractor (`the visitor') because it was the subject of a full finite verb while the latter was always the subject of verb phrase consisting of an auxiliar and an adjective. While this additional distractor might have increased syntactic interference compared to our study (and \citeauthor{vandyke07}'s study as well actually), it is not obvious why it would decrease semantic interference compared to our study.}\label{items_mertzen}
+
+\begin{exe}[ht]
+\ex \label{ex:mertzen} 
+\textcolor{blue}{It turned out that the attorney whose secretary had forgotten that the visitor was important frequently complained about the salary at the firm. \parencite{mertzen}}
+\end{exe}
+}
+
+So, why did we find a semantic interference effect in all regions, whereas \citet{mertzen} only found one in the pre-critical region? Apart from \textcolor{blue}{the additional distractor and} the methodological difference (eye-tracking vs.\ self-paced reading), a plausible  explanation for the divergence is lower power in \citeauthor{mertzen}'s (\citeyear{mertzen}) study. While they already had considerably more participants and items than many psycholinguistic studies, in the present study the number of participants was much higher than in theirs (774 vs.\ 121) and the number of items was also higher (60/120 vs.\ 40). 
+We will revisit the absence of syntactic interference in our data in the general discussion.
 
 We turn next to the event-related potentials experiment.
 
@@ -610,6 +619,7 @@ To avoid overfitting, we fitted the scaling parameter $F$ only to the semantic i
 We obtained only 355 samples of $F$ (from 20,000 iterations of the ABC algorithm); this is not surprising given the relatively wide prior on $F$.
 Figure \ref{fig:model_predictions_posterior} shows the posterior predictive distributions of the effects of interest in comparison to the prior predictive distribution and our SPR data. The posterior predictions match the syntactic and semantic interference effects in our data, but underestimate the interaction.
 
+\Copy{figpriorposteriordata}{
 \begin{figure}[!htbp]
     \caption{Prior and posterior predicted effect sizes for syntactic and semantic interference and their interaction using the two cues \{$\pm$ subject-in-same-clause\} and \{$\pm$ animate\}. The data with 95 \% credible intervals are shown in red.}
 \begin{subfigure}[t]{\textwidth}
@@ -624,6 +634,7 @@ Figure \ref{fig:model_predictions_posterior} shows the posterior predictive dist
          \includegraphics[width=\textwidth]{images/ERP_priorpred_vs_postpred_vs_data.png}
      \end{subfigure}
 \end{figure}
+}
 
 The \citet{Lewis2005} model is generally used to predict reading times. The scaling factor $F$ links the activation of items in memory to retrieval times \citep{Lewis2005,anderson_etal_2004_ACT_R}. But this scaling factor can be adjusted to link activation to brain responses to use the model to generate predictions on the microvolt scale for ERP data. The modeling reported here is, to the best of our knowledge, the first time that the \citet{Lewis2005} model has been fit quantitatively to ERP data. We sampled the free scaling parameter $F$ from a uniform prior distribution ($Uniform(0.005, 0.04)$). This prior reflects the a priori belief that effects will range from 0.5 to 4 $\mu V$ with equal likelihood for all effect sizes in this range. This uninformative prior was chosen because there exists no previously published ERP data on the Van Dyke (2007) design. We are modeling N400 amplitude differences, so larger predicted effect sizes correspond to a more negative N400. To reflect this, the predicted effects were multiplied with $-1$. As in the reading time modeling, to avoid overfitting we fitted $F$ only to the semantic interference effect in order to generate posterior predictive distributions of the syntactic and semantic interference effects. For the ERP modeling, 473 out of 20,000 sampled values of $F$ lead to simulated effects within the range of the observed effect and were thus used for posterior predictions. The prior and posterior predictions for the effects of interest on the microvolt scale in comparison to our ERP data are shown in Figure \ref{fig:model_predictions_ERP}. The prior and posterior predictions of the model overlap with the effects of interest in the data. The general effect pattern (no syntactic interference effect, but a semantic interference effect) is similar in both the prior and posterior predictive distributions. Therefore, the assumption that the relevant syntactic cue is the \{$\pm$ subject-in-same-clause\} cue -- rather than the previously assumed \{$\pm$ grammatical subject\} cue --  seems reasonable for the present ERP study as well.
 
@@ -660,6 +671,7 @@ We believe that the differences in the ERPs elicited by the distractor in the di
 
 The comparison of the results of our SPR and ERP experiments suggests that the SPR results were strongly affected by encoding interference, while the ERPs elicited by the critical verb were not. This difference between methods might be caused by the difference in presentation rate. In the self-paced reading experiment, as implied by the name, the participants had control over the presentation rate of the stimuli. The observed slowdown starting at the distractor  might have resulted from the probably subconscious intent to slow down the sampling rate of the incoming stimuli to gain more time to process them. In contrast, in the ERP experiment, we used rapid serial visual presentation (RSVP), which presents stimuli at a fixed rate that is beyond the control of the participant. Therefore, they must adapt to the set rate and process the stimuli at the speed that the rate requires. Here, it is noteworthy that the presentation duration of 500\,ms per word and 400\,ms between words which was used in the present ERP experiment is slower than usual natural reading speed. However, while in SPR the slowdown due to encoding and maintaining the distractor in memory overshadowed potential retrieval effects, the procedure of the ERP experiment might have prevented encoding interference from co-occurring with retrieval interference effects. In the ERP results, we observed an effect at the critical verb, which could be attributed exclusively to the retrieval process hypothesized by cue-based retrieval accounts. Having said that, we cannot rule out the possibility that -- due to the auto-paced nature of the ERP experiment -- any encoding interference that started at or after the distractor is mixed in with the cost of retrieval interference. Indeed, recent modeling work on agreement attraction in reading \parencite{Yadavetal2022} has shown that some kind of feature distortion as well as cue-based retrieval are needed to explain the data-sets that were publicly available at the time that the modeling was done. If the  \textcite{Yadavetal2022} account extends to interference effects in general, 
 it is reasonable to assume that the semantic interference effect observed at the verb in the present ERP study is driven by both encoding and retrieval interference. However, we cannot resolve the relative roles of these latent processes in the present study.
+
 
 \subsection{Relation to other sentence processing accounts}
 
