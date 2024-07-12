@@ -33,10 +33,6 @@ df_nofill <- droplevels(subset(df, label != "filler"))
 # trim all rts below 150 and above 3000 ms
 df_trim<- subset(df_nofill, df_nofill$rt > 150 & df_nofill$rt < 3000)
 
-#extract words from example item for x-axis labels
-allwords_losyn<-unique(df_trim[df_trim$item=="008" & df_trim$condition=="a" ,c("wordno")])
-allwords_hisyn<-unique(df_trim[df_trim$item=="008" & df_trim$condition=="c" ,c("wordno")])
-
 # subsets for hisyn and losyn (because they have different lengths)
 df_hisyn <- df_trim %>% filter(condition == "c" | condition == "d")
 df_losyn <- df_trim %>% filter(condition == "a" | condition == "b")
@@ -46,13 +42,13 @@ df_losyn <- df_trim %>% filter(condition == "a" | condition == "b")
 #calculate mean reading time per subject per word per condition
 hisyn_by_participants <- summarize(
   group_by(
-    filter(df_hisyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19")),
+    filter(df_hisyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "21")),
     wordno,condition,subj, exp),
   logrt=mean(log(rt)))
 
 losyn_by_participants <- summarize(
   group_by(
-    filter(df_losyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18")),
+    filter(df_losyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20")),
     wordno,condition,subj, exp),
   logrt=mean(log(rt)))
 
@@ -88,60 +84,50 @@ hisyn_summ_by_participants$region<- ifelse(hisyn_summ_by_participants$wordno == 
                                                          ifelse(hisyn_summ_by_participants$wordno == 18, "spill-over",        
                                                                 "other"))))
 
-hisyn_summ_by_participants$word <- hisyn_summ_by_participants$wordno
-losyn_summ_by_participants$word <- losyn_summ_by_participants$wordno
+hisyn_words <- c("Die", "Nachbarin", "glaubte,", "dass", "der", "Witwer,", "[line\nbreak]", "der", "erzählt", "hatte,", "dass",           "der",                  "Verlust/\nEinbrecher", "schrecklich", "war,", "regelmäßig", "abends", "trank,", "um", "zu", "[line\nbreak]", "ver-\ngessen.")
+losyn_words <- c("Die", "Nachbarin", "glaubte,", "dass", "der", "Witwer,", "[line\nbreak]", "der", "von",    "dem",     "schrecklichen", "Verlust/\nEinbrecher", "erzählt",                "hatte",              "regelmäßig", "abends", "trank,", "um", "zu", "[line\nbreak]", "ver-\ngessen.")
 
 
 # plot reading times of the whole sentence for high syntactic interference 
-p_hisyn <- ggplot(data=hisyn_summ_by_participants,aes(x=word, 
+p_hisyn <- ggplot(data=hisyn_summ_by_participants,aes(x=wordno, 
                                                       y=meanlogrt,
-                                                      linetype=semantic.interference,
-                                                      shape=syntactic.interference,
                                                       ymin=low2SE, 
                                                       ymax=high2SE)) +
   geom_point(aes(), size=1.2, position= position_dodge(0.1)) + 
-  geom_line(aes()) +
+  geom_line(aes(linetype=semantic.interference)) +
   geom_errorbar(aes(), position= position_dodge(0.1),size=.3, width = 0.2)+
-  theme(axis.text.x = element_text(size=10)) +
+  theme(axis.text.x = element_text(size=7)) +
   theme_bw(base_size = 10)+
   ggtitle("High syntactic interference")+
   scale_y_continuous(name="observed reading\ntime in (ms)",breaks=log(seq(320,475,20)),labels= seq(320,475,20))+ 
-  theme(axis.text.x = element_blank())+
+  scale_x_continuous(breaks = c(0:21), labels= hisyn_words, expand = c(0.01, 0.01)) +
   xlab("")+
   geom_text(aes(x = 12, y = 6.0, label = "distractor"), color="black") +
   geom_text(aes(x = 5.1, y = 5.81, label = "subject"), color="black") +
   geom_segment(aes(x = 5.05, y = 5.84, xend = 5.05, yend = 5.9), color="black",
-               arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
+                arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
   geom_segment(aes(x = 12, y = 5.98, xend = 12, yend = 5.91), color="black",
-               arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
+                arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
   geom_text(aes(x = 17, y =6.05, label = "critical verb"), color="black") +
   geom_segment(aes(x = 17, y = 6.03, xend = 17, yend = 5.97), color="black",
-               arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
-  scale_shape(guide="none")+
-  theme(legend.position=c(0.483,0.74))  +
-  theme(legend.key.size = unit(0.3, "cm"))+
-  scale_linetype_discrete(name="Semantic Interference")
+                arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
+  theme(legend.position="none")
 
 
 # plot reading times of the whole sentence for low syntactic interference 
-p_losyn <- ggplot(data=losyn_summ_by_participants,aes(x=word, 
+p_losyn <- ggplot(data=losyn_summ_by_participants,aes(x=wordno, 
                                                       y=meanlogrt,
-                                                      linetype=semantic.interference,
-                                                      shape=syntactic.interference, 
                                                       ymin=low2SE, 
                                                       ymax=high2SE)) +
   geom_point(aes(),shape=17,size=1.2, position= position_dodge(0.1)) + 
-  geom_line(aes()) +
+  geom_line(aes(linetype=semantic.interference)) +
   geom_errorbar(aes(), position= position_dodge(0.1),size=.3, width = 0.2)+
-  theme(axis.text.x = element_text(size=10)) +
+  theme(axis.text.x = element_text(size=7)) +
   theme_bw(base_size = 10)+
-  theme(legend.position="none")  +
-  #theme(legend.position=c(0.483,0.75), legend.text=element_text(size=1))  +
-  #scale_linetype_discrete(name="Semantic Interference")+
   xlab("")+
   ggtitle("Low syntactic interference")+
   scale_y_continuous(name="observed reading\ntime in (ms)",breaks=log(seq(320,475,20)),labels= seq(320,475,20))+ 
-  theme(axis.text.x = element_blank())+
+  scale_x_continuous(breaks = c(0:20), labels= losyn_words, expand = c(0.01, 0.01)) +
   geom_text(aes(x = 11, y = 6.1, label = "distractor"), color="black") +
   geom_text(aes(x = 5.1, y = 5.8, label = "subject"), color="black") +
   geom_segment(aes(x = 5.05, y = 5.84, xend = 5.05, yend = 5.9), color="black",
@@ -151,7 +137,10 @@ p_losyn <- ggplot(data=losyn_summ_by_participants,aes(x=word,
   geom_text(aes(x = 16, y =6.08, label = "critical verb"), color="black") +
   geom_segment(aes(x = 16, y = 6.06, xend = 16, yend = 5.98), color="black",
                arrow = arrow(length = unit(0.03, "npc")), inherit.aes = FALSE)+
-  scale_shape(guide="none")
+  scale_shape(guide="none")+
+  theme(legend.position=c(0.435,0.73))  +
+  theme(legend.key.size = unit(0.25, "cm"))+
+  scale_linetype_discrete(name="Semantic Interference")
 
 #### Plot critical region (and surrounding regions) of all data ####
 lo <- filter(losyn_summ_by_participants,wordno %in% c(14:17))
@@ -177,7 +166,7 @@ p_zoom <- ggplot(data=zoom, aes(x=word, y=meanlogrt,
   geom_line(aes(group = interaction(syntactic.interference, semantic.interference)), position= position_dodge(0.4), size=0.4) +
   geom_errorbar(aes(group = interaction(syntactic.interference, semantic.interference),color=highlight), position= position_dodge(0.4), width = 0.2)+
   scale_color_manual(values = c("black", "red"))+
-  theme_bw(base_size = 8)+
+  theme_bw(base_size = 10)+
   theme(legend.position="none")+
   #theme(legend.position=c(0.8,0.3), legend.direction = "vertical")  +
   scale_linetype_discrete(name="Semantic Interference")+
@@ -263,13 +252,13 @@ p_e1a_zoom  <- ggplot(data=e1a_zoom2, aes(x=word, y=meanlogrt,
   geom_line(aes(group = interaction(syntactic.interference, semantic.interference)), position= position_dodge(0.6), size=0.4) +
   geom_errorbar(aes(group = interaction(syntactic.interference, semantic.interference),color=highlight), position= position_dodge(0.6), width = 0.2)+
   scale_color_manual(values = c("black", "red"))+
-  theme_bw(base_size = 8)+
+  theme_bw(base_size = 10)+
   facet_grid(.~more_info)+
-  theme(legend.position=c(0.75,0.7), legend.direction = "vertical")  +
+  theme(legend.position=c(0.75,0.7), legend.direction = "vertical", legend.key.size = unit(0.25, "cm"))  +
   ggtitle("E1a")+
   scale_linetype_discrete(name="Semantic Interference")+
   scale_shape_discrete(name="Syntactic Interference")+
-  theme(legend.text = element_text(size = 10))+
+  theme(legend.text = element_text(size = 9))+
   scale_y_continuous(name="observed reading time in (ms)", breaks=log(seq(300,410, 10)),labels= seq(300,410, 10))+
   guides(color = "none")
 
@@ -282,7 +271,7 @@ p_e1b_zoom <- ggplot(data=e1b_zoom2, aes(x=word, y=meanlogrt,
   geom_line(aes(group = interaction(syntactic.interference, semantic.interference)), position= position_dodge(0.6), size=0.4) +
   geom_errorbar(aes(group = interaction(syntactic.interference, semantic.interference),color=highlight), position= position_dodge(0.6), width = 0.2)+
   scale_color_manual(values = c("black", "red"))+
-  theme_bw(base_size = 8)+
+  theme_bw(base_size = 10)+
   facet_grid(.~more_info)+
   ggtitle("E1b")+
   theme(legend.position="none")+
@@ -294,11 +283,11 @@ p_e1b_zoom <- ggplot(data=e1b_zoom2, aes(x=word, y=meanlogrt,
 
 # Put everything together
 p_sentence <- plot_grid(p_hisyn, p_losyn, nrow=2, labels=c("A", "B"))
-ggsave("Pandora_all_wholesentence_pooled.jpg", width=10, height=4.5, dpi=600)
+ggsave("Pandora_all_wholesentence_pooled.jpg", width=10.5, height=4.5, dpi=600)
 
 p_zooms <- plot_grid(p_zoom, p_e1a_zoom, p_e1b_zoom, ncol=3, rel_widths = c(1,1.45,1.45), labels=c("C", "D", "E"))
 
 
-plot_grid(p_sentence, p_zooms, ncol=1)
-ggsave("Pandora_all_wholesentence_pooled_zoom_exp.jpg", width=10, height=7, dpi=600)
+plot_grid(p_sentence, p_zooms, ncol=1, rel_heights = c(1.2,1))
+ggsave("Pandora_all_wholesentence_pooled_zoom_exp.jpg", width=12, height=7, dpi=600)
 
