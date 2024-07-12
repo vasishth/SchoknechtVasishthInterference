@@ -266,10 +266,10 @@ posteriors_n400 <- mcmc_areas(
                       labs(title= "N400", x = "effect in microvolts")+
                       vline_0(linetype="dashed")+
                       scale_x_continuous(breaks=(seq(-1, 1, 0.2)), limits = c(-1, 1)) +
-                      theme_bw(base_size=9)+
-                      annotate("text", x = 0.4, y = 3.75, label = "-0.33 — -0.14 — 0.05", size=2) +
-                      annotate("text", x = 0.4, y = 2.65, label = "-0.5 — -0.3 — -0.1", size=2) +
-                      annotate("text", x = 0.4, y = 1.7, label = "-0.33 — 0.03 — 0.38", size=2)
+                      theme_bw(base_size=11)+
+                      annotate("text", x = 0.55, y = 3.75, label = "-0.33 — -0.14 — 0.05", size=3) +
+                      annotate("text", x = 0.55, y = 2.65, label = "-0.5 — -0.3 — -0.1", size=3)+
+                      annotate("text", x = 0.55, y = 1.7, label = "-0.33 — 0.03 — 0.38", size=3)
 ggsave("plots/posteriors_eeg_n400.jpg", width = 8, height = 6, units = "cm", dpi=300)
 
 # bfs
@@ -351,10 +351,10 @@ posteriors_p600 <- mcmc_areas(
                         labs(title= "P600", x = "effect in microvolts")+
                         vline_0(linetype="dashed")+
                         scale_x_continuous(breaks=(seq(-1, 1, 0.2)), limits = c(-1, 1)) +
-                        theme_bw(base_size=9)+
-                        annotate("text", x = 0.4, y = 3.75, label = "-0.22 — -0.08 — 0.06", size=2) +
-                        annotate("text", x = 0.4, y = 2.65, label = "-0.37 — -0.21 — -0.05", size=2) +
-                        annotate("text", x = 0.4, y = 1.7, label = "-0.48 — -0.2 — 0.08", size=2)
+                        theme_bw(base_size=11)+
+                        annotate("text", x = 0.55, y = 3.75, label = "-0.22 — -0.08 — 0.06", size=3) +
+                        annotate("text", x = 0.55, y = 2.65, label = "-0.37 — -0.21 — -0.05", size=3) +
+                        annotate("text", x = 0.55, y = 1.7, label = "-0.48 — -0.2 — 0.08", size=3)
 ggsave("plots/posteriors_eeg_p600.jpg", width = 8, height = 6, units = "cm", dpi=300)
 
 # bfs
