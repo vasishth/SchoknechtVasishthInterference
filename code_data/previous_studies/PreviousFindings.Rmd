@@ -146,8 +146,7 @@ VD07E2critSemRPDupper <- round(VD07E2critSemRPDmn + 2*VD07E2critSemRPDSE)
 
 ## non sig. Sem effect in E2 crit region TFT:
 VD07E2critSemTFTmn <- (761+653)/2-(738+630)/2
-VD07E2critSemTFTtval <- 1.95 # reported as non-sig.
-VD07E2critSemTFTSE <- VD07E2critSemTFTmn/VD07E2critSemTFTtval
+VD07E2critSemTFTSE <- 42 #highest SE in critical region, Table 7
 VD07E2critSemTFTlower <- round(VD07E2critSemTFTmn - 2*VD07E2critSemTFTSE)
 VD07E2critSemTFTupper <- round(VD07E2critSemTFTmn + 2*VD07E2critSemTFTSE)
 ```
@@ -160,22 +159,19 @@ VD07E2critSemTFTupper <- round(VD07E2critSemTFTmn + 2*VD07E2critSemTFTSE)
 
 ## non sig. Int effect in E2 crit region FPRT:
 VD07E2critIntFPRTmn <- (418-413)-(382-376)
-VD07E2critIntFPRTtval <- 1.95 # reported as non-sig.
-VD07E2critIntFPRTSE <- VD07E2critIntFPRTmn/VD07E2critIntFPRTtval
+VD07E2critIntFPRTSE <- 21 #highest SE in critical region, Table 7
 VD07E2critIntFPRTlower <- round(VD07E2critIntFPRTmn - 2*VD07E2critIntFPRTSE)
 VD07E2critIntFPRTupper <- round(VD07E2critIntFPRTmn + 2*VD07E2critIntFPRTSE)
 
 # non sig. Int effect in E2 crit region RPD:
 VD07E2critIntRPDmn <- (663-594)-(495-454)
-VD07E2critIntRPDtval <- 1.95 # reported as non-sig.
-VD07E2critIntRPDSE <- VD07E2critIntRPDmn/VD07E2critIntRPDtval
+VD07E2critIntRPDSE <- 44 #highest SE in critical region, Table 7
 VD07E2critIntRPDlower <- round(VD07E2critIntRPDmn - 2*VD07E2critIntRPDSE)
 VD07E2critIntRPDupper <- round(VD07E2critIntRPDmn + 2*VD07E2critIntRPDSE)
 
 ## non sig. Int effect in E2 crit region TFT:
 VD07E2critIntTFTmn <- (761-738)-(653-630)
-VD07E2critIntTFTtval <- 1.95 # reported as non-sig.
-VD07E2critIntTFTSE <- VD07E2critIntTFTmn/VD07E2critIntTFTtval
+VD07E2critIntTFTSE <- 42 #highest SE in critical region, Table 7
 VD07E2critIntTFTlower <- round(VD07E2critIntTFTmn - 2*VD07E2critIntTFTSE)
 VD07E2critIntTFTupper <- round(VD07E2critIntTFTmn + 2*VD07E2critIntTFTSE)
 ```
@@ -203,8 +199,7 @@ VD07E2postcritSynRPDupper <- round(VD07E2postcritSynRPDmn + 2*VD07E2postcritSynR
  
 ## non sig. Syn effect in E2 post-crit region TFT:
 VD07E2postcritSynTFTmn <- (491+493)/2-(502+540)/2
-VD07E2postcritSynTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2postcritSynTFTSE<- VD07E2postcritSynTFTmn/VD07E2postcritSynTFTtval
+VD07E2postcritSynTFTSE <- 30 #highest SE in spill-over region, Table 7
 VD07E2postcritSynTFTlower <- round(VD07E2postcritSynTFTmn - 2*VD07E2postcritSynTFTSE)
 VD07E2postcritSynTFTupper <- round(VD07E2postcritSynTFTmn + 2*VD07E2postcritSynTFTSE)
 ```
@@ -217,22 +212,19 @@ VD07E2postcritSynTFTupper <- round(VD07E2postcritSynTFTmn + 2*VD07E2postcritSynT
 
 ## almost sig. Sem effect in E2 post-crit region FPRT (negative sign)
 VD07E2postcritSemFPRTmn<- (296+364)/2-(325+320)/2
-VD07E2postcritSemFPRTtval<- 1.95 # reported in paper as non-sig
-VD07E2postcritSemFPRTSE<-VD07E2postcritSemFPRTmn/VD07E2postcritSemFPRTtval
+VD07E2postcritSemFPRTSE<- 21 #highest SE in spill-over region, Table 7
 VD07E2postcritSemFPRTlower<-VD07E2postcritSemFPRTmn-2*VD07E2postcritSemFPRTSE
 VD07E2postcritSemFPRTupper<-VD07E2postcritSemFPRTmn+2*VD07E2postcritSemFPRTSE
 
 ## almost sig. Sem effect in E2 post-crit region RPD:
 VD07E2postcritSemRPDmn <- (1295+1205)/2-(1365+970)/2
-VD07E2postcritSemRPDtval <- 1.95 # reported in paper as non-sig
-VD07E2postcritSemRPDSE <- VD07E2postcritSemRPDmn/VD07E2postcritSemRPDtval
+VD07E2postcritSemRPDSE <- 140 #highest SE in spill-over region, Table 7
 VD07E2postcritSemRPDlower <- round(VD07E2postcritSemRPDmn - 2*VD07E2postcritSemRPDSE)
 VD07E2postcritSemRPDupper <- round(VD07E2postcritSemRPDmn + 2*VD07E2postcritSemRPDSE)
  
 ## almost sig. Sem effect in E2 post-crit region TFT:
 VD07E2postcritSemTFTmn <- (493+540)/2-(491+502)/2
-VD07E2postcritSemTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2postcritSemTFTSE <- VD07E2postcritSemTFTmn/VD07E2postcritSemTFTtval
+VD07E2postcritSemTFTSE <-  30 #highest SE in spill-over region, Table 7
 VD07E2postcritSemTFTlower <- round(VD07E2postcritSemTFTmn - 2*VD07E2postcritSemTFTSE)
 VD07E2postcritSemTFTupper <- round(VD07E2postcritSemTFTmn + 2*VD07E2postcritSemTFTSE)
 ```
@@ -258,8 +250,7 @@ VD07E2postcritIntRPDupper <- round(VD07E2postcritIntRPDmn + 2*VD07E2postcritIntR
  
 ## almost sig. Int effect in E2 post-crit region TFT:
 VD07E2postcritIntTFTmn <- (493-491)-(540-502)
-VD07E2postcritIntTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2postcritIntTFTSE <-  VD07E2postcritIntTFTmn/VD07E2postcritIntTFTtval
+VD07E2postcritIntTFTSE <- 30 #highest SE in spill-over region, Table 7
 VD07E2postcritIntTFTlower <- round(VD07E2postcritIntTFTmn - 2*VD07E2postcritIntTFTSE)
 VD07E2postcritIntTFTupper <- round(VD07E2postcritIntTFTmn + 2*VD07E2postcritIntTFTSE)
 ```
@@ -272,8 +263,7 @@ VD07E2postcritIntTFTupper <- round(VD07E2postcritIntTFTmn + 2*VD07E2postcritIntT
 
 ## Syn effect in E2 sentence-final region FPRT 
 VD07E2finalSynFPRTmn<-(259+271)/2-(286+274)/2
-VD07E2finalSynFPRTtval<- 1.95 # reported in paper as non-sig
-VD07E2finalSynFPRTSE<-VD07E2finalSynFPRTmn/VD07E2finalSynFPRTtval
+VD07E2finalSynFPRTSE<- 22 #highest SE in sentence-final region, Table 7
 VD07E2finalSynFPRTlower<-VD07E2finalSynFPRTmn-2*VD07E2finalSynFPRTSE
 VD07E2finalSynFPRTupper<-VD07E2finalSynFPRTmn+2*VD07E2finalSynFPRTSE
 
@@ -286,8 +276,7 @@ VD07E2finalSynRPDupper <- round(VD07E2finalSynRPDmn + 2*VD07E2finalSynRPDSE)
  
 ## Syn effect in E2 sentence-final region TFT:
 VD07E2finalSynTFTmn <- (349+360)/2-(362+373)/2
-VD07E2finalSynTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2finalSynTFTSE<- VD07E2finalSynTFTmn/VD07E2finalSynTFTtval
+VD07E2finalSynTFTSE<- 40 #highest SE in sentence-final region, Table 7
 VD07E2finalSynTFTlower <- round(VD07E2finalSynTFTmn - 2*VD07E2finalSynTFTSE)
 VD07E2finalSynTFTupper <- round(VD07E2finalSynTFTmn + 2*VD07E2finalSynTFTSE)
 ```
@@ -300,8 +289,7 @@ VD07E2finalSynTFTupper <- round(VD07E2finalSynTFTmn + 2*VD07E2finalSynTFTSE)
 
 ## Sem effect in E2 sentence-final region FPRT
 VD07E2finalSemFPRTmn<- (271+274)/2-(259+286)/2
-VD07E2finalSemFPRTtval<- 1.95 # reported in paper as non-sig
-VD07E2finalSemFPRTSE<-VD07E2finalSemFPRTmn/VD07E2finalSemFPRTtval
+VD07E2finalSemFPRTSE<- 22 #highest SE in sentence-final region, Table 7
 VD07E2finalSemFPRTlower<-VD07E2finalSemFPRTmn-2*VD07E2finalSemFPRTSE
 VD07E2finalSemFPRTupper<-VD07E2finalSemFPRTmn+2*VD07E2finalSemFPRTSE
 
@@ -314,8 +302,7 @@ VD07E2finalSemRPDupper <- round(VD07E2finalSemRPDmn + 2*VD07E2finalSemRPDSE)
  
 ## Sem effect in E2 sentence-final region TFT:
 VD07E2finalSemTFTmn <- (360+373)/2-(349+362)/2
-VD07E2finalSemTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2finalSemTFTSE <- VD07E2finalSemTFTmn/VD07E2finalSemTFTtval
+VD07E2finalSemTFTSE <- 40 #highest SE in sentence-final region, Table 7
 VD07E2finalSemTFTlower <- round(VD07E2finalSemTFTmn - 2*VD07E2finalSemTFTSE)
 VD07E2finalSemTFTupper <- round(VD07E2finalSemTFTmn + 2*VD07E2finalSemTFTSE)
 ```
@@ -327,8 +314,7 @@ VD07E2finalSemTFTupper <- round(VD07E2finalSemTFTmn + 2*VD07E2finalSemTFTSE)
 
 ## Int effect in E2 sentence-final region FPRT
 VD07E2finalIntFPRTmn<- (271-259)-(274-286)
-VD07E2finalIntFPRTtval<- 1.95 # reported in paper as non-sig
-VD07E2finalIntFPRTSE<-VD07E2finalIntFPRTmn/VD07E2finalIntFPRTtval
+VD07E2finalIntFPRTSE<- 22 #highest SE in sentence-final region, Table 7
 VD07E2finalIntFPRTlower<-VD07E2finalIntFPRTmn-2*VD07E2finalIntFPRTSE
 VD07E2finalIntFPRTupper<-VD07E2finalIntFPRTmn+2*VD07E2finalIntFPRTSE
 
@@ -341,8 +327,7 @@ VD07E2finalIntRPDupper <- round(VD07E2finalIntRPDmn + 2*VD07E2finalIntRPDSE)
  
 ## Int effect in E2 sentence-final region TFT:
 VD07E2finalIntTFTmn <- (360-349)-(373-362)
-VD07E2finalIntTFTtval <- 1.95 # reported in paper as non-sig
-VD07E2finalIntTFTSE <-  VD07E2finalIntTFTmn/VD07E2finalIntTFTtval
+VD07E2finalIntTFTSE <-  40 #highest SE in sentence-final region, Table 7
 VD07E2finalIntTFTlower <- round(VD07E2finalIntTFTmn - 2*VD07E2finalIntTFTSE)
 VD07E2finalIntTFTupper <- round(VD07E2finalIntTFTmn + 2*VD07E2finalIntTFTSE)
 ```
@@ -355,8 +340,7 @@ VD07E2finalIntTFTupper <- round(VD07E2finalIntTFTmn + 2*VD07E2finalIntTFTSE)
 
 ## almost sig. Syn effect in E3 precrit region FPRT:
 VD07E3precritSynFPRTmn <- (462+447)/2-(449+455)/2
-VD07E3precritSynFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3precritSynFPRTSE <- VD07E3precritSynFPRTmn/VD07E3precritSynFPRTtval
+VD07E3precritSynFPRTSE <- 18 #highest SE in pre-crit region, Table 16
 VD07E3precritSynFPRTlower <- round(VD07E3precritSynFPRTmn-2*VD07E3precritSynFPRTSE)
 VD07E3precritSynFPRTupper <- round(VD07E3precritSynFPRTmn+2*VD07E3precritSynFPRTSE)
 
@@ -382,8 +366,7 @@ VD07E3precritSynTFTupper <- round(VD07E3precritSynTFTmn+2*VD07E3precritSynTFTSE)
 
 ## almost sig. Sem effect in E3 precrit region FPRT:
 VD07E3precritSemFPRTmn <- (455+447)/2-(449+462)/2
-VD07E3precritSemFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3precritSemFPRTSE <- VD07E3precritSemFPRTmn/VD07E3precritSemFPRTtval
+VD07E3precritSemFPRTSE <- 18 #highest SE in pre-crit region, Table 16
 VD07E3precritSemFPRTlower <- round(VD07E3precritSemFPRTmn-2*VD07E3precritSemFPRTSE)
 VD07E3precritSemFPRTupper <- round(VD07E3precritSemFPRTmn+2*VD07E3precritSemFPRTSE)
 
@@ -397,7 +380,7 @@ VD07E3precritSemRPDupper <- round(VD07E3precritSemRPDmn+2*VD07E3precritSemRPDSE)
 ## almost sig. Sem effect in E3 precrit region TFT:
 VD07E3precritSemTFTmn <- (640+710)/2-(586+622)/2
 VD07E3precritSemTFTtval <- sqrt(10.73)
-VD07E3precritSemTFTSE <- VD07E3precritSemTFTmn/VD07E3precritSemTFTtval
+VD07E3precritSemTFTSE <-  VD07E3precritSemTFTmn/VD07E3precritSemTFTtval
 VD07E3precritSemTFTlower <- round(VD07E3precritSemTFTmn-2*VD07E3precritSemTFTSE)
 VD07E3precritSemTFTupper <- round(VD07E3precritSemTFTmn+2*VD07E3precritSemTFTSE)
 ```
@@ -409,22 +392,19 @@ VD07E3precritSemTFTupper <- round(VD07E3precritSemTFTmn+2*VD07E3precritSemTFTSE)
 
 ## almost sig. Int effect in E3 precrit region FPRT:
 VD07E3precritIntFPRTmn <- (447-462)-(455-449)
-VD07E3precritIntFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3precritIntFPRTSE <- VD07E3precritIntFPRTmn/VD07E3precritIntFPRTtval
+VD07E3precritIntFPRTSE <- 18 #highest SE in pre-crit region, Table 16
 VD07E3precritIntFPRTlower <- round(VD07E3precritIntFPRTmn-2*VD07E3precritIntFPRTSE)
 VD07E3precritIntFPRTupper <- round(VD07E3precritIntFPRTmn+2*VD07E3precritIntFPRTSE)
 
 ## almost sig. Int effect in E3 precrit region RPD:
 VD07E3precritIntRPDmn <- (551-490)-(493-472)
-VD07E3precritIntRPDtval <- 1.95 # reported in paper as non-sig
-VD07E3precritIntRPDSE <- VD07E3precritIntRPDmn/VD07E3precritIntRPDtval
+VD07E3precritIntRPDSE <- 36 #highest SE in pre-crit region, Table 16
 VD07E3precritIntRPDlower <- round(VD07E3precritIntRPDmn-2*VD07E3precritIntRPDSE)
 VD07E3precritIntRPDupper <- round(VD07E3precritIntRPDmn+2*VD07E3precritIntRPDSE)
 
 ## almost sig. Int effect in E3 precrit region TFT:
 VD07E3precritIntTFTmn <- (710-622)-(640-586)
-VD07E3precritIntTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3precritIntTFTSE <- VD07E3precritIntTFTmn/VD07E3precritIntTFTtval
+VD07E3precritIntTFTSE <- 47 #highest SE in pre-crit region, Table 16
 VD07E3precritIntTFTlower <- round(VD07E3precritIntTFTmn-2*VD07E3precritIntTFTSE)
 VD07E3precritIntTFTupper <- round(VD07E3precritIntTFTmn+2*VD07E3precritIntTFTSE)
 ```
@@ -449,8 +429,7 @@ VD07E3critSynRPDupper <- round(VD07E3critSynRPDmn+2*VD07E3critSynRPDSE)
 
 ## almost sig. Syn effect in E3 crit region TFT:
 VD07E3critSynTFTmn <- (451+467)/2-(414+421)/2
-VD07E3critSynTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3critSynTFTSE <- VD07E3critSynTFTmn/VD07E3critSynTFTtval
+VD07E3critSynTFTSE <- 38 #highest SE in crit region, Table 16
 VD07E3critSynTFTlower <- round(VD07E3critSynTFTmn-2*VD07E3critSynTFTSE)
 VD07E3critSynTFTupper <- round(VD07E3critSynTFTmn+2*VD07E3critSynTFTSE)
 
@@ -463,22 +442,19 @@ VD07E3critSynTFTupper <- round(VD07E3critSynTFTmn+2*VD07E3critSynTFTSE)
 
 ## almost sig. Sem effect in E3 crit region FPRT:
 VD07E3critSemFPRTmn <- (282+280)/2-(274+294)/2
-VD07E3critSemFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3critSemFPRTSE <- VD07E3critSemFPRTmn/VD07E3critSemFPRTtval
+VD07E3critSemFPRTSE <- 11 #highest SE in crit region, Table 16
 VD07E3critSemFPRTlower <- round(VD07E3critSemFPRTmn-2*VD07E3critSemFPRTSE)
 VD07E3critSemFPRTupper <- round(VD07E3critSemFPRTmn+2*VD07E3critSemFPRTSE)
 
 ## almost sig. Sem effect in E3 crit region RPD:
 VD07E3critSemRPDmn <- (315+344)/2-(314+354)/2
-VD07E3critSemRPDtval <- 1.95 # reported in paper as non-sig
-VD07E3critSemRPDSE <- VD07E3critSemRPDmn/VD07E3critSemRPDtval
+VD07E3critSemRPDSE <- 23 #highest SE in crit region, Table 16
 VD07E3critSemRPDlower <- round(VD07E3critSemRPDmn-2*VD07E3critSemRPDSE)
 VD07E3critSemRPDupper <- round(VD07E3critSemRPDmn+2*VD07E3critSemRPDSE)
 
 ## almost sig. Sem effect in E3 crit region TFT:
 VD07E3critSemTFTmn <- (421+467)/2-(414+451)/2
-VD07E3critSemTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3critSemTFTSE <- VD07E3critSemTFTmn/VD07E3critSemTFTtval
+VD07E3critSemTFTSE <- 38 #highest SE in crit region, Table 16
 VD07E3critSemTFTlower <- round(VD07E3critSemTFTmn-2*VD07E3critSemTFTSE)
 VD07E3critSemTFTupper <- round(VD07E3critSemTFTmn+2*VD07E3critSemTFTSE)
 ```
@@ -496,15 +472,13 @@ VD07E3critIntFPRTupper <- round(VD07E3critIntFPRTmn+2*VD07E3critIntFPRTSE)
 
 ## almost sig. Int effect in E3 crit region RPD:
 VD07E3critIntRPDmn <- (344-354)-(315-314)
-VD07E3critIntRPDtval <- 1.95 # reported in paper as non-sig
-VD07E3critIntRPDSE <- VD07E3critIntRPDmn/VD07E3critIntRPDtval
+VD07E3critIntRPDSE <- 23 #highest SE in crit region, Table 16
 VD07E3critIntRPDlower <- round(VD07E3critIntRPDmn-2*VD07E3critIntRPDSE)
 VD07E3critIntRPDupper <- round(VD07E3critIntRPDmn+2*VD07E3critIntRPDSE)
 
 ## almost sig. Int effect in E3 crit region TFT:
 VD07E3critIntTFTmn <- (467-451)-(421-414)
-VD07E3critIntTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3critIntTFTSE <- VD07E3critIntTFTmn/VD07E3critIntTFTtval
+VD07E3critIntTFTSE <- 38 #highest SE in crit region, Table 16
 VD07E3critIntTFTlower <- round(VD07E3critIntTFTmn-2*VD07E3critIntTFTSE)
 VD07E3critIntTFTupper <- round(VD07E3critIntTFTmn+2*VD07E3critIntTFTSE)
 ```
@@ -516,8 +490,7 @@ VD07E3critIntTFTupper <- round(VD07E3critIntTFTmn+2*VD07E3critIntTFTSE)
 
 ## almost sig. Syn effect in E3 postcrit region FPRT:
 VD07E3postcritSynFPRTmn <- (424+442)/2-(437+448)/2
-VD07E3postcritSynFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritSynFPRTSE <- VD07E3postcritSynFPRTmn/VD07E3postcritSynFPRTtval
+VD07E3postcritSynFPRTSE <- 24 #highest SE in spill-over region, Table 16
 VD07E3postcritSynFPRTlower <- round(VD07E3postcritSynFPRTmn-2*VD07E3postcritSynFPRTSE)
 VD07E3postcritSynFPRTupper <- round(VD07E3postcritSynFPRTmn+2*VD07E3postcritSynFPRTSE)
 
@@ -530,8 +503,7 @@ VD07E3postcritSynRPDupper <- round(VD07E3postcritSynRPDmn+2*VD07E3postcritSynRPD
 
 ## almost sig. Syn effect in E3 postcrit region TFT:
 VD07E3postcritSynTFTmn <- (766+731)/2-(707+711)/2
-VD07E3postcritSynTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritSynTFTSE <- VD07E3postcritSynTFTmn/VD07E3postcritSynTFTtval
+VD07E3postcritSynTFTSE <- 59 #highest SE in spill-over region, Table 16
 VD07E3postcritSynTFTlower <- round(VD07E3postcritSynTFTmn-2*VD07E3postcritSynTFTSE)
 VD07E3postcritSynTFTupper <- round(VD07E3postcritSynTFTmn+2*VD07E3postcritSynTFTSE)
 
@@ -544,8 +516,7 @@ VD07E3postcritSynTFTupper <- round(VD07E3postcritSynTFTmn+2*VD07E3postcritSynTFT
 
 ## almost sig. Sem effect in E3 postcrit region FPRT:
 VD07E3postcritSemFPRTmn <- (437+424)/2-(448+442)/2
-VD07E3postcritSemFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritSemFPRTSE <- VD07E3postcritSemFPRTmn/VD07E3postcritSemFPRTtval
+VD07E3postcritSemFPRTSE <- 24 #highest SE in spill-over region, Table 16
 VD07E3postcritSemFPRTlower <- round(VD07E3postcritSemFPRTmn-2*VD07E3postcritSemFPRTSE)
 VD07E3postcritSemFPRTupper <- round(VD07E3postcritSemFPRTmn+2*VD07E3postcritSemFPRTSE)
 
@@ -570,22 +541,19 @@ VD07E3postcritSemTFTupper <- round(VD07E3postcritSemTFTmn+2*VD07E3postcritSemTFT
 
 ## almost sig. Int effect in E3 postcrit region FPRT:
 VD07E3postcritIntFPRTmn <- (424-442)-(437-448)
-VD07E3postcritIntFPRTtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritIntFPRTSE <- VD07E3postcritIntFPRTmn/VD07E3postcritIntFPRTtval
+VD07E3postcritIntFPRTSE <-24 #highest SE in spill-over region, Table 16
 VD07E3postcritIntFPRTlower <- round(VD07E3postcritIntFPRTmn-2*VD07E3postcritIntFPRTSE)
 VD07E3postcritIntFPRTupper <- round(VD07E3postcritIntFPRTmn+2*VD07E3postcritIntFPRTSE)
 
 ## almost sig. Int effect in E3 postcrit region RPD:
 VD07E3postcritIntRPDmn <- (615-625)-(553-607)
-VD07E3postcritIntRPDtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritIntRPDSE <- VD07E3postcritIntRPDmn/VD07E3postcritIntRPDtval
+VD07E3postcritIntRPDSE <- 41 #highest SE in spill-over region, Table 16
 VD07E3postcritIntRPDlower <- round(VD07E3postcritIntRPDmn-2*VD07E3postcritIntRPDSE)
 VD07E3postcritIntRPDupper <- round(VD07E3postcritIntRPDmn+2*VD07E3postcritIntRPDSE)
 
 ## almost sig. Int effect in E3 postcrit region TFT:
 VD07E3postcritIntTFTmn <- (766-731)-(707-711)
-VD07E3postcritIntTFTtval <- 1.95 # reported in paper as non-sig
-VD07E3postcritIntTFTSE <- VD07E3postcritIntTFTmn/VD07E3postcritIntTFTtval
+VD07E3postcritIntTFTSE <- 59 #highest SE in spill-over region, Table 16
 VD07E3postcritIntTFTlower <- round(VD07E3postcritIntTFTmn-2*VD07E3postcritIntTFTSE)
 VD07E3postcritIntTFTupper <- round(VD07E3postcritIntTFTmn+2*VD07E3postcritIntTFTSE)
 ```
@@ -889,6 +857,8 @@ SVestimates <- data.frame(mean   = c(3, 14, 8, -2, 10, 14, 8, 14, 8),
 
 # combine with previous estimates
 estimates <- rbind(previous, SVestimates)
+estimates$experiment <- factor(estimates$experiment, levels=c("VD07.E1 (N=35)", "VD07.E2 (N=36)", "VD07.E3 (N=40)", "M23.E (N=61)", "M23.G (N=121)", "present (N=774)"))
+
 
 pp.plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over")),
                    aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
@@ -907,7 +877,190 @@ pp.plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical
   #ggtitle("Present and previous findings")+
   guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
 
-pp.plot + coord_cartesian(ylim=c(-25, 75))  
+RTs.plot <- pp.plot + coord_cartesian(ylim=c(-75, 150)) + ggtitle("Reading time differences") 
 ggsave("plots/present_previous_findings.jpg", width=9, height=8, dpi=600)
 
+
+pp2.plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over") & measure %in%c("SPR", "TFT")),
+                   aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
+    geom_pointrange(aes(color=experiment, shape=measure), 
+             size=0.8, position=position_dodge(1.45))+
+  scale_shape_manual(values = c(18,16,17,15), breaks=c("SPR", "FPRT", "RPD", "TFT"),
+                         labels=c("self-paced reading time", "first-pass reading time", "regression path duration", "total fixation time"))+
+  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+  geom_hline(yintercept=0, linetype="solid", alpha=.5)+
+  facet_grid(region~int_type, scales="free", space="free") +
+  theme_bw(base_size = 15)+
+  scale_x_discrete(breaks = NULL)+
+  theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
+  xlab("")+
+  ylab("reading time difference (ms)")+
+  #ggtitle("Present and previous findings")+
+  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+
+pp2.plot + coord_cartesian(ylim=c(-50, 100))  
+ggsave("plots/present_previous_findings_SPR_TFT.jpg", width=9, height=8, dpi=600)
+
 ```
+
+# Compute BF10 for Van Dyke (2007) data
+```{r}
+# function to compute BF10 repeatedly
+compute_BF <- function(mean_effect, se){
+  
+  #universal values for a reasonable prior: N(0,0.5), on the ms scale [-40, 40]
+    xbar <- mean_effect
+    SE <- se
+    mu_prior<-0
+    prior_variance<-40^2
+    a <- 1/prior_variance
+    b <- 1/SE^2
+    mu_posterior <- (a*mu_prior+b*xbar)/(a+b)
+    mu_posterior
+    
+    var_posterior <- 1/(a+b)
+    sqrt(var_posterior)
+
+    mu_posterior <- (a*mu_prior+b*mean_effect)/(a+1/SE^2)
+    var_posterior <- 1/(a+(1/SE^2))
+    # BF10 (1/(density under posterior at 0 / density under prior at 0):
+    1/(dnorm(0,mu_posterior,sqrt(var_posterior))/dnorm(0,0,40))
+}
+
+##### E1 critical ####
+bf.E1.syn.crit <- compute_BF(VD07E1critSynmn, VD07E1critSynSE)
+bf.E1.sem.crit <- compute_BF(VD07E1critSemmn, VD07E1critSemSE)
+bf.E1.int.crit <- compute_BF(VD07E1critIntmn, VD07E1critIntSE)
+
+##### E1 spill-over ####
+bf.E1.syn.spill <- compute_BF(VD07E1spillSynmn, VD07E1spillSynSE)
+bf.E1.sem.spill <- compute_BF(VD07E1spillSemmn, VD07E1spillSemSE)
+bf.E1.int.spill <- compute_BF(VD07E1spillIntmn, VD07E1spillIntSE)
+
+##### E2 critical #### 
+# for the eye-tracking experiments, we just compute BF10 for TFT 
+bf.E2.syn.crit <- compute_BF(VD07E2critSynTFTmn, VD07E2critSynTFTSE)
+bf.E2.sem.crit <- compute_BF(VD07E2critSemTFTmn, VD07E2critSemTFTSE)
+bf.E2.int.crit <- compute_BF(VD07E2critIntTFTmn, VD07E2critIntTFTSE)
+
+##### E2 spill-over #### 
+bf.E2.syn.spill <- compute_BF(VD07E2postcritSynTFTmn, VD07E2postcritSynTFTSE)
+bf.E2.sem.spill <- compute_BF(VD07E2postcritSemTFTmn, VD07E2postcritSemTFTSE)
+bf.E2.int.spill <- compute_BF(VD07E2postcritIntTFTmn, VD07E2postcritIntTFTSE)
+
+##### E3 pre-critical #### 
+bf.E3.syn.precrit <- compute_BF(VD07E3precritSynTFTmn, VD07E3precritSynTFTSE)
+bf.E3.sem.precrit <- compute_BF(VD07E3precritSemTFTmn, VD07E3precritSemTFTSE)
+bf.E3.int.precrit <- compute_BF(VD07E3precritIntTFTmn, VD07E3precritIntTFTSE)
+
+##### E3 critical #### 
+bf.E3.syn.crit <- compute_BF(VD07E3critSynTFTmn, VD07E3critSynTFTSE)
+bf.E3.sem.crit <- compute_BF(VD07E3critSemTFTmn, VD07E3critSemTFTSE)
+bf.E3.int.crit <- compute_BF(VD07E3critIntTFTmn, VD07E3critIntTFTSE)
+
+##### E3 spill-over #### 
+bf.E3.syn.spill <- compute_BF(VD07E3postcritSynTFTmn, VD07E3postcritSynTFTSE)
+bf.E3.sem.spill <- compute_BF(VD07E3postcritSemTFTmn, VD07E3postcritSemTFTSE)
+bf.E3.int.spill <- compute_BF(VD07E3postcritIntTFTmn, VD07E3postcritIntTFTSE)
+
+# save BFs in df
+df.bf_vd <- data.frame(matrix(ncol=8,nrow=0))
+colnames(df.bf_vd) <- c("Experiment", "BF_method", "Language", "Region", "Effect","Prior", "truncated", "BF10")
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "critical", "syntactic","Normal(0, 0.05)","no", round(bf.E1.syn.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "critical", "semantic","Normal(0, 0.05)","no", round(bf.E1.sem.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "critical", "interaction","Normal(0, 0.05)","no", round(bf.E1.int.crit,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "spill-over", "syntactic","Normal(0, 0.05)","no", round(bf.E1.syn.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "spill-over", "semantic","Normal(0, 0.05)","no", round(bf.E1.sem.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E1", "S-D", "English", "spill-over", "interaction","Normal(0, 0.05)","no", round(bf.E1.int.spill,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "critical", "syntactic","Normal(0, 0.05)","no", round(bf.E2.syn.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "critical", "semantic","Normal(0, 0.05)","no", round(bf.E2.sem.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "critical", "interaction","Normal(0, 0.05)","no", round(bf.E2.int.crit,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "spill-over", "syntactic","Normal(0, 0.05)","no", round(bf.E2.syn.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "spill-over", "semantic","Normal(0, 0.05)","no", round(bf.E2.sem.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E2", "S-D", "English", "spill-over", "interaction","Normal(0, 0.05)","no", round(bf.E2.int.spill,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "pre-critical", "syntactic","Normal(0, 0.05)","no", round(bf.E3.syn.precrit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "pre-critical", "semantic","Normal(0, 0.05)","no", round(bf.E3.sem.precrit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "pre-critical", "interaction","Normal(0, 0.05)","no", round(bf.E3.int.precrit,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "critical", "syntactic","Normal(0, 0.05)","no", round(bf.E3.syn.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "critical", "semantic","Normal(0, 0.05)","no", round(bf.E3.sem.crit,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "critical", "interaction","Normal(0, 0.05)","no", round(bf.E3.int.crit,2))
+
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "spill-over", "syntactic","Normal(0, 0.05)","no", round(bf.E3.syn.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "spill-over", "semantic","Normal(0, 0.05)","no", round(bf.E3.sem.spill,2))
+df.bf_vd[nrow(df.bf_vd)+1,] <- c("VD07.E3", "S-D", "English", "spill-over", "interaction","Normal(0, 0.05)","no", round(bf.E3.int.spill,2))
+```
+
+# Plot BFs
+```{r}
+# load other BFs
+load("BFs_mertzen23.Rda")
+df.bf_m23$Experiment <- ifelse(df.bf_m23$Language == "English", "M23.E", "M23.G")
+
+load("BFs_schoknecht.Rda")
+df.bf_schoknecht$Experiment <- "present"
+
+df.bf <- rbind(df.bf_vd, df.bf_m23, df.bf_schoknecht)
+
+# prepare
+df.bf$Prior2 <- ifelse(df.bf$Prior == "Normal(0, 0.01)", "N(0, 0.01)", 
+                        ifelse(df.bf$Prior == "Normal(0, 0.05)", "N(0, 0.05)", 
+                              ("N(0, 0.1)")))
+df.bf$BF10 <- as.numeric(df.bf$BF10)
+df.bf$effect <- factor(df.bf$Effect, levels=c("syntactic","semantic", "interaction"))
+df.bf$region <- factor(df.bf$Region, levels=c("pre-critical", "critical", "spill-over"))
+df.bf$experiment <- factor(df.bf$Experiment, levels=c("VD07.E1", "VD07.E2", "VD07.E3", "M23.E", "M23.G", "present"))
+
+
+bfs_plot_1prior <- ggplot(data=filter(df.bf, Prior2 == "N(0, 0.05)"),
+                                 aes(x=experiment, y=BF10)) +
+                      geom_line(aes(),color="grey", group=1, linewidth=1) +
+                    geom_point(aes(color=experiment, fill=experiment, shape=experiment), size=4) +
+                    scale_shape_manual(values = c(18,15,15,15,15,18))+
+                scale_fill_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+                scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+                geom_hline(yintercept=1, linetype="dashed")+
+                facet_grid(region~effect, scales="free", space="free") +
+                theme_bw(base_size = 15)+
+                scale_x_discrete(breaks = NULL)+
+                theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
+                xlab("")+
+              scale_y_log10("Bayes factor (BF10)",
+                             breaks =  c(0.05, 0.1, 0.5, 1, 3, 10, 50, 100, 200, 500, 75000),
+                             labels = c(0.05, 0.1, 0.5, 1,  3, 10, 50, 100, 200, 500, 75000)
+                            )+
+                guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))+
+                ggtitle("Bayes factors under prior N(0, 0.05)")
+ggsave("plots/present_previous_BFs_1Prior.jpg", width=9, height=8, dpi=600)
+
+
+
+ggplot(data=df.bf,aes(x=Prior2, y=BF10, group=experiment)) +
+      geom_line(aes(color=experiment)) +
+      geom_point(aes(color=experiment), size=2) +
+  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+  geom_hline(yintercept=1, linetype="dashed")+
+  facet_grid(region~effect, scales="free", space="free") +
+  theme_bw(base_size = 15)+
+  #scale_x_discrete(breaks = NULL)+
+  theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
+  xlab("")+
+scale_y_log10("Bayes factor (BF10)",
+               breaks =  c(0.05, 0.1, 0.5, 1, 3, 10, 50, 100, 200, 500, 75000),
+               labels = c(0.05, 0.1, 0.5, 1,  3, 10, 50, 100, 200, 500, 75000)
+              )+
+  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+ggsave("plots/present_previous_BFs_allPriors.jpg", width=11, height=8, dpi=600)
+
+
+# combined plot
+plot_grid(RTs.plot, bfs_plot_1prior + theme(legend.position = "none"), rel_widths =c(1,0.6), nrow=1, labels=c("A", "B"))
+ggsave("plots/present_previous_allplots.jpg", width=16, height=10, dpi=600)
+
+```
+
