@@ -8,14 +8,10 @@ output: pdf_document
 library(ggplot2)
 library(tidyverse)
 library(cowplot)
-library(ggbreak)
-
 ```
 
 # Van Dyke (2007) estimates from published paper:
-
 ## E1 
-
 ### critical
 
 ```{r}
@@ -42,12 +38,9 @@ VD07E1critIntlower <- round(VD07E1critIntmn - 2*VD07E1critIntSE)
 VD07E1critIntupper <- round(VD07E1critIntmn + 2*VD07E1critIntSE)
 ```
 
-
 ### spill-over
-
 ```{r}
 ## E1 spill-over
- 
 ## not sig. Syn effect in E1 spill-over:
 VD07E1spillSynmn <- (568+551)/2 - (571+566)/2
 VD07E1spillSynSE <- 18 #highest SE in spill-over region, Table 3
@@ -70,7 +63,6 @@ VD07E1spillIntupper <- round(VD07E1spillIntmn + 2*VD07E1spillIntSE)
 ```
 
 ### Sentence-Final
-
 ```{r}
 ## E1 sentence-final
  
@@ -97,12 +89,9 @@ VD07E1finalIntupper <- round(VD07E1finalIntmn + 2*VD07E1finalIntSE)
 ```
 
 ## Experiment 2
-
 ### critical: SYN 
-
 ```{r}
 # Experiment 2 SYN in critical
-
 ## sig. Syn effect in E2 crit region FPRT:
 VD07E2critSynFPRTmn <- (413+418)/2-(376+382)/2
 VD07E2critSynFPRTtval <- sqrt(8.32)
@@ -126,10 +115,8 @@ VD07E2critSynTFTupper <- round(VD07E2critSynTFTmn + 2*VD07E2critSynTFTSE)
 ```
 
 ### critical: SEM
-
 ```{r}
 # Experiment 2 Sem in critical
-
 ## non sig. Sem effect in E2 crit region FPRT:
 VD07E2critSemFPRTmn <- (418+382)/2-(413+376)/2
 VD07E2critSemFPRTtval <- sqrt(1.13)
@@ -151,12 +138,9 @@ VD07E2critSemTFTlower <- round(VD07E2critSemTFTmn - 2*VD07E2critSemTFTSE)
 VD07E2critSemTFTupper <- round(VD07E2critSemTFTmn + 2*VD07E2critSemTFTSE)
 ```
 
-
 ### critical: Int
-
 ```{r}
 # Experiment 2 Int in critical
-
 ## non sig. Int effect in E2 crit region FPRT:
 VD07E2critIntFPRTmn <- (418-413)-(382-376)
 VD07E2critIntFPRTSE <- 21 #highest SE in critical region, Table 7
@@ -176,13 +160,9 @@ VD07E2critIntTFTlower <- round(VD07E2critIntTFTmn - 2*VD07E2critIntTFTSE)
 VD07E2critIntTFTupper <- round(VD07E2critIntTFTmn + 2*VD07E2critIntTFTSE)
 ```
 
-
 ### spill-over: SYN 
-
 ```{r}
 # Experiment 2 SYN in spill-over
-
-
 ## almost sig. Syn effect in E2 post-crit region FPRT (negative sign)
 VD07E2postcritSynFPRTmn<-(325+296)/2-(320+364)/2
 VD07E2postcritSynFPRTtval<-sqrt(6.58)
@@ -204,12 +184,9 @@ VD07E2postcritSynTFTlower <- round(VD07E2postcritSynTFTmn - 2*VD07E2postcritSynT
 VD07E2postcritSynTFTupper <- round(VD07E2postcritSynTFTmn + 2*VD07E2postcritSynTFTSE)
 ```
 
-
 ### spill-over: Sem 
-
 ```{r}
 # Experiment 2 Sem in spill-over
-
 ## almost sig. Sem effect in E2 post-crit region FPRT (negative sign)
 VD07E2postcritSemFPRTmn<- (296+364)/2-(325+320)/2
 VD07E2postcritSemFPRTSE<- 21 #highest SE in spill-over region, Table 7
@@ -230,10 +207,8 @@ VD07E2postcritSemTFTupper <- round(VD07E2postcritSemTFTmn + 2*VD07E2postcritSemT
 ```
 
 ### spill-over: Int 
-
 ```{r}
 # Experiment 2 Int in spill-over
-
 ## almost sig. Int effect in E2 post-crit region FPRT (negative sign)
 VD07E2postcritIntFPRTmn<- (296-325)-(364-320)
 VD07E2postcritIntFPRTtval<- sqrt(5.22)
@@ -255,12 +230,9 @@ VD07E2postcritIntTFTlower <- round(VD07E2postcritIntTFTmn - 2*VD07E2postcritIntT
 VD07E2postcritIntTFTupper <- round(VD07E2postcritIntTFTmn + 2*VD07E2postcritIntTFTSE)
 ```
 
-
 ### Sentence-Final: SYN 
-
 ```{r}
 # Experiment 2 SYN in sentence-final region (Table 7)
-
 ## Syn effect in E2 sentence-final region FPRT 
 VD07E2finalSynFPRTmn<-(259+271)/2-(286+274)/2
 VD07E2finalSynFPRTSE<- 22 #highest SE in sentence-final region, Table 7
@@ -281,12 +253,9 @@ VD07E2finalSynTFTlower <- round(VD07E2finalSynTFTmn - 2*VD07E2finalSynTFTSE)
 VD07E2finalSynTFTupper <- round(VD07E2finalSynTFTmn + 2*VD07E2finalSynTFTSE)
 ```
 
-
 ### sentence-final: Sem 
-
 ```{r}
 # Experiment 2 Sem in sentence-final (Table 7)
-
 ## Sem effect in E2 sentence-final region FPRT
 VD07E2finalSemFPRTmn<- (271+274)/2-(259+286)/2
 VD07E2finalSemFPRTSE<- 22 #highest SE in sentence-final region, Table 7
@@ -308,10 +277,8 @@ VD07E2finalSemTFTupper <- round(VD07E2finalSemTFTmn + 2*VD07E2finalSemTFTSE)
 ```
 
 ### sentence-final: Int 
-
 ```{r}
 # Experiment 2 Int in sentence-final (Table 7)
-
 ## Int effect in E2 sentence-final region FPRT
 VD07E2finalIntFPRTmn<- (271-259)-(274-286)
 VD07E2finalIntFPRTSE<- 22 #highest SE in sentence-final region, Table 7
@@ -334,10 +301,8 @@ VD07E2finalIntTFTupper <- round(VD07E2finalIntTFTmn + 2*VD07E2finalIntTFTSE)
 
 ## Experiment 3  
 ### precrit: SYN
-
 ```{r}
 # Experiment 3  SYN in pre-crit
-
 ## almost sig. Syn effect in E3 precrit region FPRT:
 VD07E3precritSynFPRTmn <- (462+447)/2-(449+455)/2
 VD07E3precritSynFPRTSE <- 18 #highest SE in pre-crit region, Table 16
@@ -360,10 +325,8 @@ VD07E3precritSynTFTupper <- round(VD07E3precritSynTFTmn+2*VD07E3precritSynTFTSE)
 ```
 
 ### precrit: SEM
-
 ```{r}
 # Experiment 3  SEM in pre-crit
-
 ## almost sig. Sem effect in E3 precrit region FPRT:
 VD07E3precritSemFPRTmn <- (455+447)/2-(449+462)/2
 VD07E3precritSemFPRTSE <- 18 #highest SE in pre-crit region, Table 16
@@ -386,10 +349,8 @@ VD07E3precritSemTFTupper <- round(VD07E3precritSemTFTmn+2*VD07E3precritSemTFTSE)
 ```
 
 ### precrit: INT
-
 ```{r}
 # Experiment 3  Int in pre-crit
-
 ## almost sig. Int effect in E3 precrit region FPRT:
 VD07E3precritIntFPRTmn <- (447-462)-(455-449)
 VD07E3precritIntFPRTSE <- 18 #highest SE in pre-crit region, Table 16
@@ -432,14 +393,11 @@ VD07E3critSynTFTmn <- (451+467)/2-(414+421)/2
 VD07E3critSynTFTSE <- 38 #highest SE in crit region, Table 16
 VD07E3critSynTFTlower <- round(VD07E3critSynTFTmn-2*VD07E3critSynTFTSE)
 VD07E3critSynTFTupper <- round(VD07E3critSynTFTmn+2*VD07E3critSynTFTSE)
-
 ```
-
 
 ### crit: Sem 
 ```{r}
 # Experiment 3  SEM in crit
-
 ## almost sig. Sem effect in E3 crit region FPRT:
 VD07E3critSemFPRTmn <- (282+280)/2-(274+294)/2
 VD07E3critSemFPRTSE <- 11 #highest SE in crit region, Table 16
@@ -462,7 +420,6 @@ VD07E3critSemTFTupper <- round(VD07E3critSemTFTmn+2*VD07E3critSemTFTSE)
 ### crit: Int 
 ```{r}
 # Experiment 3  Int in crit
-
 ## almost sig. Int effect in E3 crit region FPRT:
 VD07E3critIntFPRTmn <- (280-294)-(282-274)
 VD07E3critIntFPRTtval <- sqrt(3.34) # reported in paper as <3.35
@@ -484,10 +441,8 @@ VD07E3critIntTFTupper <- round(VD07E3critIntTFTmn+2*VD07E3critIntTFTSE)
 ```
 
 ### spill-over: SYN
-
 ```{r}
 # Experiment 3  SYN in postcrit
-
 ## almost sig. Syn effect in E3 postcrit region FPRT:
 VD07E3postcritSynFPRTmn <- (424+442)/2-(437+448)/2
 VD07E3postcritSynFPRTSE <- 24 #highest SE in spill-over region, Table 16
@@ -506,14 +461,11 @@ VD07E3postcritSynTFTmn <- (766+731)/2-(707+711)/2
 VD07E3postcritSynTFTSE <- 59 #highest SE in spill-over region, Table 16
 VD07E3postcritSynTFTlower <- round(VD07E3postcritSynTFTmn-2*VD07E3postcritSynTFTSE)
 VD07E3postcritSynTFTupper <- round(VD07E3postcritSynTFTmn+2*VD07E3postcritSynTFTSE)
-
 ```
-
 
 ### spill-over: Sem 
 ```{r}
 # Experiment 3  SEM in postcrit
-
 ## almost sig. Sem effect in E3 postcrit region FPRT:
 VD07E3postcritSemFPRTmn <- (437+424)/2-(448+442)/2
 VD07E3postcritSemFPRTSE <- 24 #highest SE in spill-over region, Table 16
@@ -538,7 +490,6 @@ VD07E3postcritSemTFTupper <- round(VD07E3postcritSemTFTmn+2*VD07E3postcritSemTFT
 ### spill-over: Int 
 ```{r}
 # Experiment 3  Int in postcrit
-
 ## almost sig. Int effect in E3 postcrit region FPRT:
 VD07E3postcritIntFPRTmn <- (424-442)-(437-448)
 VD07E3postcritIntFPRTSE <-24 #highest SE in spill-over region, Table 16
@@ -559,10 +510,8 @@ VD07E3postcritIntTFTupper <- round(VD07E3postcritIntTFTmn+2*VD07E3postcritIntTFT
 ```
 
 ### sentence final: SYN
-
 ```{r}
 # Experiment 3  SYN in sentence final region (Table 16 in VD07)
-
 ## almost sig. Syn effect in E3 final region FPRT:
 VD07E3finalSynFPRTmn <- (463+483)/2-(480+464)/2
 VD07E3finalSynFPRTtval <- sqrt(1.06) # reported in paper as below 1.07
@@ -583,9 +532,7 @@ VD07E3finalSynTFTtval <- sqrt(1.53) # reported in paper as below 1.54
 VD07E3finalSynTFTSE <- VD07E3finalSynTFTmn/VD07E3finalSynTFTtval
 VD07E3finalSynTFTlower <- round(VD07E3finalSynTFTmn-2*VD07E3finalSynTFTSE)
 VD07E3finalSynTFTupper <- round(VD07E3finalSynTFTmn+2*VD07E3finalSynTFTSE)
-
 ```
-
 
 ### Sentence-final: Sem 
 ```{r}
@@ -616,7 +563,6 @@ VD07E3finalSemTFTupper <- round(VD07E3finalSemTFTmn+2*VD07E3finalSemTFTSE)
 ### Sentence-Final: Int 
 ```{r}
 # Experiment 3  Int in final (Table 16 in VD07)
-
 ## Int effect in E3 final region FPRT:
 VD07E3finalIntFPRTmn <- (463-483)-(480-464)
 VD07E3finalIntFPRTtval <- sqrt(1.06) # reported in paper as below 1.07
@@ -738,7 +684,6 @@ VD07summary<-rbind(c(VD07E1critSynmn, VD07E1critSynlower, VD07E1critSynupper),
                    c(VD07E3finalIntTFTmn, VD07E3finalIntTFTlower, VD07E3finalIntTFTupper)
             )
 
-
 VD07expt <- c(rep("VD07.E1 (N=35)", 9), rep("VD07.E2 (N=36)", 27), rep("VD07.E3 (N=40)", 36))
 
 VD07region <- c(rep("critical", 3), rep("spill-over", 3), rep("sentence-final", 3),
@@ -755,16 +700,13 @@ VD07int_type <- c(rep(c("syntactic", "semantic", "interaction"), 3),
                 
 VD07measure <- c(rep("SPR", 9), rep(c("FPRT", "RPD","TFT"), 21))
                  
-
 VD07estimates <- as.data.frame(cbind(VD07summary, 
                                      VD07expt,
                                      VD07region,
                                      VD07int_type,
                                      VD07measure))
 
-
 colnames(VD07estimates)<-c("mean", "lower" ,"upper",  "experiment", "region", "int_type","measure")
-
 
 VD07estimates$mean <- as.numeric(VD07estimates$mean)
 VD07estimates$lower <- as.numeric(VD07estimates$lower)
@@ -777,24 +719,17 @@ VD07estimates$measure <- factor(VD07estimates$measure,levels=c("SPR","FPRT","RPD
 VD07estimates$region <- factor(VD07estimates$region,levels=c("pre-critical","critical", "spill-over", "sentence-final"))
 
 VD07estimates$int_type <- factor(VD07estimates$int_type,levels=c("syntactic","semantic", "interaction"))
-
-str(VD07estimates)
 ```
 
-
-
-# Mertzen et al 2021: 
-
+# Mertzen et al 2023: 
 ```{r}
 load("M21_byregionsummaries_de.rda")
-
 M23.G <- d
 M23.G$experiment <- "M23.G (N=121)"
 
 load("M21_byregionsummaries_en.rda")
 M23.E <- d
 M23.E$experiment <- "M23.E (N=61)"
-
 
 M23estimates <- rbind(M23.G, M23.E[,-7])
 
@@ -805,44 +740,11 @@ M23estimates$int_type <- ifelse(M23estimates$effect%in%c("Subject"),"syntactic",
 M23estimates$region <- as.factor(M23estimates$region)
 levels(M23estimates$region)[3] <- "spill-over"
   
-M23estimates <- M23estimates[,-4]
-M23estimates <- M23estimates[,-5]
-M23estimates <- M23estimates[,-6]
-
-
-
-```
-
-
-# Plot previous findings
-```{r}
-my_colors <- RColorBrewer::brewer.pal(11, "RdBu")
-
-previous <- rbind(VD07estimates, M23estimates)
-save(previous, file="VD07_M21_estimates.rda")
-
-
-previous_crit.plot <- ggplot(subset(previous, previous$region%in%c("pre-critical","critical")),
-                   aes(x=experiment, y=mean, ymin=lower, ymax=upper )) +
-  geom_pointrange(aes(color=experiment, shape=measure), 
-             size=0.5, position=position_dodge(0.9))+
-  scale_shape_manual(values = c(18,16,17,15))+
-  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9]))+
-  geom_hline(yintercept=0, linetype="solid", alpha=.4)+
-  ggh4x::facet_grid2(region ~ int_type, scales="free_y", independent = "y") +
-  theme_bw(base_size = 10)+
-  scale_x_discrete(breaks = NULL)+
-  xlab("")+
-  ylab("reading time difference (ms)")+
-  #ggtitle("Previous findings")+
-  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
-
-previous_crit.plot
-ggsave("plots/previous_findings.jpg", width=6, height=5, dpi=600)
+M23estimates <- M23estimates %>% select(-lang, -region.label, -effect)
 ```
 
 # Plot present and previous findings
-```{r, eval=FALSE}
+```{r}
 my_colors <- RColorBrewer::brewer.pal(11, "RdBu")
 
 # prepare Schoknecht & Vasishth estimates (numbers from script "Plot_stats.R")
@@ -856,49 +758,47 @@ SVestimates <- data.frame(mean   = c(3, 14, 8, -2, 10, 14, 8, 14, 8),
                           )
 
 # combine with previous estimates
-estimates <- rbind(previous, SVestimates)
+estimates <- rbind(VD07estimates, M23estimates, SVestimates)
 estimates$experiment <- factor(estimates$experiment, levels=c("VD07.E1 (N=35)", "VD07.E2 (N=36)", "VD07.E3 (N=40)", "M23.E (N=61)", "M23.G (N=121)", "present (N=774)"))
 
 
-pp.plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over")),
-                   aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
-    geom_pointrange(aes(color=experiment, shape=measure), 
-             size=0.8, position=position_dodge(1.45))+
-  scale_shape_manual(values = c(18,16,17,15), breaks=c("SPR", "FPRT", "RPD", "TFT"),
-                         labels=c("self-paced reading time", "first-pass reading time", "regression path duration", "total fixation time"))+
-  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
-  geom_hline(yintercept=0, linetype="solid", alpha=.5)+
-  facet_grid(region~int_type, scales="free", space="free") +
-  theme_bw(base_size = 15)+
-  scale_x_discrete(breaks = NULL)+
-  theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
-  xlab("")+
-  ylab("reading time difference (ms)")+
-  #ggtitle("Present and previous findings")+
-  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
-
-RTs.plot <- pp.plot + coord_cartesian(ylim=c(-75, 150)) + ggtitle("Reading time differences") 
+RT_plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over")),
+                       aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
+                  geom_pointrange(aes(color=experiment, shape=measure), 
+                       size=0.8, position=position_dodge(1.45))+
+                  scale_shape_manual(values = c(18,16,17,15), breaks=c("SPR", "FPRT", "RPD", "TFT"),
+                                     labels=c("self-paced reading time", "first-pass reading time", "regression path duration", "total fixation time"))+
+                  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+                  geom_hline(yintercept=0, linetype="solid", alpha=.5)+
+                  facet_grid(region~int_type, scales="free", space="free") +
+                  theme_bw(base_size = 15)+
+                  scale_x_discrete(breaks = NULL)+
+                  theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
+                  xlab("")+
+                  ylab("reading time difference (ms)")+
+                  #ggtitle("Present and previous findings")+
+                  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))+
+                  coord_cartesian(ylim=c(-75, 150)) +
+                  ggtitle("Reading time differences") 
 ggsave("plots/present_previous_findings.jpg", width=9, height=8, dpi=600)
 
 
-pp2.plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over") & measure %in%c("SPR", "TFT")),
-                   aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
-    geom_pointrange(aes(color=experiment, shape=measure), 
-             size=0.8, position=position_dodge(1.45))+
-  scale_shape_manual(values = c(18,16,17,15), breaks=c("SPR", "FPRT", "RPD", "TFT"),
-                         labels=c("self-paced reading time", "first-pass reading time", "regression path duration", "total fixation time"))+
-  scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
-  geom_hline(yintercept=0, linetype="solid", alpha=.5)+
-  facet_grid(region~int_type, scales="free", space="free") +
-  theme_bw(base_size = 15)+
-  scale_x_discrete(breaks = NULL)+
-  theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
-  xlab("")+
-  ylab("reading time difference (ms)")+
-  #ggtitle("Present and previous findings")+
-  guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
-
-pp2.plot + coord_cartesian(ylim=c(-50, 100))  
+TFT_plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical", "spill-over") & measure %in%c("SPR", "TFT")), aes(x=int_type, y=mean, ymin=lower, ymax=upper )) +
+                  geom_pointrange(aes(color=experiment, shape=measure), 
+                           size=0.8, position=position_dodge(1.45))+
+                scale_shape_manual(values = c(18,16,17,15), breaks=c("SPR", "FPRT", "RPD", "TFT"),
+                                       labels=c("self-paced reading time", "first-pass reading time", "regression path duration", "total fixation time"))+
+                scale_color_manual(values = c(my_colors[3], my_colors[4],my_colors[5],my_colors[8],my_colors[9], "black"))+
+                geom_hline(yintercept=0, linetype="solid", alpha=.5)+
+                facet_grid(region~int_type, scales="free", space="free") +
+                theme_bw(base_size = 15)+
+                scale_x_discrete(breaks = NULL)+
+                theme(legend.position="right", legend.box="vertical", legend.direction="vertical")+
+                xlab("")+
+                ylab("reading time difference (ms)")+
+                #ggtitle("Present and previous findings")+
+                guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))+
+                coord_cartesian(ylim=c(-50, 100))  
 ggsave("plots/present_previous_findings_SPR_TFT.jpg", width=9, height=8, dpi=600)
 
 ```
@@ -1057,10 +957,10 @@ scale_y_log10("Bayes factor (BF10)",
   guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
 ggsave("plots/present_previous_BFs_allPriors.jpg", width=11, height=8, dpi=600)
 
-
 # combined plot
-plot_grid(RTs.plot, bfs_plot_1prior + theme(legend.position = "none"), rel_widths =c(1,0.6), nrow=1, labels=c("A", "B"))
-ggsave("plots/present_previous_allplots.jpg", width=16, height=10, dpi=600)
+plot_grid(RT_plot, bfs_plot_1prior + theme(legend.position = "none"), rel_widths =c(1,0.6), nrow=1, labels=c("A", "B"))
+ggsave("plots/present_previous_allplots.jpg", width=15, height=8, dpi=600)
 
 ```
+
 
