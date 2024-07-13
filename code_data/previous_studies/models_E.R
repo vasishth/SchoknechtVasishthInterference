@@ -1,21 +1,13 @@
 # author: Pia Schoknecht
 # date: 21.05.2024
 
-# script to compute Bayes Factors for the previous studies
+# script to run models (to later compute Bayes Factors) for the previous studies
 
 # Mertzen et al., (2024) English and German eye-tracking data
-# Van Dyke (2007) English eye-tracking and self-paced reading data
 # for comparability with self-paced reading times, we use the total fixation times (TFT) eye-tracking measure
 
 
-#library(tidyverse)
-#library(lme4)
 library(brms)
-#library(ggplot2)
-#library(bayesplot)
-#library(truncnorm)
-#library(cowplot)
-
 
 # load Mertzen et al. ENGLISH data
 df <- read.table("dataRetroEN_processed.txt")
