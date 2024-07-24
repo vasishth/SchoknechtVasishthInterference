@@ -6,6 +6,7 @@ library(ggplot2)
 library(tidyverse)
 library(ordinal)
 library(brms)
+library(bayesplot)
 
 # load data
 df <- read.csv("norming_data_HighvsLowSem.csv")
@@ -165,6 +166,43 @@ pp_check(m_m_full, ndraws = 100, type = "stat", stat = "max")
  
 summary(m_m_full)
 plot(m_m_full)
+
+# plot posteriors
+
+# extract samples
+samples_precrit <- as_draws_df(m_m_full)
+
+# backtransform estimates to ms scale
+sem_eff_precrit <- exp(samples_precrit$b_Intercept + samples_precrit$b_sem) - exp(samples_precrit$b_Intercept - samples_precrit$b_sem)
+rating_eff_precrit <- exp(samples_precrit$b_Intercept + samples_precrit$b_c_rating) - exp(samples_precrit$b_Intercept - samples_precrit$b_c_rating)
+int_eff_precrit <- exp(samples_precrit$b_Intercept + samples_precrit$`b_sem:c_rating`) - exp(samples_precrit$b_Intercept - samples_precrit$`b_sem:c_rating`)
+
+# credible intervals
+round(c(mean = mean(sem_eff_precrit), quantile(sem_eff_precrit, probs = c(.025, .975))))
+round(c(mean = mean(rating_eff_precrit), quantile(rating_eff_precrit, probs = c(.025, .975))))
+round(c(mean = mean(int_eff_precrit), quantile(int_eff_precrit, probs = c(.025, .975))))
+
+# add back-transformed values to samples df
+samples_precrit$semantic <- sem_eff_precrit
+samples_precrit$plausibility <- rating_eff_precrit
+samples_precrit$interaction <- int_eff_precrit
+
+# Plot
+posteriors_precrit <- mcmc_areas(
+  samples_precrit,
+  pars = c("semantic", "plausibility", "interaction"),
+  prob = 0.8, # 80% intervals
+  #prob_outer = 0.99, # 99%
+  point_est = "mean")+
+  labs(title= "Pre-critical region", x = "effect in ms")+
+  vline_0(linetype="dashed")+
+  scale_x_continuous(breaks=(seq(-50, 40, 10)), limits = c(-50, 40)) +
+  theme_bw(base_size=12) +
+  annotate("text", x = 35, y = 3.8, label = "2 — 13 — 24", size=3) +
+  annotate("text", x = -20, y = 2.9, label = "-30 — -18 — -6", size=3) +
+  annotate("text", x = -20, y = 1.7, label = "-22 — -4 — 14", size=3) 
+ggsave("posteriors_spr_pooled_774_plausibility.png", width = 12, height = 10, units = "cm", dpi=300)
+
                 
 # bayes factors
 # semantic
