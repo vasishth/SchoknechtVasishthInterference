@@ -3,6 +3,7 @@
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{subfigure}
 \usepackage{rotating}
 \usepackage{amssymb}
@@ -67,16 +68,43 @@
 \myexternaldocument{main}
 
 \begin{document}
-\maketitle
+\hfill \today
 %\section{}
 %\subsection{}
 
-We want to thank the reviewers and editor for their detailed and constructive comments; these have significantly improved the paper. We believe we have addressed every point raised by the editor and reviewers; the comments with our responses and a record of the changes in the paper are listed below. When relevant, we provide references to pages from the revised paper. 
+\noindent \textbf{Prof. Chris Jarrold}\\
+\noindent \textbf{Associate Editor}\\
+\noindent \textbf{Journal of Memory and Language}
+\vskip 1em
 
-All the changes in the paper are marked in blue.
+\noindent \textbf{Response letter for Submission JML-24-17}
+\vskip 2em
+\noindent Dear Prof. Jarrold, 
+\vskip 1em
+together with my co-author Shravan Vasishth, I would like to submit our
+revision of the article titled ``Do syntactic and semantic similarity lead to interference effects? Evidence from self-paced reading and event-related potentials using German''.
+We are grateful for thoughtful and constructive comments and suggestions from you and the reviewers, and feel that the quality of the manuscript has been greatly improved by the revisions.
 
-\section*{Editor's comments}
+You noted in your decision letter that the manuscript could potentially be a valuable contribution to the special issue. This view was largely shared by the Reviewers. Reviewer 1 was concerned with some decisions that we had made in our computational modeling and statistical analyses and the interpretation of the results. In response to the concerns about our statistical analyses, we have completely re-done the analyses of the reading times and ERP data and added analyses of the previous data. Additionally, we have added one computational model and use k-fold cross-validation for model comparisons. We believe that these new analyses strengthen our initial interpretation that our study shows semantic interference, but no syntactic interference and no interaction. 
 
+Reviewer 2 primarily raised concerns regarding our experimental design. In response to the concerns about our experimental design, we have emphasized that we used a well-established design. This point is further underlined by the direct comparison of the posteriors and Bayes factors from the present and previous studies using the same design. 
+
+Reviewer 3 suggested a more in-depth discussion of the mechanisms of cue-based retrieval and had some concerns about our methodology. We have added a more detailed discussion of the memory mechanisms which are assumed to underlie sentence processing in the present design. We have added a thorough discussion of all concerns which were raised regarding our methodology. 
+
+Below, we separately address each comment from the reviewers. All changes have been highlighted
+in the revised manuscript.
+\vskip 1em
+\noindent Sincerely,
+\vskip 1em
+\noindent Pia Schoknecht\\
+Postdoctoral researcher\\
+Department of Linguistics\\
+University of Potsdam, Germany
+\thispagestyle{empty}
+\newpage
+
+\section*{Editor's comments} 
+\subsection*{Comment E.1}
 \begin{quote}
 ``Dear Dr. Schoknecht,
 
@@ -88,25 +116,54 @@ However, I am far from being an expert in this area, and the (therefore much mor
 
 In revising your paper you should take into account all of the reviewer's points. However, there are two themes that I picked out as particularly important.
 
-First, \textbf{Reviewer 2 raises a potentially serious concern that your particular manipulation of syntactic dis/similarity might not be expected to lead to substantial syntactic interference (their point 1)}\marginpar{E.1}. In other words, the questions are whether one would ever expect to see much of this effect with your design and whether a more appropriate design would lead to stronger findings. Some of Reviewer 3's points (see their paragraph starting 'The authors attribute ...' and their final summary comment) are perhaps in the same vein.
-
-Second, a couple of Reviewer 1's comments (e.g., their point 2, and their final point about priors) relate to the fact that \textbf{there actually is some evidence for a degree of syntactic interference in aspects of the data, particularly perhaps in terms of the interaction and the combination with high semantic similarity, that you risk underplaying}\marginpar{E.2} (see also Reviewer 2's point 5).
-
-Finally, I would also add that while I agree with Reviewer 1's assessment that your paper would fit well in the special issue, \textbf{as someone more versed in the memory than the language literature I thought you could be more explicit about how your findings do integrate both of these two areas.}\marginpar{E.3}
-
-The reviewers have made suggestions which the Editors feel will improve your manuscript. We encourage you to consider these comments and make an appropriate revision of your manuscript.
-
-We are trying to improve the reproducibility of work published in the Journal. \textbf{Please ensure that you have included a "Data Availability" statement immediately before your empirical work with a link to materials, data, and analysis code} \marginpar{E.4}(see our 'guide for authors' for instructions). Please make sure that you have updated the data and analysis code following any revisions to your manuscript. Please confirm in your next covering letter that all results presented in your manuscript can be reproduced using the materials that you have made available.''
+First, \textbf{Reviewer 2 raises a potentially serious concern that your particular manipulation of syntactic dis/similarity might not be expected to lead to substantial syntactic interference (their point 1)}. In other words, the questions are whether one would ever expect to see much of this effect with your design and whether a more appropriate design would lead to stronger findings. Some of Reviewer 3's points (see their paragraph starting 'The authors attribute ...' and their final summary comment) are perhaps in the same vein.''
 \end{quote}
 
 \subsection*{Response to E.1}
-We address this concern in our response to Reviewer \#2 (2.\textcolor{red}{X}).
+We used a well-studied design and the previous studies using the design, specifically the same syntactic retrieval cue, found effects of syntactic interference \citep{vandyke07, mertzen}. Therefore, while some researchers might not expect the design to lead to decisive syntactic interference effects because the syntactic manipulation might be flawed, others might be convinced that the design is very appropriate to investigate syntactic interference, because it produced such effects in the past. We believe that our results add a valuable contribution to the literature on syntactic interference as a counterpoint to the previous studies \citep{vandyke07, mertzen}.
+
+We added the following text to our General Discussion on page \pageref{only_this_design} to emphasize that our findings and conclusions only apply to the present design:
+
+\Paste{only_this_design}
+
+\subsection*{Comment E.2}
+
+\begin{quote}
+``Second, a couple of Reviewer 1's comments (e.g., their point 2, and their final point about priors) relate to the fact that \textbf{there actually is some evidence for a degree of syntactic interference in aspects of the data, particularly perhaps in terms of the interaction and the combination with high semantic similarity, that you risk underplaying} (see also Reviewer 2's point 5).''
+\end{quote}
+
+
 \subsection*{Response to E.2}
-We address this concern in our response to Reviewer \#1 (1.\textcolor{red}{X}).
+We have re-done our analyses in response to the concerns raised by the reviewers and the Bayes factors from the revised analyses still do not provide evidence for syntactic interference or the interaction.
+
+As an overview of the revised Bayes factor analyses, we here include the Figures \ref{fig:spr_bfs} and \ref{fig:eeg_bfs}.
+
+\setcounter{figure}{4}
+\Paste{fig_bf_spr}
+
+\setcounter{figure}{10}
+\Paste{fig_bf_eeg}
+
+\subsection*{Comment E.3}
+\begin{quote}
+``Finally, I would also add that while I agree with Reviewer 1's assessment that your paper would fit well in the special issue, \textbf{as someone more versed in the memory than the language literature I thought you could be more explicit about how your findings do integrate both of these two areas.}''
+\end{quote}
+
 \subsection*{Response to E.3}
-\textcolor{red}{write more about memory during sentence processing}
+\textcolor{red}{??}
+
+\subsection*{Comment E.4}
+\begin{quote}
+``The reviewers have made suggestions which the Editors feel will improve your manuscript. We encourage you to consider these comments and make an appropriate revision of your manuscript.
+
+We are trying to improve the reproducibility of work published in the Journal. \textbf{Please ensure that you have included a ``Data Availability" statement immediately before your empirical work with a link to materials, data, and analysis code}(see our 'guide for authors' for instructions). Please make sure that you have updated the data and analysis code following any revisions to your manuscript. Please confirm in your next covering letter that all results presented in your manuscript can be reproduced using the materials that you have made available.''
+\end{quote}
+
+
 \subsection*{Response to E.4}
-We have moved our data availability statement to page \pageref{statement}, before Experiments 1a and 1b.
+We have moved our data availability statement to page \pageref{statement}, before Experiments 1a and 1b:
+
+\Paste{osf}
 
 \section*{Reviewer \#1's comments} 
 \subsection*{Comment R1.1}
@@ -127,16 +184,14 @@ I have several problems with this interpretation:
 1. Encoding vs.\ retrieval: As far as I can see, \textbf{the interpretation cast in the Lewis and Vasishth (2005) model means that the interference is present at retrieval, not at encoding. But that goes against the proposed informal interpretation of the findings of the self-paced reading study. There it is argued that the observed effect of semantic interference is due to *encoding*, not (just) retrieval. That is, there is a discrepancy between the informal interpretation of the self-paced reading study and the computational model.} ''\end{quote}
 
 \subsubsection*{Response to R1.1}
-The reviewer is right. The Lewis and Vasishth (2005) model is a model of memory retrieval during sentence processing and should therefore not be used to model effects of encoding interference. We have removed the modeling of the SPR effects. In the revised manuscript, we now only present modeling of retrieval interference in ERPs.
-
-\textcolor{red}{Remove SPR modeling from manuscript}
+The reviewer is right. The Lewis and Vasishth (2005) model is a model of memory retrieval during sentence processing and should therefore not be used to model effects of encoding interference. We have removed the modeling of the SPR effects. In the revised manuscript, we now only present modeling of retrieval interference in ERPs. 
 
 \subsection*{Comment R1.2}
 \begin{quote}
 ``2. Match of the model and data: The interpretation is set in such a way that only semantic interference, but no syntactic interference or interaction are predicted. This is achieved by hard-coding that the syntactic cue selects the target and nothing else. I find this problematic. For the modeling results of the current experiment, in Figure 11 it seems that the syntactic interference and interaction are underpredicted by the model - not by much, but they are. While the model predicts no effect, the data do show an effect, be it small (btw, it is hard to read this figure because of the chosen scale; \textbf{it would be much better to zoom in and show for example 0-30 ms scale for the reading study 0 to -1 microvolt scale for the EEG study)}.''\end{quote}
 
 \subsubsection*{Response to R1.2}
-We have changed the scale of the x-axis in Figure 11 to improve readability. For convenience, we paste the Figure here:
+We have re-done the Figure to reflect our revised modeling. We hope that the scale of the new Figure is easier to read:
 
 \Paste{figpriorposteriordata}
 
@@ -153,10 +208,10 @@ We have changed the scale of the x-axis in Figure 11 to improve readability. For
 ``3. Comparison to previous findings: Syntactic interference has been observed previously. The authors discuss in detail Van Dyke (2007) and Mertzen et al. (2023) as two studies that argue for syntactic interference. This is in contrast to the current study, which is claimed not to show syntactic interference. One problem for me is that we are not making a fair comparison: the current study bases its interpretation on Bayes factors, which were not used in Van Dyke or Mertzen et al. To be sure, my point is not that Bayes factors should not be used (of course, I find it good that they are used to compare hypotheses), just that the comparison between this study and the other findings is far from straightforward. If we only check posterior distributions, which were explored in Mertzen et al. for their conclusions, we do see some effect of syntactic interference - e.g., the predominantly negative credible interval in the EEG study. As far as I can see, \textbf{to really make a sensible comparison, one would either have to reanalyze Mertzen and Van Dyke's data using Bayes factors or be more precise in explaining how the posterior distributions in this study differ from previous studies} - just looking at the posteriors, they do not seem to paint such different pictures between the current study and Mertzen et al. ''\end{quote}
 
 \subsubsection*{Response to R1.4}
-In the revised manuscript, we are now more explicit about the comparison to previous findings. We added a new figure (Figure \textcolor{red}{X}) to the General Discussion showing the estimates of the previous studies along with our own estimates. Additionally, we computed Bayes Factors for the two previous studies. 
+In the revised manuscript, we are now more explicit about the comparison to previous findings. We have added a new figure (Figure \ref{fig:previous_vs_present}) to the General Discussion. The new figure shows the estimates of the previous studies and Bayes factors which we have computed for the previous studies, along with our own estimates and Bayes factors. The following was added to the manuscript:
+\setcounter{figure}{11}
 
-
-Because the Van Dyke (2007) data was not available to us, we have used the Normal-Normal conjugate case to derive posteriors from the summary statistics (mean and SE) reported in the Van Dyke (2007) paper. Then using these posteriors and a reasonable prior (a priori assumed effect size in the range of -40 ms to 40 ms), we computed Bayes Factors using the Savage-Dickey method. To maximize comparability between studies, we have recomputed the Bayes Factors of our study with the Savage-Dickey method (previously we had used bridgesampling). 
+\Paste{comparison}
 
 
 \subsection*{Comment R1.5}
@@ -176,7 +231,10 @@ All in all, I think the interpretation of the data and the model have to be stre
 It is proposed that the semantic interference in the self-paced reading study is due to encoding. This interpretation is supported by the fact that we observe increased reading times from the moment that the +animate distractor is read (nicely shown in Figure 3). I wonder whether an even more straightforward interpretation is possible here. Could the effect of increased reading times simply be due to the fact that the +animate distractor is not as good as the -animate distractor in this context? That is, the effect has nothing to do with encoding interference, it's just a consequence of the fact that, e.g., in (2a) the statement that "the burglar was awful" is harder to make sense of than that "the loss was awful". \textbf{I think one easy way to check it would be to run an acceptability/plausibility study which checks whether the +animate version and the -animate version are comparable in their acceptability.} I know that the manuscript mentions a possible confound due to plausibility (p. 22, 23) but as far as I could understand it is assumed that this confound would only affect the syntactic manipulation, not the semantic one. However, I think the semantic manipulation could just as well result in more or less plausible sentences.''\end{quote}
 
 \subsubsection*{Response to R1.6}
-We ran the suggested plausibility judgement experiment. The -animate distractor is indeed slightly more plausible in the context than the +animate distractor (\textcolor{red}{add numbers}). We discuss this potential confound in the revised manuscript. However, we carried out additional analyses which included plausibility as a co-predictor and find that the evidence is still strong for semantic interference.
+We ran the suggested plausibility judgement experiment. The -animate distractor is indeed slightly more plausible in the context than the +animate distractor. We discuss this potential confound in the revised manuscript starting on page \pageref{plausib_anim_inan}:
+
+\Paste{plausib_anim_inan}
+
 
 \subsection*{Comment R1.7}
 \begin{quote}
@@ -187,7 +245,7 @@ Models with intercept-only random-effect structures are used for the data analys
 
 
 \subsubsection*{Response to R1.7}
-As mentioned in our response to R1.4, we recomputed our Bayes Factors using the Savage-Dickey method. With this method we were able to compute Bayes Factors for models with complex random effect structures. All results in the manuscript have been updated accordingly.
+As mentioned in our response to R1.4, we recomputed our Bayes Factors using the Savage-Dickey method. With this method, we were able to compute Bayes Factors for models with complex random effect structures. We have re-run all models with full random effect structures and updated all results in the manuscript accordingly.
 
 \subsection*{Comment R1.8}
 \begin{quote}
@@ -199,17 +257,16 @@ Various priors are considered for Bayes factors. \textbf{Of course, it is good t
 \subsubsection*{Response to R1.8}
 BFs do not to need to be strongly in favor of an effect across all investigated priors to conclude that an effect is supported. However, to draw decisive conclusions in favor of an effect, the evidence for that effect should be stronger than anecdotal for at least a subset of reasonable priors.
 
-The meta-analysis of reading time studies by \textcite{jaeger_etal_2017} showed that the pooled estimate of inhibitory interference across studies with similar designs as ours was indeed small (13.1 ms, page 327), but some studies showed effects around 50 ms (e.g., two of the sub-experiments from \cite{vandyke07}) and one experiment by Franck et al., (2015) even showed an estimate above 100 ms (see Figure 2 on page 329 of \cite{jaeger_etal_2017}). Because such large interference effects have been found previously (see also our new Figure \textcolor{red}{X on page X} showing all estimates of \cite{vandyke07} and \cite{mertzen}), we believe that it is reasonable to explore a wide range of a priori effect sizes, specifically from 8 to 80 ms for the reading times. 
+The meta-analysis of reading time studies by \textcite{jaeger_etal_2017} showed that the pooled estimate of inhibitory interference across studies with similar designs as ours was indeed small (13.1 ms, page 327), but some studies showed effects around 50 ms (e.g., two of the sub-experiments from \cite{vandyke07}) and one experiment by Franck et al., (2015) even showed an estimate above 100 ms (see Figure 2 on page 329 of \cite{jaeger_etal_2017}). Because such large interference effects have been found previously (see also our new Figure 12 showing all estimates of \cite{vandyke07} and \cite{mertzen}), we believe that it is reasonable to explore a wide range of a priori effect sizes, specifically from $\pm$8 to $\pm$80 ms for the reading times. 
 
 We have revised the description of the SPR results to include more nuance regarding the BFs under the different priors:
 
-\textcolor{red}{add text from the SPR results after new analyses are finished}
+\setcounter{figure}{4}
+\Paste{SPR_bfs}
 
-For the analysis of the ERP data, we changed the largest prior from N(0,5) to N(0,2), so from effects ranging up to 11 $\mu V$ to effects ranging up to 4 $\mu V$, to accommodate the concern that we might focus on too large effect sizes. 
+For the analysis of the ERP data, we changed the largest prior from N(0,5) to N(0,2), so from effects ranging up to 11 $\mu V$ to effects ranging up to 4 $\mu V$, to accommodate the concern that we might focus on too large effect sizes. We have revised the description of the BF analysis for the ERP data as follows (see page \pageref{ERP_results3}):
 
-We revised the description of the BF analysis for the ERP data as follows (see page \textcolor{red}{X}):
-
-\textcolor{red}{add description of ERP BF analysis}
+\Paste{ERP_results3}
 
 
 \section*{Reviewer \#2} 
@@ -232,31 +289,30 @@ The authors are concerned about underpowered studies, a concern I totally agree 
 
 Unsurprisingly, the authors reach this very same conclusion: "We speculate that one possibility might be that the parser tracks hierarchical structure and that this hierarchical information is used when searching for a noun in memory." Yes, exactly, but this isn't new.
 
-I also agree with this statement (p.41): "[…] the parser intelligently targets only the syntactically relevant noun during antecedent retrieval. In the present case, it is possible that syntactically relevant noun is only the one in the same clause as the verb." Once again, yes, that's accurate. However, \textbf{this implies that the syntactic manipulation the authors went for is just not doing the job the authors would like it to do: the syntactic distractor is not a syntactically relevant noun. Being a subject of whichever clause at whichever level of embedding is not a sensible manipulation to test syntactic interference.}''
-\end{quote}
+I also agree with this statement (p.41): "[…] the parser intelligently targets only the syntactically relevant noun during antecedent retrieval. In the present case, it is possible that syntactically relevant noun is only the one in the same clause as the verb." Once again, yes, that's accurate. However, \textbf{this implies that the syntactic manipulation the authors went for is just not doing the job the authors would like it to do: the syntactic distractor is not a syntactically relevant noun. Being a subject of whichever clause at whichever level of embedding is not a sensible manipulation to test syntactic interference.}
 
-\subsubsection*{Response to R2.1}
-We used a well-studied design and the previous studies using the design, specifically the same syntactic retrieval cue, found effects of syntactic interference \citep{vandyke07, mertzen}. Therefore, while our results are not surprising for some researchers because the syntactic manipulation might be flawed, others might be convinced that the design is very appropriate to investigate syntactic interference, because it produced such effects in the past. We believe that our results add a valuable contribution to the literature on syntactic interference as a counterpoint to the previous studies.
-
-\textcolor{red}{We added the following text to the manuscript to highlight that our conclusions only apply to the design used in the present study:}
-
-\subsection*{Comment R2.2}
-\begin{quote}
-``2. The syntactic manipulation does not lead to minimally different conditions (i.e., conditions that only differ on the critical manipulation). These are the glosses for the two syntactic conditions:\\
+2. The syntactic manipulation does not lead to minimally different conditions (i.e., conditions that only differ on the critical manipulation). These are the glosses for the two syntactic conditions:\\
 
 who told had that the burglar/loss awful was\\
 who about the awful burglar/loss told had\\
 
 These are completely different structures with even different word orders. As a result, any difference in RTs observed at the critical region might ensue from a number of different reasons that might have nothing to do with burglar/loss being or not the subject of the embedded clause.
 
-3. The semantic manipulation is not minimal either. In this case, not only is the number of letters different (as acknowledged by the authors themselves), but even the number of syllables isn't the same. Once more, this is not a minimal comparison.
+3. The semantic manipulation is not minimal either. In this case, not only is the number of letters different (as acknowledged by the authors themselves), but even the number of syllables isn't the same. Once more, this is not a minimal comparison.''
+\end{quote}
 
-4. The difference in RTs starts at the distractor and continues through the critical verb region (in the high syntactic interference condition at least). Therefore, we cannot exclude the possibility that the effect observed at the critical verb is the same effect that originates at the distractor that is lingering through the sentence, rather than being a different effect altogether. Consequently, \textbf{I don't think that the effect at the critical region can be interpreted.}''
+\subsubsection*{Response to R2.1}
+We believe that we have addressed this concern in our Response to E.1.
+
+\subsection*{Comment R2.2}
+\begin{quote}
+``4. The difference in RTs starts at the distractor and continues through the critical verb region (in the high syntactic interference condition at least). Therefore, we cannot exclude the possibility that the effect observed at the critical verb is the same effect that originates at the distractor that is lingering through the sentence, rather than being a different effect altogether. Consequently, \textbf{I don't think that the effect at the critical region can be interpreted.}''
 \end{quote}
 
 \subsubsection*{Response to R2.2}
-We agree with this statement and therefore refrained from interpreting the results at the critical region.\\
-\textcolor{red}{Maybe add sth to manuscript}
+We agree with this statement and therefore refrained from interpreting the results at the critical region. To emphasize this point, we added the following to the manuscript on page \pageref{only_precritical}:\\
+
+\Paste{only_precritical}
 
 \subsection*{Comment R2.3}
 \begin{quote}
@@ -268,7 +324,7 @@ The participants were able to discern the two syntactic conditions at region 8 b
 \newpage
 \Paste{figwhole_sentence}
 
-
+\newpage
 
 
 \subsection*{Comment R2.4}
@@ -277,7 +333,11 @@ The participants were able to discern the two syntactic conditions at region 8 b
 \end{quote}
 
 \subsubsection*{Response to R2.4}
-\textcolor{red}{Emphasize BF results of the interaction}
+We agree with the Reviewer that visual inspection of Figure \ref{fig:whole_sentence} suggests an interaction, but the Bayes factor analysis, i.e., hypothesis testing, provided no evidence for the interaction. See the following text in the manuscript on page \pageref{insig_interaction}:
+
+\Paste{insig_interaction}
+
+We are not discussing the small interaction in the critical region because we refrained from interpreting effects after the pre-critical region due to pre-critical effects (see Response to R2.2).
 
 \subsection*{Comment R2.5}
 \begin{quote}
@@ -290,15 +350,31 @@ The linking hypothesis is that memory retrieval might modulate the N400. Any typ
 \Paste{why_n400} 
 
 \vspace{1em}
-\noindent Following, the argumentation that interference, especially syntactic interference, might influence the P600, we have added analyses of the spatio-temporal P600 window. These new analyses provide evidence against an effect of syntactic interference on the P600 and moderate bordering weak evidence for an effect of semantic interference. We added the following text to the Results and Discussion.
+\noindent Following, the argumentation that interference, especially syntactic interference, might influence the P600, we have added analyses of the spatio-temporal P600 window. These new analyses provide evidence against an effect of syntactic interference on the P600 and moderate bordering weak evidence for an effect of semantic interference. We added the following text to the Results on page \pageref{ERP_results1}:
 
-\textcolor{red}{add p600 results and discussion}
+\Paste{ERP_results1}
 
+\noindent We added the following text to the Results on page \pageref{ERP_results2}:
+
+\Paste{ERP_results2}
+
+\noindent We added the following text to the Results on page \pageref{ERP_results3}:
+
+\Paste{ERP_results3}
+
+
+\noindent We added the following text to the Discussion on page \pageref{ERP_discussion}:
+
+\Paste{ERP_discussion}
+
+\subsection*{Comment R2.6}
 \begin{quote}
 ``7. \textbf{It is noteworthy that the general discussion does not mention or discuss the works showing that hierarchical intervention matters in agreement attraction and that pre-date all the studies mentioned in the several parentheticals. I have in mind Franck et al. 2002, 2006 and 2011, for instance. These works offer a treatment of attraction in terms of intervention and, as far as my knowledge goes, these are the first studies highlighting the crucial role of hierarchical interference effects. While authors mention other papers about agreement attraction, they seem to overlook these particular ones.}''
 \end{quote}
 
-\textcolor{red}{add references}
+We have added the suggested references to page \pageref{franck_refs}:
+
+\Paste{franck_refs}
 
 \section*{Reviewer \#3} 
 \subsection*{Comment R3.1}
@@ -354,7 +430,7 @@ We have created a new subsection in our General Discussion providing an extended
 \end{quote}
 
 \subsubsection*{Response to R3.5}
-To account for practice effects, we have added the centered trial id as a fixed effect as well as by-participant and by-item random slopes to the models analyzing the SPR data. \textcolor{red}{The results did not change considerably.}
+To account for practice effects, we have added the centered trial id as a fixed effect as well as by-participant and by-item random slopes to the models analyzing the SPR data. The result pattern did not change (no syntactic interference or interaction, but a semantic interference effect).
 
 \subsection*{Comment R3.6}
 \begin{quote}
@@ -377,9 +453,13 @@ We have added the following regarding the filler items to the Procedure section 
 \end{quote}
 
 \subsubsection*{Response to R3.7}
-We have added the following text addressing this concern to page \pageref{syn_confounds} of the manuscript:
+We have added the following text addressing the concern regarding the commas to page \pageref{comma} of the manuscript:
 
-\Paste{syn_confounds}
+\Paste{comma}
+
+\noindent Regarding the line break, we have added the following text to page \pageref{linebreak}:
+
+\Paste{linebreak}
 
 
 \subsection*{Comment R3.8}
@@ -390,7 +470,7 @@ Summarizing, I am overall enthusiastic about this study. But I am less sure of h
 \end{quote}
 
 \subsubsection*{Response to R3.8}
-We used the same design as \textcite{vandyke07} and \textcite{mertzen}. We manipulated syntactic interference in the same way as they did. Nevertheless, their data showed syntactic interference and our data do not. Apart from the reasons that we discuss in the manuscript (cross-linguistic differences, power, partially different methods), it is unclear why the results differ between the studies. 
+We used the same design as \textcite{vandyke07} and \textcite{mertzen}. We manipulated syntactic interference in the same way as they did. Nevertheless, their data showed syntactic interference and our data do not. We have extended the discussion of the potential reasons for the differences in results in the manuscript (cross-linguistic differences, different methods, differences in the items, statistical power, inter-individual differences, see below).  it is unclear why the results differ between the studies. 
 
 However, \textcite{mertzen} added an additional distractor to the items which is relevant regarding the subject status of the distractor(s). We had previously not described this in our manuscript, in the revision we have added the following paragraph to page \pageref{items_mertzen}:
 
