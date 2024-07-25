@@ -148,10 +148,10 @@ round(c(mean = mean(trial_eff_spill), quantile(trial_eff_spill, probs = c(.025, 
 
 ### Plot BFs ###
 
-# load region-wise BFs
+# load BFs
 load("BFs_schoknecht.Rda")
 
-# combine
+# prepare
 df.bf_schoknecht$Prior2 <- ifelse(df.bf_schoknecht$Prior == "Normal(0, 0.01)", "N(0, 0.01)", 
                         ifelse(df.bf_schoknecht$Prior == "Normal(0, 0.05)", "N(0, 0.05)", 
                               ("N(0, 0.1)")))
