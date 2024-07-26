@@ -508,42 +508,36 @@ grand average ERPs elicited by the critical verb for all conditions. \textcolor{
 \end{figure}
 
 
-The semantic interference effect is further illustrated in Figure \ref{fig:erp_sem_syn} (a) and (b). Figure \ref{fig:erp_sem_syn} (a) shows that around 400 ms, the critical verb elicited a more negative ERP under high than under low semantic interference. Figure \ref{fig:erp_sem_syn} (b) shows that the topography of the effect is rather broad but with a concentration of more negative values at centro-parietal electrodes. The timing and topography of this effect suggested that it was an N400 effect; thus, the N400 was modulated by semantic interference. \textcolor{blue}{Furthermore, Figure \ref{fig:erp_sem_syn} (a) shows a reduced P600 amplitude for high vs.\ low semantic interference. See Figure X for the topographic distribution of P600 effect.} \Copy{ERP_results2}{In contrast, Figure \ref{fig:erp_sem_syn} (c) and (d) show that syntactic interference did not considerably affect the brain response to the critical verb in \textcolor{blue}{neither the N400 nor P600 spatio-temporal windows}.}\label{ERP_results2} Visual inspection of the ERPs in \ref{fig:erp_sem_syn} (c) does also not suggest that there was a syntactic interference effect in any other time window.
-
+The semantic interference effect is further illustrated in Figure \ref{fig:erp_sem_syn} (a) and (b). Figure \ref{fig:erp_sem_syn} (a) shows that around 400 ms, the critical verb elicited a more negative ERP under high than under low semantic interference. Figure \ref{fig:erp_sem_syn} (b) shows that the topography of the effect is rather broad but with a concentration of more negative values at centro-parietal electrodes. The timing and topography of this effect suggested that it was an N400 effect; thus, the N400 was modulated by semantic interference. \textcolor{blue}{Furthermore, Figure \ref{fig:erp_sem_syn} (a) shows a slightly reduced P600 amplitude for high vs.\ low semantic interference. See Figure \ref{fig:erp_sem_syn} (c) for the topographic distribution of this effect.} \Copy{ERP_results2}{In contrast, Figure \ref{fig:erp_sem_syn} (d), (e) and (f) show that syntactic interference did not considerably affect the brain response to the critical verb in \textcolor{blue}{neither the N400 nor P600 spatio-temporal windows}.}\label{ERP_results2} Visual inspection of the ERPs in \ref{fig:erp_sem_syn} (d) does also not suggest that there was a syntactic interference effect in any other time window.
 
 \begin{figure}[H]
-    \caption{Brain responses elicited by the critical verb. (a) ERPs for semantic interference (word onset at 0\,ms) at electrode Cz. (b) Topographic map of the semantic interference effect (high semantic interference - low semantic interference) in the N400 time window. (c) ERPs for syntactic interference  (word onset at 0\,ms) at electrode Cz. (d) Topographic map of the syntactic interference effect (high syntactic interference - low syntactic interference) in the N400 time window.}
+\caption{Brain responses elicited by the critical verb. (a) ERPs for semantic interference (word onset at 0\,ms) at electrode Cz. Topographic maps of the semantic interference effect (high semantic interference - low semantic interference) in the N400 time window (b) and P600 time window (c). (d) ERPs for syntactic interference  (word onset at 0\,ms) at electrode Cz. Topographic maps of the syntactic interference effect (high syntactic interference - low syntactic interference) in the N400 time window (e) and P600 time window (f).}
     \label{fig:erp_sem_syn}
-    \centering
-         \begin{subfigure}[t]{0.74\textwidth}
-         \centering
-        \caption{}
-         \label{fig:erp_sem_ERP}
-         \includegraphics[width=\textwidth]{images/ERP_animacy_Cz.png}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[t]{0.25\textwidth}
-         \centering
-        \caption{}
-         \label{fig:erp_sem_topo}
-         \includegraphics[width=\textwidth]{images/topo_animate-inanimate_300_500.png}
-     \end{subfigure}
-
-    \begin{subfigure}[t]{0.74\textwidth}
-         \centering
-        \caption{}
-         \label{fig:erp_syn_ERP}
-         \includegraphics[width=\textwidth]{images/ERP_subj_Cz.png}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[t]{0.25\textwidth}
-         \centering
-        \caption{}
-         \label{fig:erp_syn_topo}
-         \includegraphics[width=\textwidth]{images/topo_subj-nsubj_300_500.png}
-     \end{subfigure}
-\end{figure} 
-
+\begin{minipage}{.74\linewidth}
+\centering
+\subfloat[]{\label{fig:erp_sem_ERP}
+\includegraphics[scale=.62]{images/ERP_animacy_Cz.png}}
+\end{minipage}%
+\begin{minipage}{.25\linewidth}
+\centering
+\subfloat[]{\label{fig:erp_sem_topo}\includegraphics[scale=.65]{images/topo_animate-inanimate_300_500.png}}
+\par\medskip
+\centering
+\subfloat[]{\label{fig:erp_sem_topo_p600}\includegraphics[scale=.35]{images/topo_animate-inanimate_600_900.png}}
+\end{minipage}
+\begin{minipage}{.74\linewidth}
+\centering
+\subfloat[]{\label{fig:erp_syn_ERP}
+\includegraphics[scale=.62]{images/ERP_subj_Cz.png}}
+\end{minipage}%
+\begin{minipage}{.25\linewidth}
+\centering
+\subfloat[]{\label{fig:erp_syn_topo}\includegraphics[scale=.65]{images/topo_subj-nsubj_300_500.png}}
+\par\medskip
+\centering
+\subfloat[]{\label{fig:erp_syn_topo_p600}\includegraphics[scale=.35]{images/topo_subj-nsubj_600_900.png}}
+\end{minipage}
+\end{figure}
 
 \paragraph{Hypothesis testing using Bayes factors}
 
@@ -590,7 +584,7 @@ We generated posterior predictive distributions for the effects of interest by f
 
 \Copy{figpriorposteriordata}{
 \begin{figure}[htpb]
-    \caption{Prior and posterior predicted effect sizes on the microvolt scale, i.e., for negative ERPs, for syntactic and semantic interference and their interaction \textcolor{blue}{from three versions of the Lewis and Vasishth (2005) cue-based retrieval mode.}
+    \caption{Prior and posterior predicted effect sizes on the microvolt scale, i.e., for negative ERPs, for syntactic and semantic interference and their interaction \textcolor{blue}{from three versions of the Lewis and Vasishth (2005) cue-based retrieval model.}
     %using the two cues \{$\pm$ subject-in-same-clause\} and \{$\pm$ animate\}. 
     The data with 95 \% credible intervals are shown in red.}\label{fig:model_predictions_ERP}
         \centering
@@ -629,7 +623,8 @@ The modeling reported here suggests that one way to explain the observed pattern
 
 \textcolor{blue}{The Bayes factors for the semantic interference effect consistently provide evidence for the effect in the pre-critical region. In the critical region, most experiments provide evidence against semantic interference, the two self-paced reading experiments, being the exceptions, provide evidence for the effect. In the spill-over region, the Bayes factor results for semantic interference are mixed: the two self-paced reading experiments provide extremely strong evidence for the effect, two of the eye-tracking experiments provide weak evidence for the effect and two other eye-tracking experiments provide evidence against the effect. Importantly, the clustering in the results does neither align with the investigated language nor with the authors of the studies.}
 
-\textcolor{blue}{The Bayes factors for the interaction in all regions are rather consistent between studies and are either inconclusive or provide evidence against the interaction. The only exception is the very large Bayes factor in favor of the effect for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 1. In sum, while the present and previous studies show comparable region-wise results for semantic interference and the interaction, they differ remarkably regarding syntactic interference in the pre-critical and critical region. In the pre-critical region, the present study is the obvious outlier, being the only study to provide evidence against the effect. In the critical region, four of the investigated experiments show either weak evidence for or weak evidence against syntactic interference, but there are two outliers: \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 2 provided extreme evidence for the effect and the present study provided strong evidence against it. In conclusion, the most remarkable difference between the present study and previous findings concerns syntactic interference in the pre-critical region.}}
+\textcolor{blue}{The Bayes factors for the interaction in all regions are rather consistent between studies and are either inconclusive or provide evidence against the interaction. The only exception is the very large Bayes factor in favor of the effect for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 1. In sum, while the present and previous studies show comparable region-wise results for semantic interference and the interaction, they differ remarkably regarding syntactic interference in the pre-critical and critical region. In the pre-critical region, the present study is the obvious outlier, being the only study to provide evidence against the effect. In the critical region, four of the investigated experiments show either weak evidence for or weak evidence against syntactic interference, but there are two outliers: \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 2 provided extreme evidence for the effect and the present study provided strong evidence against it. In conclusion, the most remarkable difference between the present study and previous findings concerns syntactic interference in the pre-critical region.}
+}
 
 \textcolor{blue}{The lack of syntactic interference in the pre-critical region in the present study compared to the previous studies could be explained by differences in i) methodology, ii) items and/or iii) statistical power. We discuss each of these differences in turn.}
 
@@ -684,8 +679,9 @@ it is reasonable to assume that the semantic interference effect observed at the
 
 \subsection{Relation to other sentence processing accounts}
 
-The evidence against a main effect of syntactic interference for subject-verb dependency resolution in our study is not consistent with the assumption in previous work, e.g., \textcite{vandyke07,mertzen}, that the parser searches for a subject simply by setting the retrieval cue \{$\pm$ grammatical subject\}.
-  However, the semantic interference effect we found can be easily reconciled with previous work in  sentence processing. In the modeling section above, we have already discussed how our results relate to predictions from the \citet{Lewis2005} cue-based retrieval model.  
+The evidence against a main effect of syntactic interference for subject-verb dependency resolution in our study is not consistent with the assumption in previous work, e.g., \textcite{vandyke07,mertzen}, that the parser searches for a subject simply by setting the retrieval cue \{$\pm$ grammatical subject\}. \Copy{future_work}{\textcolor{blue}{A future avenue of research could be to find out what an appropriate syntactic manipulation would be to consistently trigger syntactic interference. This future work should utilize the findings from the literature on agreement attraction which has shown that the hierarchical position of the distractor can determine whether or not it affects processing \citep{franck2002subject, franck2006agreement, franck2020hierarchical, parker2018not}.}}\label{future_work} 
+
+However, the semantic interference effect we found can be easily reconciled with previous work in  sentence processing. In the modeling section above, we have already discussed how our results relate to predictions from the \citet{Lewis2005} cue-based retrieval model.  
  Our results could also be seen as consistent with the good-enough processing account \citep{ferreira2007goodenough}, which assumes that comprehenders do not always aim to build a fully fleshed-out analysis of a sentence, but instead might accept incomplete, underspecified, or even incorrect analyses. The high number of participants that needed to be excluded in our experiments due to accuracy below 70\,\% (117 out of 908 participants in the SPR experiment, 29 out of 146 participants in the EEG experiment), suggests that our materials led to high processing demands. It is reasonable to assume that the participants might have -- at least occasionally -- adopted a good-enough processing mode when faced with high task demands \parencite{swets2008underspecification,LogacevMultiple,LogacevVasishthQJEP2016} or due to working memory capacity limitations \parencite{MalsburgVasishth2013}, or both. So, given a good-enough processing mode which leaves some syntactic relations within the sentence underspecified, it makes sense for the comprehender to use a simple heuristic for subject-verb dependency resolution. Animacy is an obvious choice for such a heuristic. Animate entities are proto-typical agents \citep{dowty1991thematic} and therefore, the primary use of the \{+ animate\} cue to retrieve a subject leads to the correct analysis with high probability (not just within the experiment context, but also in everyday language use). 
  
 Finally, our findings are also consistent with the possibility that language processing relies predominantly on semantic associations to form (probabilistic)
