@@ -19,6 +19,8 @@ mne.set_log_level('WARNING')
 epochs_for_export = list()
 export_prestim = list()
 export_n400 = list()
+export_p600 = list()
+
 
 
 # create list of epochs files
@@ -54,19 +56,26 @@ for file in epoch_files:
     n400 = n400_upper[n400_upper['time'] >= 0.3]
     #n400.to_csv('Pandora_verb_n400.csv', sep=',', index=False)
     
+    p600_upper = df3_epo[df3_epo['time'] <= 0.9]
+    p600 = p600_upper[p600_upper['time'] >= 0.6]
+    
     export_prestim.append(prestim)
     export_n400.append(n400)
+    export_p600.append(p600)
 
 
 # concatenate epochs for export   
 #df_epochs=pd.concat(epochs_for_export, ignore_index=False)
 export_prestim_all=pd.concat(export_prestim, ignore_index=False)
 export_n400_all=pd.concat(export_n400, ignore_index=False)
+export_p600_all=pd.concat(export_p600, ignore_index=False)
 
 
 #save 
 export_prestim_all.to_csv('Pandora_prestim.csv',sep=',', index=False)
 export_n400_all.to_csv('Pandora_300_500.csv',sep=',', index=False)
+export_p600_all.to_csv('Pandora_600_900.csv',sep=',', index=False)
+
 
 ### tidy up columns of single trial df (df_epochs)
 #columns = list(df_epochs)
@@ -78,9 +87,3 @@ export_n400_all.to_csv('Pandora_300_500.csv',sep=',', index=False)
 #df2_epo.drop(columns = ['condition', 'subject', 'exp', 'epoch', 'ch_type'], inplace=True)
 #df3_epo = df2_epo.round(decimals=4)
 #df_epochs.to_csv('Pandora_verb_sampling.csv', sep=',', index=False)
-
-
-
-# look at new triggers
-#with np.printoptions(threshold=np.inf):
-#    print(events)
