@@ -62,7 +62,7 @@ In sum, this large-sample study of German using self-paced reading and event-rel
 
 \section{Introduction}
 
-It is well-established in sentence processing that completing linguistic dependencies requires memory retrieval. As an example, consider 
+\Copy{intro}{It is well-established in sentence processing that completing linguistic dependencies requires memory retrieval \textcolor{blue}{\parencite[see e.g., ][]{lewis06}}. As an example, consider 
 (\ref{ex:1_vandyke07}).
 
 \begin{exe}[ht]
@@ -70,7 +70,7 @@ It is well-established in sentence processing that completing linguistic depende
 The worker was surprised that the resident who was living near the dangerous warehouse was complaining about the investigation. \parencite{vandyke07}
 \end{exe}
 
-There is clear evidence in the literature  \parencite[e.g.,][]{jaeger_etal_2020, nicenboim, vandyke_mcelree06, vandyke_lewis03} that, at the verb \textit{was complaining}, it is necessary to retrieve the subject \textit{the resident} from memory in order to interpret who did what to whom. A widely-held assumption is that such memory retrievals during sentence comprehension are guided by retrieval cues. 
+There is clear evidence in the literature  \parencite[e.g.,][]{jaeger_etal_2020, nicenboim, vandyke_mcelree06, vandyke_lewis03} that, at the verb \textit{was complaining}, it is necessary to retrieve the subject \textit{the resident} from memory in order to interpret who did what to whom. A widely-held assumption is that such memory retrievals during sentence comprehension are guided by retrieval cues \textcolor{blue}{\citep{Lewis2005, mcelree}}.}\label{intro}
 
 Here, we consider two kinds of cues used in retrieval: semantic and  syntactic cues.
 In a sentence like (\ref{ex:1_vandyke07}), the retrieval cues generated at the verb are standardly assumed \parencite[e.g.,][]{vandyke07} to include at least the semantic cue \{+animate\} and the syntactic cue \{+grammatical subject\}. These cues pick out the target noun \textit{the resident} as the subject. The distractor \textit{warehouse}, intervening between subject and verb, does not match either of these retrieval cues. However, if the distractor were \textit{neighbor} instead of \textit{warehouse}, then it would match the \{+animate\} cue at the verb. This overlap in cues between the target noun and the distractor is called cue-overload in cue-based retrieval accounts, and is predicted to trigger semantic interference, which expresses itself as greater processing time at the verb compared to the baseline condition (\ref{ex:1_vandyke07}).
@@ -236,12 +236,6 @@ In order to quantify the uncertainty on the parameters of interest, we report 95
 These intervals represent the range over which we can be 95\% certain that the values of the parameter lies, given the statistical model and the data. However, formal hypothesis testing cannot be carried out without a likelihood ratio test that compares two alternative models \parencite{schad_etal_2022_BF,Royall}. For this reason, formal hypothesis tests for the presence or absence of the effects of interest were carried out using Bayes factors. Because Bayes factors can be very sensitive to prior specifications on the target parameter being tested \parencite{schad_etal_2022_BF}, 
 we report a sensitivity analysis using a range of prior specifications for the relevant parameters (see Table \ref{tab:spr_priors}). The priors assume a priori effect sizes for the main effects of syntactic and semantic interference, and their interaction, \textcolor{blue}{ranging from -8 to 8 ms, -40 to 40 ms, or -81 to 81 ms. These priors are based on the observed sizes of effects and uncertainties in previous reading studies that use the present design \parencite{vandyke07,mertzen}, and on meta-analyses relating to interference effects \parencite{jaeger_etal_2017}.} 
 
-\textcolor{blue}{Bayes factors were computed using the Savage-Dickey density ratio method. A Bayesian hypothesis test for which the posterior density is devided by the prior density at a specific parameter value of interest, e.g., zero \citep{wagenmakers_savagedickey, vuorre2017_savagedickey, dickey1970}.} The Bayes factor is often written as $BF_{10}$. \textcolor{blue}{To obtain $BF_{10}$ from the Savage-Dickey density ratio, we take its inverse.} One major advantage of the Bayes factor over \textcolor{blue}{frequentist ANOVA or likelihood ratio tests} is that it takes the uncertainty of the parameters into account. This leads to more conservative inferences compared to frequentist ANOVA, which only takes the maximum likelihood estimate of the parameter into account \parencite[see][for detailed discussion]{schad_etal_2022_BF}. Another important advantage of the Bayes factor -- one that is very relevant for the present work -- is that it is possible to find evidence for or against an effect. This stands in contrast to the frequentist ANOVA which, in its standard usage, is designed to only furnish evidence against the null. 
-
-Bayes factors can be interpreted as follows \parencite[e.g., ][]{lee2014bayesian}: if BF$_{10}$ > 1, it provides evidence in favor of the effect of interest. If BF$_{10}$ < 1, it provides evidence \textcolor{blue}{against the effect of interest}. The larger the value of BF$_{10}$, the stronger the evidence for the effect and the smaller the value of BF$_{10}$ is, the stronger the evidence \textcolor{blue}{against the effect of interest}. 
-In general, a large number of iterations is needed in the brms package in order to obtain stable estimates of the Bayes factor  \citep{schad_etal_2022_BF}.
-For this reason, models were run with four chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being discarded as the warm-up phase.
-
 \begin{table}[h]
     \caption{Priors used for the analysis of the self-paced reading time data. The standard deviation of the fixed-effects slope priors was varied in order to conduct a Bayes factor sensitivity analysis following \citet{schad_etal_2022_BF}. See the corresponding assumed a priori range of the difference between reading times under high vs.\ low interference on the millisecond scale.}
     \label{tab:spr_priors}
@@ -261,6 +255,36 @@ For this reason, models were run with four chains and 20,000 iterations in each 
   \bottomrule
   \end{tabular}
   \end{table}
+
+\textcolor{blue}{Bayes factors were computed using the Savage-Dickey density ratio method. A Bayesian hypothesis test for which the posterior density is devided by the prior density at a specific parameter value of interest, e.g., zero \citep{wagenmakers_savagedickey, vuorre2017_savagedickey, dickey1970}.} The Bayes factor is often written as $BF_{10}$. \textcolor{blue}{To obtain $BF_{10}$ from the Savage-Dickey density ratio, we take its inverse.} One major advantage of the Bayes factor over \textcolor{blue}{frequentist ANOVA or likelihood ratio tests} is that it takes the uncertainty of the parameters into account. This leads to more conservative inferences compared to frequentist ANOVA, which only takes the maximum likelihood estimate of the parameter into account \parencite[see][for detailed discussion]{schad_etal_2022_BF}. Another important advantage of the Bayes factor -- one that is very relevant for the present work -- is that it is possible to find evidence for or against an effect. This stands in contrast to the frequentist ANOVA which, in its standard usage, is designed to only furnish evidence against the null. 
+
+Bayes factors can be interpreted as follows \parencite[e.g., ][]{lee2014bayesian}: if BF$_{10}$ > 1, it provides evidence in favor of the effect of interest. If BF$_{10}$ < 1, it provides evidence \textcolor{blue}{against the effect of interest}. The larger the value of BF$_{10}$, the stronger the evidence for the effect and the smaller the value of BF$_{10}$ is, the stronger the evidence \textcolor{blue}{against the effect of interest (see Table \ref{tab:bf_interpretation})}. 
+In general, a large number of iterations is needed in the brms package in order to obtain stable estimates of the Bayes factor  \citep{schad_etal_2022_BF}.
+For this reason, models were run with four chains and 20,000 iterations in each chain, with the first 2,000 iterations in each chain being discarded as the warm-up phase.
+
+\begin{table}[h]
+    \centering
+    \caption{Interpretation of Bayes factors \parencite{lee2014bayesian}.}
+    \label{tab:bf_interpretation}
+    \begin{tabular}{cc}
+    \toprule
+    BF$_{10}$ & Interpretation \\
+    \midrule
+$>$ 100 & extreme evidence for the effect\\
+30 - 100 & very strong evidence for the effect\\
+10 - 30 & strong evidence for the effect\\
+3 - 10 & moderate evidence for the effect\\
+1 - 3 &	anecdotal evidence for the effect\\
+1  &	no evidence\\
+1 - 0.3 & anecdotal evidence against the effect\\
+0.3 - 0.1 & moderate evidence against the effect\\
+0.1 - 0.03 & strong evidence against the effect\\
+0.03 - 0.001 & very strong evidence against the effect\\
+$<$ 0.001 & extreme evidence against the effect\\
+\bottomrule
+    \end{tabular}
+\end{table}
+
 
 \subsection{Results}
 \subsubsection{Comprehension question accuracy (Experiments 1a and 1b combined)}
