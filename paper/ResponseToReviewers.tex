@@ -158,7 +158,10 @@ Taken these Bayes factor results together (at best anecdotal evidence for small 
 \end{quote}
 
 \subsection*{Response to E.3}
-\textcolor{red}{??}
+Our work is situated in the cue-based retrieval framework which has been built over the last decades \citep{Lewis2005, nairne, mcelree}. Its main assumption is that sentence processing relies on skilled memory processes, with a focus on memory retrieval. We built on this assumption and focus on the question which specific retrieval cues are being used during subject-verb dependency processing. Our findings showed that the retrieval cues generated at the verb are highly specific (including hierarchical syntactic information) and can successfully identify the subject as the retrieval target. Therefore, the present findings further support the assumption that sentence processing relies on skilled memory retrieval. We have added the following text to the General Discussion on page \textcolor{red}{X} to emphasize this point:
+
+\textcolor{red}{Add something to GenDisc after modeling is done}
+
 
 \subsection*{Comment E.4}
 \begin{quote}
@@ -199,17 +202,18 @@ The reviewer is right. The Lewis and Vasishth (2005) model is a model of memory 
 ``2. Match of the model and data: The interpretation is set in such a way that only semantic interference, but no syntactic interference or interaction are predicted. This is achieved by hard-coding that the syntactic cue selects the target and nothing else. I find this problematic. For the modeling results of the current experiment, in Figure 11 it seems that the syntactic interference and interaction are underpredicted by the model - not by much, but they are. While the model predicts no effect, the data do show an effect, be it small (btw, it is hard to read this figure because of the chosen scale; \textbf{it would be much better to zoom in and show for example 0-30 ms scale for the reading study 0 to -1 microvolt scale for the EEG study)}.''\end{quote}
 
 \subsubsection*{Response to R1.2}
-We have re-done the Figure to reflect our revised modeling. We hope that the scale of the new Figure \ref{fig:model_predictions_ERP} is easier to read:
-
-\Paste{figpriorposteriordata}
-
+We have re-done the Figure to reflect our revised modeling. We hope that the scale of the new Figure \ref{fig:model_predictions_ERP} is easier to read (see below in our Response to R1.3).
 
 \subsection*{Comment R1.3}
 \begin{quote}
 ``In my reading, the discrepancy mainly comes from the fact that the decision to neglect syntactic interference is based on Bayes factors (see also below), but when matching the model predictions to actual results (p. 39-42), the match is done on posterior distributions, which do show a positive effect of interaction (the self-paced reading study) and an effect of syntactic interference (the self-paced reading study and the EEG study). \textbf{I think what the authors could do to at least partially address this issue is to be more explicit about model comparisons. They could leverage their use of Bayes factors to compare different computational models - the one proposed in this paper, which hard-codes that only the syntactic target is selected, the one based on Mertzen et al., possibly with varying priors, and, possibly, a null model which does not predict any interference (e.g., it hard-codes that only the target is retrieved).}''\end{quote}
 
 \subsubsection*{Response to R1.3}
-\textcolor{red}{Do k-fold crossvalidation of computational models of ERP data}
+As suggested, we have implemented a null model (no interference), leaving us with a total of three computational models (the null model, the three-cues model by \textcite{mertzen} and our newly proposed two-cues model). To quantitatively compare the performance of these models, we have used a likelihood-free k-fold cross-validation approach developed by \textcite{Yadavetal2022}. The result of this model comparison is that \textcolor{red}{XXXX}. We have described the new modeling and model comparisons starting page \pageref{modeling}:
+
+\Paste{modeling}
+
+\newpage
 
 \subsection*{Comment R1.4}
 \begin{quote}
@@ -223,6 +227,7 @@ region, while our study did not. The following description of the estimates and 
 
 \Paste{comparison}
 
+\newpage
 
 \subsection*{Comment R1.5}
 \begin{quote}
@@ -235,14 +240,14 @@ About why our results diverge from previous studies' and whether we
 think our results are correct and the previous work is not, we have no
 position on this. We are simply reporting what we found. Contradictory
 results have been reported for many phenomena: e.g., reflexives
-processing, main verb/reduced relative garden paths, predictive
-parsing effects, local coherence \textcolor{red}{add refs}. The
+processing \citep{jaeger_etal_2020}, main verb/reduced relative garden paths (\textcolor{red}{REF?}), predictive
+parsing effects \citep{nieuwland_etal_2018}, local coherence \citep{lcpaape2023}. The
 only way to resolve these many contradictions in the literature is by
 carrying out adequately powered studies in the future that can
 distinguish between the theoretical claims.  Our work does not stand
-out as an anomaly; if anything, it's quite the opposite.
+out as an anomaly; if anything, it's quite the opposite. We have added a discussion of divergent results in the literature to page \pageref{not_an_anomaly} in the General Discussion:
 
-\textcolor{red}{add something to paper}
+\Paste{not_an_anomaly}
 
 \subsection*{Comment R1.6}
 \begin{quote}
@@ -258,6 +263,7 @@ co-predictor and find that there is still evidence for semantic interference. We
 
 \Paste{plausib_anim_inan}
 
+\newpage
 
 \subsection*{Comment R1.7}
 \begin{quote}
@@ -325,7 +331,7 @@ These are completely different structures with even different word orders. As a 
 \end{quote}
 
 \subsubsection*{Response to R2.1}
-We believe that we have addressed this concern in our Response to E.1. We summarize our response here: We have used a well-studied design that was previously published in a couple of journals, e.g., JEP:LMC. The previously published studies use exactly the same design, specifically the same syntactic retrieval cue, and found effects of syntactic interference \citep{vandyke07,mertzen}. While the syntactic manipulation in the present design might not be appropriate, it was previously claimed in publications that this design leads to syntactic interference. Our results are a valuable contribution to the literature on syntactic interference as they serve as an important counterpoint to the previously published claims \citep{vandyke07, mertzen}. The question which exact syntactic manipulation leads to interference could be the research focus of future work, but it is outside of the scope of the present manuscript. 
+We believe that we have addressed this concern in our Response to E.1. We summarize our response here: We have used a well-studied design that was previously published in a couple of journals, e.g., JEP:LMC. The previously published studies used exactly the same design, specifically the same syntactic retrieval cue, and found effects of syntactic interference \citep{vandyke07,mertzen}. While the syntactic manipulation in the present design might not be appropriate, it was previously claimed in publications that this design leads to syntactic interference. Our results are a valuable contribution to the literature on syntactic interference as they serve as an important counterpoint to the previously published claims \citep{vandyke07, mertzen}. The question which exact syntactic manipulation leads to interference could be the research focus of future work, but it is outside of the scope of the present manuscript. 
 
 
 \subsection*{Comment R2.2}
@@ -345,11 +351,12 @@ We agree with this statement and therefore refrained from interpreting the resul
 
 \subsubsection*{Response to R2.3}
 The participants were able to discern the two syntactic conditions at region 8 because this is the region were the conditions started to differ (`\dots der erzählt hatte \dots' vs.\ `\dots der von dem \dots'). We have added the words of an example item as x-axis labels to Figure \ref{fig:whole_sentence} on page \pageref{fig:whole_sentence} to illustrate this clearly. For convenience, we paste the Figure here:
-\newpage
+
+\setcounter{figure}{2}
+
 \Paste{figwhole_sentence}
 
 \newpage
-
 
 \subsection*{Comment R2.4}
 \begin{quote}
@@ -405,13 +412,13 @@ We agree that this line of work is highly relevant for our paper. We have added 
 \section*{Reviewer \#3} 
 \subsection*{Comment R3.1}
 \begin{quote}
-``This article describes two experiments that test whether comprehension of subject-verb relations in complex sentences (in German) is disrupted by the presence of irrelevant-but-tempting nearby noun phrases. The temptation is due either to semantic properties ("good fit to the verb") or syntactic properties ("looks like a subject"). The key finding from both experiments is that semantic temptation effects are clear, while syntactic temptation effects are largely absent. The authors interpret this contrast as evidence for specific types of features used in sentence encoding and retrieval operations that should prevent effects of syntactic interference, i.e., if encountering a verb induces retrieval of "subject of the same clause", then the subject of a different clause shouldn't interfere.
+``This article describes two experiments that test whether comprehension of subject-verb relations in complex sentences (in German) is disrupted by the presence of irrelevant-but-tempting nearby noun phrases. The temptation is due either to semantic properties (``good fit to the verb") or syntactic properties (``looks like a subject"). The key finding from both experiments is that semantic temptation effects are clear, while syntactic temptation effects are largely absent. The authors interpret this contrast as evidence for specific types of features used in sentence encoding and retrieval operations that should prevent effects of syntactic interference, i.e., if encountering a verb induces retrieval of ``subject of the same clause", then the subject of a different clause shouldn't interfere.
 
 The design of the current studies repeats a design used in previous studies in German and other languages. The more novel aspects of the current studies are the use of the ERP measure, and the inclusion of a very large number of participants, allowing for more precise estimates of the syntactic and semantic interference effects. The quantitative analyses are characteristically thorough and careful.
 
 I would support publication in JML. But I think that the paper would be stronger if there was fuller engagement with the range of possible reasons for the observed effects. This covers (i) mechanisms that could capture the lack of a syntactic interference effect, and (ii) reasons for differences between the current study and others where a syntactic interference effect was found.
 
-The authors attribute the lack of a syntactic interference effect to the use of a syntactic feature like "subject of the same clause", which has the effect that a subject of a different clause does not count as similar to the retrieval cue. This gives a special status to the correct subject via the choice of retrieval cues. \textbf{There may be other ways of giving special status to the correct subject, and thereby capturing the lack of syntactic interference. For example, if the subject of the current clause is encoded in a special status, e.g., with boosted activation, or with its needs prioritized, then this could have a similar effect.}''
+The authors attribute the lack of a syntactic interference effect to the use of a syntactic feature like ``subject of the same clause", which has the effect that a subject of a different clause does not count as similar to the retrieval cue. This gives a special status to the correct subject via the choice of retrieval cues. \textbf{There may be other ways of giving special status to the correct subject, and thereby capturing the lack of syntactic interference. For example, if the subject of the current clause is encoded in a special status, e.g., with boosted activation, or with its needs prioritized, then this could have a similar effect.}''
 \end{quote}
 
 \subsubsection*{Response to R3.1}
@@ -419,7 +426,7 @@ The authors attribute the lack of a syntactic interference effect to the use of 
 
 \subsection*{Comment R3.2}
 \begin{quote}
-``The use of a feature like "subject of the same clause" calls for some further discussion, since, taken literally, this is not a likely feature of a subject phrase in memory. Features like "animate" or "plural" are inherent properties of an item in memory, but "subject of the same clause" is not. \textbf{I imagine that what the authors have in mind is that comprehenders assign a clause index to each individual piece of structure as they parse a sentence. Then, when they encounter a verb, they could identify the current clause index, e.g., "3", and then embed that in a retrieval cue, e.g., "subject of clause 3". This is a fine way to introduce a limited amount of relational information into a structural encoding. But note that it means that a good deal of work is now done by the mechanism that continually tracks clause indices and keeps track of the index of the current clause. So, it amounts to a mechanism that does more than simply elaborate the choice of retrieval cues at the verb.}''
+``The use of a feature like ``subject of the same clause" calls for some further discussion, since, taken literally, this is not a likely feature of a subject phrase in memory. Features like ``animate" or ``plural" are inherent properties of an item in memory, but ``subject of the same clause" is not. \textbf{I imagine that what the authors have in mind is that comprehenders assign a clause index to each individual piece of structure as they parse a sentence. Then, when they encounter a verb, they could identify the current clause index, e.g., ``3", and then embed that in a retrieval cue, e.g., ``subject of clause 3". This is a fine way to introduce a limited amount of relational information into a structural encoding. But note that it means that a good deal of work is now done by the mechanism that continually tracks clause indices and keeps track of the index of the current clause. So, it amounts to a mechanism that does more than simply elaborate the choice of retrieval cues at the verb.}''
 \end{quote}
 
 \subsubsection*{Response to R3.2}
@@ -427,7 +434,7 @@ The authors attribute the lack of a syntactic interference effect to the use of 
 
 \subsection*{Comment R3.3}
 \begin{quote}
-``\textbf{I also have some questions or reservations about the account of semantic interference effects in terms of features like [+animate]. This is a straightforward enough feature to invoke, and it is a plausible content feature for noun phrases. But I am less sure how well it generalizes. There are many situations in which verb-noun combinations are intuitively a good fit, but where it is less easily cast in terms of features and retrieval cues. For example, we share the intuition that "the teacher drove …" is a better combination than "the little boy drove …", because teachers are plausible drivers, whereas small children are not. This is less easily captured in terms of features and retrieval cues. Maybe the verb "drive" wants a subject with a [+driver] feature. But is this plausibly something that is part of the memory encoding of "teacher" but not "little boy"? Does this require something more than a toy theory of semantic encoding? Or does it predict that only simple features like [+animate] are able to cause semantic interference?}''
+``\textbf{I also have some questions or reservations about the account of semantic interference effects in terms of features like [+animate]. This is a straightforward enough feature to invoke, and it is a plausible content feature for noun phrases. But I am less sure how well it generalizes. There are many situations in which verb-noun combinations are intuitively a good fit, but where it is less easily cast in terms of features and retrieval cues. For example, we share the intuition that ``the teacher drove …" is a better combination than ``the little boy drove …", because teachers are plausible drivers, whereas small children are not. This is less easily captured in terms of features and retrieval cues. Maybe the verb ``drive" wants a subject with a [+driver] feature. But is this plausibly something that is part of the memory encoding of "teacher" but not ``little boy"? Does this require something more than a toy theory of semantic encoding? Or does it predict that only simple features like [+animate] are able to cause semantic interference?}''
 \end{quote}
 
 
