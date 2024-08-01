@@ -93,7 +93,7 @@ Reviewer 2 primarily raised concerns regarding our experimental design. In respo
 
 Reviewer 3 suggested a more in-depth discussion of the mechanisms of cue-based retrieval and had some concerns about our methodology. We have added a more detailed discussion of the memory mechanisms which are assumed to underlie sentence processing in the present design. We have added a thorough discussion of all concerns which were raised regarding our methodology. 
 
-Below, we separately address each comment from the reviewers. All changes have been highlighted in the revised manuscript. The actionable parts of the comments from the reviewers and yourself are highlighted in bold.
+Below, we separately address each comment from the reviewers and yourself. All changes have been highlighted in the revised manuscript. The actionable parts of the comments are highlighted in bold.
 
 \vskip 1em
 \noindent Sincerely,
@@ -426,7 +426,7 @@ The authors attribute the lack of a syntactic interference effect to the use of 
 \end{quote}
 
 \subsubsection*{Response to R3.1}
-\textcolor{red}{??}
+It is possible that the subject of the current clause receives an activation boost but the mechanism for that is not trivial. Let's assume that the subject is encoded with boosted activation compared to for example an object. As the sentence progresses the subject's activation decays (we could even assume that it decays more slowly than other memory representations due to its special status) and other nouns are processed / encoded. At one point within a long sentence, the subject's activation will be lower than the activation of other nouns in memory. If we assume that a long sentence has multiple embedded sentences, we would need to assume that either the matrix sentence subject activation is downgraded when an embedded sentence is entered or that the embedded sentence subject gets an even higher activation boost than the matrix sentence subject. Then when the embedded sentence is finished and we return back to the matrix sentence, the matrix sentence subject would need to receive another activation boost to return to its special status. Essentially, this proposal condenses down to a clause tracking mechanism with a modulation of activation levels. We think it is more parsimonious to implement the clause tracking in the memory encoding and retrieval operations than the activation levels. 
 
 \subsection*{Comment R3.2}
 \begin{quote}
@@ -434,7 +434,11 @@ The authors attribute the lack of a syntactic interference effect to the use of 
 \end{quote}
 
 \subsubsection*{Response to R3.2}
-\textcolor{red}{??}
+The Reviewer is correct, our proposal that hierarchical syntactic structure is used during retrieval relies on the general assumption that hierarchical syntactic structure is being tracked. We think that this can easily be represented in encodings and then be used during retrieval. We have added a more explicit description of this underlying mechanism to page \pageref{clause_tracker}:
+
+\Paste{clause_tracker}
+
+
 
 \subsection*{Comment R3.3}
 \begin{quote}
@@ -468,7 +472,9 @@ distinguish between theoretical claims. The replication crisis \citep{openscienc
 \end{quote}
 
 \subsubsection*{Response to R3.5}
-To account for practice effects, we have added the centered trial id as a fixed effect as well as by-participant and by-item random slopes to the models analyzing the SPR data. The result pattern did not change (no syntactic interference or interaction, but a semantic interference effect).
+To account for practice effects, we have added the centered trial id as a fixed effect as well as by-participant and by-item random slopes to the models analyzing the SPR data. Theoretically, participants could either speed up or slow down (or do not change their reading speed) over the course of the experiment. Therefore, a symmetrical prior on the slope of trial id (effect could be positive, negative or zero) is the most reasonable. We decided to use a Normal(0, 0.1) prior on the trial id slope in all models, a priori assuming effects up to $\pm$ 81\,ms. For the first trial in the experiment to the last trial, participants actually sped up drastically: Reading times in the regions of interest decreased by on average around 250\,ms. 
+
+It is not possible to use symmetrical priors (for trial id) and directional priors (which we had used originally for the effects of interest to reflect longer reading times in high interference conditions) within the same brms model \citep{brms}. So in the revised analyses, we now use symmetrical priors on all slopes which are a priori agnostic regarding the sign of the effect. To ensure consistency in our analyses and comparability between the analyses, we changed all our analyses (SPR and ERP data) to use symmetrical priors. These revised analyses have produced the same result pattern as our previous analyses (no syntactic interference or interaction, but a semantic interference effect).
 
 \subsection*{Comment R3.6}
 \begin{quote}
