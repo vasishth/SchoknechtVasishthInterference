@@ -130,6 +130,15 @@ precrit_plausib$c_rating <- precrit_plausib$value - mean(precrit_plausib$value)
 
 
 # priors
+priors_s <- c(
+  prior(normal(6, 0.6), class = Intercept),
+  prior(normal(0, 0.01), class = b, coef="sem"),
+  prior(normal(0, 0.1),  class = b, coef="c_trial"),
+  prior(normal(0, 0.1),  class = b, coef="c_rating"),
+  prior(normal(0, 0.5), class = sigma),
+  prior(normal(0, 0.1), class = sd)
+)
+
 priors_m <- c(
   prior(normal(6, 0.6), class = Intercept),
   prior(normal(0, 0.05), class = b, coef="sem"),
@@ -139,8 +148,32 @@ priors_m <- c(
   prior(normal(0, 0.1), class = sd)
 ) 
 
+priors_l <- c(
+  prior(normal(6, 0.6), class = Intercept),
+  prior(normal(0, 0.1), class = b, coef="sem"),
+  prior(normal(0, 0.1),  class = b, coef="c_trial"),
+  prior(normal(0, 0.1),  class = b, coef="c_rating"),
+  prior(normal(0, 0.5), class = sigma),
+  prior(normal(0, 0.1), class = sd)
+) 
 
-# model
+
+# models
+m_s_full <- brm(rt ~ 1 +  sem * c_trial * c_rating +
+                  (1 + sem * c_trial * c_rating || participant) +
+                  (1 + sem * c_trial || item),
+                data = precrit_plausib,
+                family = lognormal(),
+                prior = priors_s,
+                warmup = 2000,
+                iter = 20000,
+                cores = 4,
+                save_pars = save_pars(all = TRUE),
+                sample_prior="yes",
+                control = list(adapt_delta = 0.9)
+)
+save(m_s_full, file = paste("Fit_s_Full_precrit_plausibility_c_rating_s.Rda"))
+
 m_m_full <- brm(rt ~ 1 +  sem * c_trial * c_rating +
                   (1 + sem * c_trial * c_rating || participant) +
                   (1 + sem * c_trial || item),
@@ -155,7 +188,26 @@ m_m_full <- brm(rt ~ 1 +  sem * c_trial * c_rating +
                 control = list(adapt_delta = 0.9) 
 )
 save(m_m_full, file = paste("Fit_m_Full_precrit_plausibility_c_rating.Rda"))
+
+m_l_full <- brm(rt ~ 1 +  sem * c_trial * c_rating +
+                  (1 + sem * c_trial * c_rating || participant) +
+                  (1 + sem * c_trial || item),
+                data = precrit_plausib,
+                family = lognormal(),
+                prior = priors_l,
+                warmup = 2000,
+                iter = 20000,
+                cores = 4,
+                save_pars = save_pars(all = TRUE),
+                sample_prior="yes",
+                control = list(adapt_delta = 0.9) 
+)
+save(m_l_full, file = paste("Fit_l_Full_precrit_plausibility_c_rating_l.Rda"))
+
+# load models
+load("Fit_s_Full_precrit_plausibility_c_rating_s.Rda")
 load("Fit_m_Full_precrit_plausibility_c_rating.Rda")
+load("Fit_l_Full_precrit_plausibility_c_rating_l.Rda")
  
 ## Posterior predictive check
 pp_check(m_m_full, ndraws = 100, type = "dens_overlay")
@@ -203,17 +255,48 @@ posteriors_precrit <- mcmc_areas(
   annotate("text", x = -20, y = 1.7, label = "-22 — -4 — 14", size=3) 
 ggsave("posteriors_spr_pooled_774_plausibility.png", width = 12, height = 10, units = "cm", dpi=300)
 
-                
+
 # bayes factors
 # semantic
+
+#small prior
+h <- hypothesis(m_s_full, "sem = 0")
+1 / h$hypothesis$Evid.Ratio
+
+#medium prior
 h <- hypothesis(m_m_full, "sem = 0")
 1 / h$hypothesis$Evid.Ratio
 
+#large prior
+h <- hypothesis(m_l_full, "sem = 0")
+1 / h$hypothesis$Evid.Ratio
+
 # plausibility rating
+#small prior
+h <- hypothesis(m_s_full, "c_rating = 0")
+1 / h$hypothesis$Evid.Ratio
+
+#medium prior
 h <- hypothesis(m_m_full, "c_rating = 0")
 1 / h$hypothesis$Evid.Ratio
 
+#large prior
+h <- hypothesis(m_l_full, "c_rating = 0")
+1 / h$hypothesis$Evid.Ratio
+
+
 # sem x plausibility rating interaction
+#small prior
+h <- hypothesis(m_s_full, "sem:c_rating = 0")
+1 / h$hypothesis$Evid.Ratio
+
+#medium prior
 h <- hypothesis(m_m_full, "sem:c_rating = 0")
 1 / h$hypothesis$Evid.Ratio
+
+#large prior
+h <- hypothesis(m_l_full,"sem:c_rating = 0")
+1 / h$hypothesis$Evid.Ratio
  
+
+
