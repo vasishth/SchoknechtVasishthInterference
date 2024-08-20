@@ -150,7 +150,7 @@ We have re-done our analyses in response to the concerns raised by the reviewers
 
 Figure \ref{fig:eeg_bfs} shows the Bayes factor analysis of the ERP data. There was anecdotal evidence for a very small syntactic interference effect ($\pm$ 0.2\,$\mu V$) on the N400 and evidence against larger effects ($>$ 1\,$\mu V$). There was evidence against an interaction under all priors in the N400 spatio-temporal window. In a new analysis of the P600 spatio-temporal window, there was anecdotal evidence for a very small interaction ($\pm$ 0.2\,$\mu V$) and evidence against larger interaction effects ($>$ 1\,$\mu V$). There was unequivocal evidence against an effect of syntactic interference in the P600.
 
-Taken these Bayes factor results together (at best anecdotal evidence for small effects in the size of an 8\,ms reading time difference or an 0.2\,$\mu V$ difference in brain responses), we don't feel that it is defensible to argue that, in our data, there is some evidence for syntactic interference (or for an interaction). 
+Given these Bayes factor results taken together (at best anecdotal evidence for small effects with magnitudes like an 8\,ms reading time difference or an 0.2\,$\mu V$ difference in brain responses), at least in our data, we don't feel that it is defensible to argue that, there is some evidence for syntactic interference (or for an interaction). 
 
 \setcounter{figure}{10}
 \Paste{fig_bf_eeg}
@@ -214,7 +214,7 @@ We have re-done the Figure to reflect our revised modeling. We hope that the sca
 ``In my reading, the discrepancy mainly comes from the fact that the decision to neglect syntactic interference is based on Bayes factors (see also below), but when matching the model predictions to actual results (p. 39-42), the match is done on posterior distributions, which do show a positive effect of interaction (the self-paced reading study) and an effect of syntactic interference (the self-paced reading study and the EEG study). \textbf{I think what the authors could do to at least partially address this issue is to be more explicit about model comparisons. They could leverage their use of Bayes factors to compare different computational models - the one proposed in this paper, which hard-codes that only the syntactic target is selected, the one based on Mertzen et al., possibly with varying priors, and, possibly, a null model which does not predict any interference (e.g., it hard-codes that only the target is retrieved).}''\end{quote}
 
 \subsubsection*{Response to R1.3}
-As suggested, we have implemented a null model (no interference), leaving us with a total of three computational models (the null model, the three-cues model by \textcite{mertzen} and our newly proposed two-cues model). We use Bayes factors to quantitatively compare these models. The result of this model comparison is that our new two-cues model outperforms the other two models. We have described the new modeling and model comparisons starting page \pageref{modeling}:
+As suggested, we have implemented three computational models: a null model that assumes no interference, the three-cues model by \textcite{mertzen}, and our newly proposed two-cues model. We use Bayes factors to quantitatively compare these models. The result of this model comparison is that our new two-cues model outperforms the other two models. We have described the new modeling and model comparisons starting page \pageref{modeling}:
 
 \begin{quote}
     \Paste{modeling}
