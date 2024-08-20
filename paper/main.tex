@@ -610,13 +610,13 @@ We sampled the free scaling parameter $F$ from a \textcolor{blue}{truncated norm
 \end{figure}
 }
 
-\textcolor{blue}{To quantitatively evaluate the relative predictive performances of the models on the semantic interference data, we used a Bayes factor analysis. We computed Bayes factors for the two-cues model compared to the three-cues model and to the one cue model, respectively. Since Bayes factors are sensitive to the choice of priors on the parameters of interest, we computed Bayes factors under six different priors for the latency factor parameter $F$,
+\textcolor{blue}{To quantitatively evaluate the relative predictive performances of the models on the semantic interference data, we used a Bayes factor analysis. We computed Bayes factors for the two-cues model compared to the three-cues model and to the one cue model, respectively. Since Bayes factors are sensitive to the choice of priors on the parameters of interest \citep{kass1995bayes}, we computed Bayes factors under six different priors for the latency factor parameter $F$,
 $Normal$(0.01,0.01), 
 $Normal$(0.01,0.02),
 $Normal$(0.01,0.005),
 $Normal$(0.02,0.01),
 $Normal$(0.02,0.02), and 
-$Normal$(0.02,0.005). }
+$Normal$(0.02,0.005).}
 
 \textcolor{blue}{The procedure for computing Bayes factors is described as follows. The Bayes factor computation required us to estimate the marginal likelihood of the competing models. We used the Monte Carlo integration method to estimate the marginal likelihood of each model. First, we chose an importance density for the parameter $F$ from which we draw $0.2$ million samples of $F$. Then, for each of these proposed parameter values, we compute the likelihood and prior density. The estimated marginal likelihood of a model will be given by}
 
