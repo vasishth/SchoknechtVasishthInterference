@@ -6,6 +6,7 @@
 \usepackage{float}
 \usepackage{subfigure}
 \usepackage{rotating}
+\usepackage{booktabs}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -243,7 +244,7 @@ region, while our study did not. The following description of the estimates and 
 All in all, I think the interpretation of the data and the model have to be strengthened to meet requirements 1-3. Alternatively, the manuscript should explicitly admit issues in the proposed interpretation - that is, explain that the model fails to capture encoding interference (point 1 if I am right), explain why the model underpredicts interference in syntax/interaction and explain why it is enough, at least for now, to only model the current findings and to put previous findings aside (assuming they actually differ - see point 3 about Bayes factors above).''\end{quote}
 
 \subsubsection*{Response to R1.5}
-About why our results diverge from previous studies' and whether we think our results are correct and the previous work is not, we have no position on this. We are simply reporting what we found. Contradictory results have been reported for many phenomena: e.g., predictive parsing effects \citep{nieuwland_etal_2018, Delong_etal_2005}, reflexives processing \citep{jaeger_etal_2020, dillon2013}, main verb/reduced relative garden paths \citep{trueswell1994semantic, ferreira1986independence}, local coherence \citep{lcpaape2023, taboretal04}, locality effects in German \citep{levy&keller_2013, vasishth2018_signficancefilter}, interference from extra-sentential distractors \citep{vandyke_mcelree06, mertzen_repVDM2006}, attenuation of agreement attraction due to case marking \citep{hartsuiker2001_agree, Avetisyan_etal_2020_agree} and relative clauses in Chinese \citep{hsiao03, gibsonwu, VasishthetalPLoSOne2013, jaeger2015subject}. The only way to resolve contradictions in the literature is by carrying out adequately powered studies in the future that can distinguish between the theoretical claims. Our work does not stand out as an anomaly; if anything, it's quite the opposite. We have added a discussion of divergent results in the literature to page \pageref{not_an_anomaly} in the General Discussion:
+About why our results diverge from previous studies' and whether we think our results are correct and the previous work is not, we have no position on this. We are simply reporting what we found. Contradictory results have been reported for many phenomena: e.g., predictive parsing effects \citep{nieuwland_etal_2018, Delong_etal_2005}, reflexives processing \citep{jaeger_etal_2020, dillon2013}, main verb/reduced relative garden paths \citep{trueswell1994semantic, ferreira1986independence}, local coherence \citep{lcpaape2023, taboretal04}, locality effects in German \citep{levy&keller_2013, vasishth2018_signficancefilter}, interference from extra-sentential distractors \citep{vandyke_mcelree06, mertzen_repVDM2006}, attenuation of agreement attraction due to case marking \citep{hartsuiker2001_agree, Avetisyan_etal_2020_agree}, agreement attraction in grammatical sentences \citep{wagers2009agrttr, nicenboim} and relative clauses in Chinese \citep{hsiao03, gibsonwu, VasishthetalPLoSOne2013, jaeger2015subject}. The only way to resolve contradictions in the literature is by carrying out adequately powered studies in the future that can distinguish between the theoretical claims. Our work does not stand out as an anomaly; if anything, it's quite the opposite. We have added a discussion of divergent results in the literature to page \pageref{not_an_anomaly} in the General Discussion:
 
 \begin{quote}
     \Paste{not_an_anomaly}
@@ -286,9 +287,61 @@ We have recomputed all our Bayes factors using the Savage-Dickey method. With th
 Various priors are considered for Bayes factors. \textbf{Of course, it is good to explore several values but I wonder whether it is justified to conclude that syntactic interference or interaction should be excluded if they are not supported in models with unreasonably large priors (e.g., N+(0, 0.1)). Would anybody expect that interference is in range of 0.1 log-ms? As one of the authors of this manuscript nicely showed in Jager et al. (2017) and Schad et al. (2022), interference effects are small (at least for subject-verb agreement and ungrammatical illusions). Given that, I don't understand why we require a BF in favor of interference for a prior that is of size N+(0, 0.1). Shouldn't a smaller prior distribution suffice as evidence? This brings me again to my confusion in what the experiments actually show. The authors seem to argue that the only interference is the semantic one and they base the conclusion on large priors. But focusing on small priors (N+(0, 0.05) for spr, N-(0, 0.5) for EEG)), one could conclude that the interaction/syntactic interference might be present after all. Is there an independent reason to select the former priors over the latter for one's interpretation? To be sure, I don't want the authors to change the interpretation, but I would like to see either a more explicit argumentation why we should base our conclusion on such and such priors, or a more reflection in the text that explicitly states that the results are not equivocal and the current study is still compatible with a position that syntactic interference and/or interaction are real.}''\end{quote}
 
 \subsubsection*{Response to R1.8}
-BFs do not to need to be strongly in favor of an effect across all investigated priors to conclude that an effect is supported. However, to draw decisive conclusions in favor of an effect, the evidence for that effect should be stronger than anecdotal for at least a subset of reasonable priors.
+We agree that syntactic interference and/or the interaction could be real, but our data does not provide conclusive evidence for them. Because it can be difficult to discern small differences in the Bayes factor plots (Figures 5 and 11 in Response to E.2), the Table below shows all Bayes factors for syntactic interference and the interaction. All Bayes factors above 1 are highlighted in bold. Following \textcite{jeffreys1998theory} and \textcite{lee2014bayesian}, we regard Bayes factors around 1 as providing no evidence. The only Bayes factor remarkably above 1 is BF$_{10}$ = 2.8 for the syntactic interference effect in the reading times of the spill-over region. Because of the pre-critical effects in the reading times, this effect in the spill-over region is confounded. Therefore, we think that although the Bayes factor theoretically provided anecdotal evidence for syntactic interference in the spill-over region, there is no \textit{decisive} evidence for syntactic interference in our data.
 
-The meta-analysis of reading time studies by \textcite{jaeger_etal_2017} showed that the pooled estimate of inhibitory interference across studies with similar designs as ours was indeed small (13.1 ms, page 327), but some studies showed effects around 50 ms (e.g., two of the sub-experiments from \cite{vandyke07}) and one experiment by Franck et al., (2015) even showed an estimate above 100 ms (see Figure 2 on page 329 of \cite{jaeger_etal_2017}). Because such large interference effects have been found previously (see also our new Figure \ref{fig:previous_vs_present} showing all estimates of \cite{vandyke07} and \cite{mertzen}), we believe that it is reasonable to explore a wide range of a priori effect sizes, specifically from $\pm$8 to $\pm$80 ms for the reading times. 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ccccc}
+\toprule
+Experiment &      Region   &   Effect  &         Prior & BF10\\
+\midrule
+SPR & pre-critical&   syntactic &Normal(0, 0.01)&0.5\\
+SPR & pre-critical&   syntactic &Normal(0, 0.05)& 0.11\\
+SPR & pre-critical&   syntactic  &Normal(0, 0.1)& 0.06\\
+SPR & critical   &syntactic &Normal(0, 0.01)&0.5\\
+SPR & critical   &syntactic &Normal(0, 0.05)& 0.11\\
+SPR & critical   &syntactic  &Normal(0, 0.1)&0.05\\
+SPR & spill-over  & syntactic &Normal(0, 0.01)& \textbf{2.8}\\
+SPR & spill-over  & syntactic &Normal(0, 0.05)& 0.8\\
+SPR & spill-over  & syntactic  &Normal(0, 0.1)&0.42\\
+
+EEG & N400   &syntactic &Normal(0, 0.1)&\textbf{1.18}\\
+EEG & N400   &syntactic &Normal(0, 0.5)&0.52\\
+EEG &  N400  & syntactic &  Normal(0, 1)&0.27\\
+EEG & N400   &syntactic  & Normal(0, 2)&0.14\\
+EEG & P600  & syntactic &Normal(0, 0.1) & 0.91\\
+EEG & P600  & syntactic &Normal(0, 0.5) &0.27\\
+EEG &  P600 &  syntactic &  Normal(0, 1)&0.14\\
+EEG & P600  & syntactic  & Normal(0, 2) & 0.07\\
+
+SPR & pre-critical &interaction &Normal(0, 0.01) & 1\\
+SPR & pre-critical &interaction &Normal(0, 0.05) & 0.36\\
+SPR & pre-critical &interaction & Normal(0, 0.1) & 0.18\\
+SPR & critical &interaction &Normal(0, 0.01) & \textbf{1.36}\\
+SPR & critical &interaction &Normal(0, 0.05) & 0.71\\
+SPR & critical &interaction & Normal(0, 0.1) & 0.37\\
+SPR & spill-over& interaction& Normal(0, 0.01) &0.92\\
+SPR & spill-over &interaction &Normal(0, 0.05) & 0.3\\
+SPR & spill-over &interaction  &Normal(0, 0.1) & 0.15\\  
+
+EEG & N400 &interaction &Normal(0, 0.1)&0.88\\
+EEG & N400 &interaction &Normal(0, 0.5)&0.36\\
+EEG & N400 &interaction  & Normal(0, 1)&0.19\\
+EEG & N400 &interaction  & Normal(0, 2) & 0.1\\
+EEG & P600 &interaction &Normal(0, 0.1)& \textbf{1.16}\\
+EEG & P600 &interaction &  Normal(0, 1) &0.43\\
+EEG & P600 &interaction &  Normal(0, 2) &0.22\\
+\bottomrule
+\end{tabular}
+
+\end{table}
+
+
+
+%BFs do not to need to be strongly in favor of an effect across all investigated priors to conclude that an effect is supported. However, to draw decisive conclusions in favor of an effect, the evidence for that effect should be stronger than anecdotal for at least a subset of reasonable priors.
+
+Regarding the choice of priors, we believe that it is reasonable to explore a wide range of a priori effect sizes, specifically from $\pm$8 to $\pm$80 ms for the reading times. The meta-analysis of reading time studies by \textcite{jaeger_etal_2017} showed that the pooled estimate of inhibitory interference across studies with similar designs as ours was indeed small (13.1 ms, page 327), but some studies showed effects around 50 ms (e.g., two of the sub-experiments from \cite{vandyke07}) and one experiment by Franck et al., (2015) even showed an estimate above 100 ms (see Figure 2 on page 329 of \cite{jaeger_etal_2017}). Because such large interference effects have been found previously (see also our new Figure \ref{fig:previous_vs_present} showing all estimates of \cite{vandyke07} and \cite{mertzen}).
 
 We have revised the description of the SPR results to include more nuance regarding the BFs under the different priors:
 
@@ -465,7 +518,7 @@ The Reviewer is correct, our proposal that hierarchical syntactic structure is u
 
 
 \subsubsection*{Response to R3.3}
-It has been shown in the literature that fine-grained semantic features, such as [+fixable] \citep{vandyke_mcelree06} and [+shatterable] \citep{cunnings_sturt_2018retrieval}, are used during cue-based retrieval. The materials in the design employed here were constructed so that the potentially fine-grained features relevant for the situation at hand (e.g., [+can drive], [+can drink] or [+can smile]) could be summed under the umbrella feature [+animate] or actually [+human]. To resolve the critical dependency it was always sufficient to use the umbrella feature [+animate] (or [+human]). The subject and the animate distractor always shared the [+animate] (or more precisely [+human]) feature, while the inanimate distractor was always [-animate] and hence [-human]. There were no animate distractors which mismatched a fine-grained verb-specific retrieval cue like [+can drive]. The results of the plausibility norming, see Figure \ref{fig:plausibility_rating} on page \pageref{fig:plausibility_rating} of the manuscript illustrate that whatever semantic feature determines a good fit between subject and verb matched with the features of the subject and the animate distractor, but not with the features of the inanimate distractor. 
+It has been shown in the literature that fine-grained semantic features, such as [+fixable] \citep{vandyke_mcelree06} and [+shatterable] \citep{cunnings_sturt_2018retrieval}, are used during cue-based retrieval. The materials in the design employed here were constructed so that the potentially fine-grained features relevant for the situation at hand (e.g., [+can drive], [+can drink] or [+can smile]) could be summed under the umbrella feature [+animate] or actually [+human]. To resolve the critical dependency it was always sufficient to use the umbrella feature [+animate] (or [+human]). The subject and the animate distractor always shared the [+animate] (or more precisely [+human]) feature, while the inanimate distractor was always [-animate] and hence [-human]. There were no animate distractors which mismatched a fine-grained verb-specific retrieval cue like [+can drive]. The results of the plausibility norming, see Figure \ref{fig:plausibility_rating} on page \pageref{fig:plausibility_rating} of the manuscript illustrate that whatever semantic feature determines a good fit between subject and verb matched with the features of the subject and the animate distractor, but not with the features of the inanimate distractor. For a principled approach to feature selection within the cue-based retrieval framework, see \textcite{smith2020principled}.
 
 As the reviewer suggested it seems unlikely that all potential fine-grained features are part of an initial memory encoding of each word during sentence processing. But there needs to be a way to retrospectively enrich that memory encoding as the sentence unfolds. There might be a hierarchy of semantic features. A feature like [+can smile] might be a daughter of the feature [+animate/+human]. The degree to which that tree of semantic features becomes activated during sentence processing might differ between individuals. The present study can not provide insight into the specifics of memory encoding. 
 
