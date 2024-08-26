@@ -43,9 +43,9 @@ priors_l <- c(
   prior(normal(0, 0.1), class = sd)
 ) 
 
-load("E://model_fits/Fit_s_Full_precrit_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_m_Full_precrit_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_l_Full_precrit_slopes_symmetrical.Rda")
+load("model_fits/Fit_s_Full_precrit_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_precrit_slopes_symmetrical.Rda")
+load("model_fits/Fit_l_Full_precrit_slopes_symmetrical.Rda")
 
 
 # bfs
@@ -98,9 +98,9 @@ df.bf_schoknecht[nrow(df.bf_schoknecht)+1,] <- c("S-D", "German", "pre-critical"
 df.bf_schoknecht[nrow(df.bf_schoknecht)+1,] <- c("S-D", "German", "pre-critical", "interaction","Normal(0, 0.1)","no", round(SD_bf10.m_l_int,2))
 save(df.bf_schoknecht, file = paste("BFs_schoknecht_precrit.Rda"))
 
-load("E://model_fits/Fit_s_Full_crit_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_m_Full_crit_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_l_Full_crit_slopes_symmetrical.Rda")
+load("model_fits/Fit_s_Full_crit_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_crit_slopes_symmetrical.Rda")
+load("model_fits/Fit_l_Full_crit_slopes_symmetrical.Rda")
 
 # bfs
 # model_s
@@ -150,9 +150,9 @@ df.bf_schoknecht[nrow(df.bf_schoknecht)+1,] <- c("S-D", "German", "critical", "i
 save(df.bf_schoknecht, file = paste("BFs_schoknecht_crit.Rda"))
 
 
-load("E://model_fits/Fit_s_Full_spill_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_m_Full_spill_slopes_symmetrical.Rda")
-load("E://model_fits/Fit_l_Full_spill_slopes_symmetrical.Rda")
+load("model_fits/Fit_s_Full_spill_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_spill_slopes_symmetrical.Rda")
+load("model_fits/Fit_l_Full_spill_slopes_symmetrical.Rda")
 
 # bfs
 # model_s
