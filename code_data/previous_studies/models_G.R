@@ -3,7 +3,7 @@
 
 # script to run models (to later compute Bayes Factors) for the previous studies
 
-# Mertzen et al., (2024) English and German eye-tracking data
+# Mertzen et al., (2023) English and German eye-tracking data
 # for comparability with self-paced reading times, we use the total fixation times (TFT) eye-tracking measure
 
 
