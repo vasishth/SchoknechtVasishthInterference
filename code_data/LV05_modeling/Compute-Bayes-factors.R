@@ -7,6 +7,7 @@ library(ggplot2)
 library(cowplot)
 library(stringr)
 library(dplyr)
+library(tidyr)
 
 #############
 SVdat <- data.frame(pred   = rep("data",3),
@@ -34,11 +35,11 @@ df.lkl$prior <- "normal(0.01,0.01)"
 df.bf <- as.data.frame(df.lkl %>% group_by(prior) %>% 
                          summarize(MargLik=mean(ML)))
 df.bf
-df.bf$Model <- "Two cues model"
+df.bf$Model <- "Two-cues model"
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.01)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -51,7 +52,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.01)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -67,7 +68,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_two_cues_model.Rda")
 df.lkl <- simdat_2cues_sameclause
-df.lkl$Model <- "Two cues model"
+df.lkl$Model <- "Two-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -80,7 +81,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -93,7 +94,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -109,7 +110,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_two_cues_model.Rda")
 df.lkl <- simdat_2cues_sameclause
-df.lkl$Model <- "Two cues model"
+df.lkl$Model <- "Two-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -122,7 +123,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -135,7 +136,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.01,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -152,7 +153,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_two_cues_model.Rda")
 df.lkl <- simdat_2cues_sameclause
-df.lkl$Model <- "Two cues model"
+df.lkl$Model <- "Two-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.01)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -165,7 +166,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.01)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -178,7 +179,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.01)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -194,7 +195,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_two_cues_model.Rda")
 df.lkl <- simdat_2cues_sameclause
-df.lkl$Model <- "Two cues model"
+df.lkl$Model <- "Two-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -207,7 +208,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -220,7 +221,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.02)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -238,7 +239,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_two_cues_model.Rda")
 df.lkl <- simdat_2cues_sameclause
-df.lkl$Model <- "Two cues model"
+df.lkl$Model <- "Two-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -251,7 +252,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_three_cues_model.Rda")
 df.lkl <- simdat_3cues
-df.lkl$Model <- "Three cues model"
+df.lkl$Model <- "Three-cues model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -264,7 +265,7 @@ df.bf
 
 load("Simulated-data/Simulated_data_one_cue_model.Rda")
 df.lkl <- simdat_1cue
-df.lkl$Model <- "One cue model"
+df.lkl$Model <- "One-cue model"
 df.lkl$lkl <- dnorm(df.lkl$MESem-(-SVdat[2,]$mean),0,delta)
 df.lkl$prior.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0.02,sd=0.005)
 df.lkl$proposal.dens <- dtruncnorm(df.lkl$lfs,a=0,b=0.05,mean=0,sd=0.025)
@@ -280,24 +281,24 @@ write.csv(df.bf,file="Marginal-likelihood-results.csv")
 df.bf %>% group_by(Model) %>% summarise(count=n())
 df.bf %>% group_by(prior,Model) %>% summarise(count=n())
 
-df.bf <- as.data.frame(df.bf %>% group_by(prior) %>% mutate(BF=MargLik[which(Model=="Two cues model")]/MargLik))
+df.bf <- as.data.frame(df.bf %>% group_by(prior) %>% mutate(BF=MargLik[which(Model=="Two-cues model")]/MargLik))
 write.csv(df.bf,file="Bayes-factor-in-favor-of-two-cues-model.csv")
 
-evidence_for_two_cues <- subset(df.bf,Model!="Two cues model")
+evidence_for_two_cues <- subset(df.bf,Model!="Two-cues model")
 
 evidence_for_two_cues$prior <- factor(evidence_for_two_cues$prior,
                                       levels = evidence_for_two_cues$prior[c(11,5,7,1,9,3)])
-evidence_for_two_cues$Model <- ifelse(evidence_for_two_cues$Model=="One cue model","compared to the one cue model","compared to the three cues model")
+evidence_for_two_cues$Model <- ifelse(evidence_for_two_cues$Model=="One-cue model","compared to the one-cue model","compared to the three-cues model")
 
-evidence_for_two_cues3 <- subset(evidence_for_two_cues, Model=="compared to the three cues model")
-evidence_for_two_cues1 <- subset(evidence_for_two_cues, Model=="compared to the one cue model")
+evidence_for_two_cues3 <- subset(evidence_for_two_cues, Model=="compared to the three-cues model")
+evidence_for_two_cues1 <- subset(evidence_for_two_cues, Model=="compared to the one-cue model")
 
-
+# Plot BFs
 p1 <- ggplot(evidence_for_two_cues3,aes(x=prior,y=BF,group=Model))+
   geom_point(size=1.5)+
   geom_line()+
   theme_bw(base_size = 12)+
-  ylab("Evidence for the two cues model \n (Bayes factor)")+
+  ylab("Evidence for the two-cues model \n (Bayes factor)")+
   geom_hline(yintercept = 1, linetype="dashed") +
   facet_wrap(~Model,scales = "free")+
   theme(axis.text.x = element_text(angle=60, hjust=0.9, vjust = 0.9))
@@ -306,7 +307,7 @@ p2 <- ggplot(evidence_for_two_cues1,aes(x=prior,y=BF,group=Model))+
   geom_point(size=1.5)+
   geom_line()+
   theme_bw(base_size = 12)+
-  ylab("Evidence for the two cues model \n (Bayes factor)")+
+  ylab("Evidence for the two-cues model \n (Bayes factor)")+
   geom_hline(yintercept = 1, linetype="dashed") +
   facet_wrap(~Model,scales = "free")+
   scale_y_log10("",
@@ -317,3 +318,36 @@ p2 <- ggplot(evidence_for_two_cues1,aes(x=prior,y=BF,group=Model))+
 plot_grid(p1, p2)
 
 ggsave("BF_plot_compmodels.png",height=4.5,width=7)
+
+# plot predictions
+simdat_1cue$model <- "one-cue model"
+simdat_2cues_sameclause$model <- "two-cues model"
+simdat_3cues$model <- "three-cues model"
+
+predictions <- rbind(simdat_1cue, simdat_2cues_sameclause, simdat_3cues)
+
+predictions <- predictions %>% rename("syntactic" =MESyn, "semantic"=MESem, "interaction"=InteractionSynSem)
+
+
+predictions <- pivot_longer(predictions, cols = c("syntactic", "semantic", "interaction"),
+                                 names_to = "effect", values_to = "effsize")
+predictions$effect <- factor(predictions$effect, levels = c("syntactic", "semantic", "interaction"))
+predictions$model <- factor(predictions$model, levels = c("one-cue model", "two-cues model", "three-cues model"))
+
+#change sign to represent negative ERPs
+predictions$effsize_neg <- -1 * predictions$effsize
+
+ggplot(data=predictions, x=effsize_neg) +
+  geom_density(aes(x=effsize_neg),fill="lightgrey", color="black", alpha=0.5, bw = 0.25) +
+  geom_point(data=SVdat, aes(x=mean, y=0), color="darkred", size=2)+
+  geom_errorbar(data=SVdat, aes(y=0, xmin=lower, xmax=upper), color="darkred", width=0.001, linewidth=1) +
+  scale_fill_grey(start = 0, end = .9) +
+  ggh4x::facet_grid2(model ~ effect, scales = "free_y", independent = "y")+
+  theme_bw(base_size = 12)+
+  geom_vline(xintercept=0, linetype="dashed")+
+  xlab("amplitude difference (microV)")+
+  ylab("density")+
+  guides(fill = guide_legend(reverse=TRUE))+
+  theme(legend.title=element_blank(), legend.position ="top")
+
+ggsave("compmod_predictions.png",height=4.5,width=8)
