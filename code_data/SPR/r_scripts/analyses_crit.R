@@ -43,6 +43,29 @@ priors_l <- c(
   prior(normal(0, 0.1), class = sd)
 ) 
 
+# priors on the ms scale
+# intercept
+exp(extraDistr::qtnorm(0.025,mean=6, sd=0.6)) # intercept normal(6, 0.6) lower bound
+exp(extraDistr::qtnorm(0.975,mean=6, sd=0.6)) # intercept normal(6, 0.6) upper bound
+
+# Normal(0, 0.01) prior
+prior_mean <- 0
+prior_sd <- 0.01
+exp(6+ (prior_mean - 2*prior_sd) /2)- exp(6- (prior_mean - 2*prior_sd) /2)
+exp(6+ (prior_mean + 2*prior_sd) /2)- exp(6- (prior_mean + 2*prior_sd) /2)
+
+# Normal(0, 0.05) prior
+prior_mean <- 0
+prior_sd <- 0.05
+exp(6+ (prior_mean - 2*prior_sd) /2)- exp(6- (prior_mean - 2*prior_sd) /2)
+exp(6+ (prior_mean + 2*prior_sd) /2)- exp(6- (prior_mean + 2*prior_sd) /2)
+
+
+# Normal(0, 0.1) prior
+prior_mean <- 0
+prior_sd <- 0.1
+exp(6+ (prior_mean - 2*prior_sd) /2)- exp(6- (prior_mean - 2*prior_sd) /2)
+exp(6+ (prior_mean + 2*prior_sd) /2)- exp(6- (prior_mean + 2*prior_sd) /2)
 
 # models
 m_s_full <- brm(rt ~ 1 + syn * sem * c_trial +
