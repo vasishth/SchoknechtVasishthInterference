@@ -133,10 +133,33 @@ priors_m <- c(
   prior(normal(0, 2), class = sd)
   )  
 
+priors_l <- c(
+  prior(normal(0, 5), class = Intercept),
+  prior(normal(0, 2), class = b, coef="amplitude_prestim"),
+  prior(normal(0, 1), class = b, coef="syn"),
+  prior(normal(0, 1), class = b, coef="sem"),
+  prior(normal(0, 1), class = b, coef="syn:sem"),
+  prior(normal(10, 5), class = sigma),
+  prior(normal(0, 2), class = sd)
+)  
+
+priors_xl <- c(
+  prior(normal(0, 5), class = Intercept),
+  prior(normal(0, 2), class = b, coef="amplitude_prestim"),
+  prior(normal(0, 2), class = b, coef="syn"),
+  prior(normal(0, 2), class = b, coef="sem"),
+  prior(normal(0, 2), class = b, coef="syn:sem"),
+  prior(normal(10, 5), class = sigma),
+  prior(normal(0, 2), class = sd)
+)  
+
+
 # check priors
 extraDistr::qtnorm(0.025,mean=0, sd=5); extraDistr::qtnorm(0.975,mean=0, sd=5)# intercept normal(0, 5) upper and lower
 extraDistr::qtnorm(0.025,mean=0, sd=.1); extraDistr::qtnorm(0.975,mean=0, sd=.1) # normal(0, 0.1) upper and lower
 extraDistr::qtnorm(0.025,mean=0, sd=.5); extraDistr::qtnorm(0.975,mean=0, sd=.5) # normal(0, 0.5) upper and lower
+extraDistr::qtnorm(0.025,mean=0, sd=1); extraDistr::qtnorm(0.975,mean=0, sd=1) # normal(0, 1) upper and lower
+extraDistr::qtnorm(0.025,mean=0, sd=2); extraDistr::qtnorm(0.975,mean=0, sd=2) # normal(0, 2) upper and lower
 
 #### N400 models ####
 m_s_n4 <- brm(amplitude_n400 ~ 1 + amplitude_prestim + syn*sem + (1+syn*sem||subject) + (1+syn*sem||item),
