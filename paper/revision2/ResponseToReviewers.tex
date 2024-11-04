@@ -14,17 +14,14 @@
 \usepackage{gb4e}
 \noautomath
 
-%\usepackage[backend=biber,useprefix=true,style=apa,url=false,sorting=nyt,eprint=false]{biblatex}
-
-%\addbibresource{interferencebib.bib}
-
-\usepackage[natbib=true,maxcitenames=2,bibstyle=authoryear, style=apa]{biblatex}
+%\usepackage[natbib=true,maxcitenames=2,bibstyle=authoryear, style=apa]{biblatex}
+\usepackage{natbib}
+\bibliography{interferencebib}
 \usepackage{lineno,xcolor,clipboard,graphicx}
 
 
 \usepackage{csquotes}
-\DeclareLanguageMapping{american}{american-apa}
-\bibliography{interferencebib}
+%\DeclareLanguageMapping{american}{american-apa}
 
 \usepackage{marginnote}
 \setcounter{section}{-1}
@@ -114,7 +111,9 @@ I do not anticipate sending out the next version for review again, but rather an
 \end{quote}
 
 \subsubsection*{Response to E.1}
-\textcolor{red}{We have made the OSF repository public and updated the link in the manuscript.}
+We have made the OSF repository public and updated the link in the manuscript. This should grant general accessibility.
+
+\textcolor{red}{wait for ok from shravan} 
 
 
 \subsection*{Comment E.2}
@@ -133,8 +132,7 @@ I do not anticipate sending out the next version for review again, but rather an
 \end{quote}
 
 \subsubsection*{Response to E.3}
-Yes, we changed all analyses in the 1st revision. As we had explained in the response to reviewers on August 29, 2024 (specifically in the response letter and our responses to the comments E.2 and R3.5), the priors were changed from directional priors in the original version to symmetrical priors in the revised version.
-
+Yes, we changed all analyses in the first revision. As we had explained in the response to reviewers on August 29, 2024 (specifically in the response letter and our responses to the comments E.2 and R3.5), the priors were changed from directional priors in the original version to symmetrical priors in the revised version.
 
 \subsection*{Comment E.4}
 \begin{quote}
@@ -160,7 +158,7 @@ I wanted to check those, but \textbf{when I clicked the link, it said I don't ha
 \end{quote}
 
 \subsubsection*{Response to R1.1}
-\textcolor{red}{We have made the OSF repository public and updated the link in the manuscript.} 
+We have made the OSF repository public and updated the link in the manuscript. This should grant general accessibility.
 
 
 \subsection*{Comment R1.2}
@@ -172,19 +170,24 @@ I wanted to check those, but \textbf{when I clicked the link, it said I don't ha
 \end{quote}
 
 \subsubsection*{Response to R1.2}
-\textcolor{red}{We trimmed the reading times (between X and Y ms) before analysis and have now added this information to the manuscript.}
+We excluded reading times below 150 ms and above 3000 ms. This affected 4.9\,\% of the data. We have added this information to the manuscript on page \pageref{trim}:
 
-\textcolor{red}{Paste text}
+\begin{quote}
+    \Paste{trim}
+\end{quote}
 
 \subsection*{Comment R1.3}
 \begin{quote}
-``p. 36: ``Regarding the possibility that sentence structure confounds caused the
-effects in the pre-critical region(.)"
+``p. 36: ``Regarding the possibility that sentence structure confounds caused the effects in the pre-critical region(.)"
 
 \textbf{I wonder whether it would make sense to briefly summarize what the sentence structure confound should be.} Otherwise the whole paragraph is hard to follow for readers who did not read or do not remember Mertzen et al. (2023).''
 \end{quote}
 \subsubsection*{Response to R1.3}
-\textcolor{red}{We have added the following text to the manuscript on page X:}
+We have added the following text to the manuscript on page \pageref{confound} (above the sentence which was quoted by the reviewer):
+
+\begin{quote}
+    \Paste{confound}
+\end{quote}
 
 
 \subsection*{Comment R1.4}
@@ -221,7 +224,16 @@ I was a bit confused here, since the formula  ``$\Psi(d(x_i, y), 0 , \delta)$ " 
 \end{quote}
 
 \subsubsection*{Response to R1.6}
-\textcolor{red}{Check how the figure changes}
+We have changed the y-axis limits to include the mean estimate of the respective data point (VD07.E2, regression path duration). For convenience, we paste the revised Figure here.
+
+\setcounter{figure}{13}
+\begin{sidewaysfigure}[htpb]
+    \caption{A) Reading time differences in the regions of interest from the present and previous studies using the design by \cite{vandyke07}. VD07.E1, VD07.E2 and VD07.E3 stand for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiments 1-3. The intervals for \citeauthor{vandyke07}'s (\citeyear{vandyke07}) estimates are 95\% confidence intervals. M23.E and M23.G stand for \citeauthor{mertzen}'s (\citeyear{mertzen}) English and German experiment, respectively. The intervals for their study and the present study are Bayesian 95\% credible intervals. There are less estimates for the pre-critical region because \citeauthor{vandyke07}'s (\citeyear{vandyke07}) Experiment 1 and 2 did not have a pre-critical region. B) Bayes factors for the effects of interest in the present and previous studies under prior Normal(0,0.5).}
+    \label{fig:previous_vs_present}
+    \centering
+    \includegraphics[width=\linewidth]{present_previous_allplots.jpg}
+\end{sidewaysfigure}
+\clearpage
 
 \subsection*{Comment R1.7}
 \begin{quote}
@@ -312,7 +324,7 @@ Revised version: ``By contrast, Bayes factors provided either no evidence for or
 \textbf{Did the authors change the analyses? Why what was reported as anecdotal evidence under narrow priors is now reported as no evidence or evidence against?}''
 \end{quote}
 \subsubsection*{Response to R2.6}
-Yes, the priors were changed in the 1st revision (directional priors in the original version and symmetrical priors in the revised version, see also our Response to E.3). This resulted in small numerical changes of the results, e.g., BF10 = 2.5 in the original analysis decreased to BF10 = 1.2 in the revised analysis. Furthermore in the original version of the manuscript, we were inconsistent in our description of small BFs, i.e., BF10 = 1.2. Since the first revision and in line with \textcite{jeffreys1998theory} and \textcite{lee2014bayesian}, we now consistently interpret such small BFs as providing no evidence. 
+Yes, the priors were changed in the 1st revision (directional priors in the original version and symmetrical priors in the revised version, see also our Response to E.3). This resulted in small numerical changes of the results, e.g., BF10 = 2.5 in the original analysis decreased to BF10 = 1.2 in the revised analysis. Furthermore in the original version of the manuscript, we were inconsistent in our description of small BFs, i.e., BF10 = 1.2. Since the first revision and in line with \cite{jeffreys1998theory} and \cite{lee2014bayesian}, we now consistently interpret such small BFs as providing no evidence. 
 
  
 \subsection*{Comment R2.7}
@@ -372,11 +384,11 @@ The authors acknowledge the concern about using relational notions such as `subj
 \end{quote}
 
 \subsubsection*{Response to R3.3}
-\textcolor{red}{Revise abstract to be more cautious.}
+We have revised abstract to emphasize that our findings only apply to the present design. We paste the revised abstract here:
 
-%\begin{quote}
-%    \Paste{}
-%\end{quote}
+\begin{quote}
+    \Paste{abstract}
+\end{quote}
 
 
 \end{document}  
