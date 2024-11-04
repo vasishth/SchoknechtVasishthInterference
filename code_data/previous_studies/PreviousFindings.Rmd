@@ -778,7 +778,7 @@ RT_plot <- ggplot(data=filter(estimates, region %in% c("pre-critical", "critical
                   ylab("reading time difference (ms)")+
                   #ggtitle("Present and previous findings")+
                   guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))+
-                  coord_cartesian(ylim=c(-75, 150)) +
+                  coord_cartesian(ylim=c(-75, 250)) +
                   ggtitle("Reading time differences") 
 ggsave("plots/present_previous_findings.jpg", width=9, height=8, dpi=600)
 
