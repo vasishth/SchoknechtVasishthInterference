@@ -33,6 +33,9 @@ df_nofill <- droplevels(subset(df, label != "filler"))
 # trim all rts below 150 and above 3000 ms
 df_trim<- subset(df_nofill, df_nofill$rt > 150 & df_nofill$rt < 3000)
 
+# how much data was affected by the trimming?
+round(100 - (nrow(df_trim) / nrow(df_nofill)) *100,1)
+
 # subsets for hisyn and losyn (because they have different lengths)
 df_hisyn <- df_trim %>% filter(condition == "c" | condition == "d")
 df_losyn <- df_trim %>% filter(condition == "a" | condition == "b")
