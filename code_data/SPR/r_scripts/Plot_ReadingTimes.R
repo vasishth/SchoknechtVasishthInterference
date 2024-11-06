@@ -191,7 +191,7 @@ hisyn_words_minimal <- c("subject","distractor",  "critical\nverb")
 losyn_words_minimal <- c("subject","distractor","critical\nverb")
 
 # hisyn plot per exp
-p_hisyn_exp <- ggplot(data=filter(hisyn_summ_by_participants2, wordno>4),aes(x=wordno, 
+p_hisyn_exp <- ggplot(data=filter(hisyn_summ_by_participants2, wordno>=5 & wordno<=19),aes(x=wordno, 
                                                       y=meanlogrt,
                                                       ymin=low2SE, 
                                                       ymax=high2SE)) +
@@ -201,7 +201,7 @@ p_hisyn_exp <- ggplot(data=filter(hisyn_summ_by_participants2, wordno>4),aes(x=w
   theme(axis.text.x = element_text(size=7)) +
   theme_bw(base_size = 10)+
   facet_nested(. ~ exp + more_info)+
-  ggtitle("High syntactic interference in each sub-experiment")+
+  ggtitle("High syntactic interference in each experimental session")+
   scale_y_continuous(name="observed reading time in (ms)",breaks=log(seq(320,480,40)),labels= seq(320,480,40))+ 
   scale_x_continuous(breaks = c(5, 12, 17), labels= hisyn_words_minimal, expand = c(0.01, 0.01)) +
   xlab("")+
@@ -211,7 +211,7 @@ p_hisyn_exp <- ggplot(data=filter(hisyn_summ_by_participants2, wordno>4),aes(x=w
 p_hisyn_exp 
 
 # losyn plot per exp
-p_losyn_exp <- ggplot(data=filter(losyn_summ_by_participants2, wordno>4),aes(x=wordno, 
+p_losyn_exp <- ggplot(data=filter(losyn_summ_by_participants2, wordno>=5 & wordno<=18),aes(x=wordno, 
                                                           y=meanlogrt,
                                                           ymin=low2SE, 
                                                           ymax=high2SE)) +
@@ -221,7 +221,7 @@ p_losyn_exp <- ggplot(data=filter(losyn_summ_by_participants2, wordno>4),aes(x=w
   theme(axis.text.x = element_text(size=7)) +
   theme_bw(base_size = 10)+
   facet_nested(. ~ exp + more_info)+
-  ggtitle("Low syntactic interference in each sub-experiment")+
+  ggtitle("Low syntactic interference in each experimental session")+
   scale_y_continuous(name="observed reading time in (ms)",breaks=log(seq(320,480,40)),labels= seq(320,480,40))+ 
   scale_x_continuous(breaks = c(5,11,16), labels= losyn_words_minimal, expand = c(0.01, 0.01)) +
   xlab("")+
