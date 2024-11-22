@@ -12,7 +12,7 @@ library(cowplot)
 # Pre-critical region
 
 # load model fits
-load("E://model_fits/Fit_m_Full_precrit_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_precrit_slopes_symmetrical.Rda")
 m_precrit <- m_m_full
 rm(list = c("m_m_full"))
 
@@ -51,7 +51,7 @@ posteriors_precrit <- mcmc_areas(
                           annotate("text", x = 35, y = 1.8, label = "-5 — 8 — 22", size=3) 
 
 # Critical region
-load("E://model_fits/Fit_m_Full_crit_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_crit_slopes_symmetrical.Rda")
 m_crit <- m_m_full
 rm(list = c("m_m_full"))
 
@@ -86,7 +86,7 @@ posteriors_crit <- mcmc_areas(
                       annotate("text", x = 35, y = 1.8, label = "-3 — 14 — 31", size=3) 
 
 # Spill-over region
-load("E://model_fits/Fit_m_Full_spill_slopes_symmetrical.Rda")
+load("model_fits/Fit_m_Full_spill_slopes_symmetrical.Rda")
 m_spill <- m_m_full
 rm(list = c("m_m_full"))
 
