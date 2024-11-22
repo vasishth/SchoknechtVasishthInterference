@@ -26,13 +26,12 @@ df <- rbind(df1, df2, df3)
 # subset with only one row per subject and item with question
 acc <- df %>% 
   drop_na(question_rt) %>% 
-  filter(wordno == 01)# %>%
-# filter(question_rt < 20000)
+  filter(wordno == 01)
 
 #calculate accuracy per participant
 acc_subj <- table(acc$correct, acc$fullname, acc$session) %>%
   as.data.frame() %>%
-  rename(answ = "Var1", subj = "Var2", session = "Var3")
+  dplyr::rename(answ = "Var1", subj = "Var2", session = "Var3")
 
 #answers in percent (number of questions per subject: 32)
 acc_subj$percent <- acc_subj$Freq/32*100
@@ -71,7 +70,7 @@ acc <- df2 %>%
 #calculate accuracy per participant
 acc_subj <- table(acc$correct, acc$fullname, acc$condition, acc$session) %>%
   as.data.frame() %>%
-  rename(answ = "Var1", subj = "Var2", cond = "Var3", session ="Var4")
+  dplyr::rename(answ = "Var1", subj = "Var2", cond = "Var3", session ="Var4")
 
 
 #answers in percent (
@@ -87,7 +86,7 @@ round(range(acc_cor$percent),1)
 # calculate accuracy per condition
 acc_per_cond <- acc_cor %>%
   group_by(cond) %>%
-  summarise(percent = round(mean(percent),1))
+  dplyr::summarise(percent = round(mean(percent),1))
 
 ggplot(data=acc_per_cond, aes(x=cond, y=percent)) +
   geom_bar(stat="identity")
