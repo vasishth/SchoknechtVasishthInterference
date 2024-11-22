@@ -45,27 +45,27 @@ df_losyn <- df_trim %>% filter(condition == "a" | condition == "b")
 #### Plot whole sentence ####
 
 #calculate mean reading time per subject per word per condition
-hisyn_by_participants <- summarize(
-  group_by(
+hisyn_by_participants <- dplyr::summarize(
+  dplyr::group_by(
     filter(df_hisyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "21")),
     wordno,condition,subj, exp),
   logrt=mean(log(rt)))
 
-losyn_by_participants <- summarize(
-  group_by(
+losyn_by_participants <- dplyr::summarize(
+  dplyr::group_by(
     filter(df_losyn,wordno %in% c("0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20")),
     wordno,condition,subj, exp),
   logrt=mean(log(rt)))
 
 # calculate mean per word per condition (averaged over subjects)
-hisyn_summ_by_participants <- summarize(
-  group_by(hisyn_by_participants,wordno,condition),
+hisyn_summ_by_participants <- dplyr::summarize(
+  dplyr::group_by(hisyn_by_participants,wordno,condition),
   meanlogrt=mean(logrt), 
   SE = sd(logrt)/sqrt(nrow(hisyn_by_participants)), 
   low2SE= meanlogrt - 2*SE, high2SE= meanlogrt + 2*SE)
 
-losyn_summ_by_participants <- summarize(
-  group_by(losyn_by_participants,wordno,condition),
+losyn_summ_by_participants <- dplyr::summarize(
+  dplyr::group_by(losyn_by_participants,wordno,condition),
   meanlogrt=mean(logrt), 
   SE = sd(logrt)/sqrt(nrow(losyn_by_participants)), 
   low2SE= meanlogrt - 2*SE, high2SE= meanlogrt + 2*SE)
@@ -166,5 +166,5 @@ p_zoom <- ggplot(data=zoom, aes(x=fake_wordno, y=meanlogrt,
 
 # Put everything together
 plot_grid(p_hisyn, p_losyn, p_zoom, ncol=1, rel_heights = c(0.9,0.9,1), labels="AUTO")
-ggsave("Pandora_all_wholesentence_pooled_zoom_exp_test.jpg", width=12, height=7, dpi=600)
+ggsave("plots/Pandora_all_wholesentence_pooled_zoom.jpg", width=12, height=7, dpi=600)
 
