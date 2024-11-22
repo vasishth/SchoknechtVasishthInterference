@@ -8,12 +8,13 @@ library(brms)
 library(bayesplot)
 library(ggplot2)
 library(cowplot)
+library(extraDistr)
 
 #### prepare ####
 #load data
-prestim <- read_csv("data/Pandora_mean_200_0.csv")
-n400 <- read_csv("data/Pandora_mean_300_500.csv")
-p600 <- read_csv("data/Pandora_mean_600_900.csv")
+prestim <- read_csv("../data/Pandora_mean_200_0.csv")
+n400 <- read_csv("../data/Pandora_mean_300_500.csv")
+p600 <- read_csv("../data/Pandora_mean_600_900.csv")
  
 # remove subjects who have only one good session
 xtabs(~ session + subject, n400)
