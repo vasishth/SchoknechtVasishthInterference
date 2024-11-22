@@ -7,6 +7,7 @@ library(tidyverse)
 library(ordinal)
 library(brms)
 library(bayesplot)
+library(extraDistr)
 
 # load data
 df <- read.csv("norming_data_HighvsLowSem.csv")
