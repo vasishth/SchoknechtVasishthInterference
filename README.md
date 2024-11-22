@@ -9,7 +9,7 @@ The repository includes the stimuli used in the experiment (material), self-pace
 German sentences were presented word-by-word in a self-paced manner for the self-paced reading experiment and in an auto-paced manner for the EEG experiment. The critical word was always the verb preceded by two adverbs.
 
 ## Code & Data
-The folder code_data contains all files (data and code) to reproduce the analyses presented in the paper, separately for the plausibility norming, the SPR and the EEG experiments. Additionally, it contains all files for the computational modeling presented in the paper.
+The folder code_data contains all files (data and code) to reproduce the analyses presented in the paper, separately for the plausibility norming, the SPR and the EEG experiments. Unfortunately, it was not possible to upload model fits due to capacity limitations; the models need to be run to reproduce the analyses. Additionally, it contains all files for the computational modeling presented in the paper.
 
 ### Plausibility Norming
 This folder contains the data of both rating studies reported in the paper. 
