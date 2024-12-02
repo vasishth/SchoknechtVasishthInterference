@@ -183,10 +183,9 @@ We have now made this section even more explicit by stating that syntactic inter
 \end{quote}
 
 \subsubsection*{Response to E.3}
-Yes, we changed all analyses in the first revision. As we had explained in the response to reviewers on August 29, 2024 (specifically in the response letter and our responses to the comments E.2 and R3.5), the priors were changed from directional priors in the original version to symmetrical priors in the revised version. This was necessary because we added trial id as a predictor as was suggested by a reviewer. There was no a priori hypothesis of the sign of the effect of trial id (do the participants get faster or slower over the course of the experiment?), therefore the prior for trial id needed to be symmetrical (positive and negative values). It is not possible to include symmetrical and directional priors within a single brms model \citep{brms}, thus all priors were changed to symmetrical ones.
+Yes, as we had explained in the response to reviewers on August 29, 2024, all analyses were changed in the first round of revisions. For a fair comparison of our results to the results of the previous studies, especially Van Dyke (2007), it was necessary to compute Bayes factors using the Savage-Dickey ratio (in the original version of the manuscript we had used bridge sampling). Furthermore, for the Van Dyke (2007) data, the first on this design, it only made sense to use symmetrical priors which are agnostic regarding the sign of the effects. For consistency, we then used symmetrical priors for all our analyses (compared to the directional priors which we had used originally). 
 
-Additionally, we changed the method with which the Bayes factors were computed. Initially, we had used bridge sampling, but in the revision, we switched to the Savage-Dickey method because only using that method we were able to compare models with random slopes (this was also explained in the previous response letter, Response to R1.7). These changes did not change the results qualitatively, but led to some numerical changes which probably piqued the reviewer's interest.
-
+These changes did not change the results qualitatively, but led to some numerical changes which probably piqued the reviewer's interest.
 
 \subsection*{Comment E.4}
 \begin{quote}
@@ -375,11 +374,16 @@ Himanshu Yadav, Garrett Smith, Sebastian Reich, and Shravan Vasishth. Number fea
 
 Another interesting model of encoding interference is
 
-Smith, Garrett, Julie Franck, and Whitney Tabor. "Encoding interference effects support self-organized sentence processing." Cognitive Psychology 124 (2021): 101356.
+Smith, Garrett, Julie Franck, and Whitney Tabor. ``Encoding interference effects support self-organized sentence processing." Cognitive Psychology 124 (2021): 101356.
 
-We have now cited this paper.
+We have now cited this paper on pages \pageref{revised_SPR} and \pageref{smith2}:
 
-So, in summary, a proper treatment of encoding interference would require a modeling effort at the same scale as was carried out in the above-mentioned paper. Such a modeling effort, although very worthwhile, would take several years' of work and is therefore far beyond the scope of the present work.
+\Paste{smith1}
+\\
+
+\Paste{smith2}\\
+
+So, in summary, a proper treatment of encoding interference would require a modeling effort at the same scale as was carried out in \citet{Yadavetal2022}. Such a modeling effort, although very worthwhile, would take several years' of work and is therefore far beyond the scope of the present work.
  
 \subsection*{Comment R2.3}
 
